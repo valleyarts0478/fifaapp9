@@ -27,8 +27,8 @@ class RegisteredUserController extends Controller
      * Handle an incoming registration request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     *
+     * @return \IllÍuminate\Http\RedirectResponse
+     *Í
      * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
@@ -36,7 +36,7 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:admins',
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => 'required|string|confirmed|min:8',
         ]);
 
         $user = Admin::create([
