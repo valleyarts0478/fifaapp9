@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Services;
-Use InterventionImage;
-Use Illuminate\Support\Facades\Storage;
+
+use Illuminate\Support\Facades\Storage;
+use InterventionImage;
 
 Class ImageService
 {
