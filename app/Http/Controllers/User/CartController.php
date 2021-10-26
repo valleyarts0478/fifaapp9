@@ -21,8 +21,6 @@ class CartController extends Controller
             $totalPrice += $product->price * $product->pivot->quantity;
         }
 
-        // dd($products, $totalPrice);
-
         return view('user.cart', compact('products', 'totalPrice'));
     }
     public function add(Request $request)
@@ -84,10 +82,9 @@ class CartController extends Controller
                 'quantity' => $product->pivot->quantity * -1
             ]);
         }
-        dd('test');
 
-        Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
-        $session = Stripe\Checkout\Session::create([
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+        $session = \Stripe\Checkout\Session::create([
             'payment_method_types' => ['card'],
             'line_items' => [$lineItems],
             'mode' => 'payment',
