@@ -80,7 +80,9 @@ class ConventionsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $convention = Convention::findOrFail($id);
+
+        return view('admin.conventions.edit', compact('convention'));
     }
 
     /**
@@ -92,7 +94,16 @@ class ConventionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $convention = Convention::findOrFail($id);
+        $convention->convention_no = $request->convention_no;
+        $convention->save();
+
+        return redirect()
+            ->route('admin.conventions.index')
+            ->with([
+                'message' => '大会名を更新しました。',
+                'status' => 'info'
+            ]);
     }
 
     /**
