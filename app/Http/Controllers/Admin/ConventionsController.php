@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Convention; //Eloquet エロクアント
+use App\Rules\alpha_num_check;
 
 class ConventionsController extends Controller
 {
@@ -22,7 +23,9 @@ class ConventionsController extends Controller
     public function index()
     {
         // dd('test2');
-        return view('admin.conventions.index');
+        $conventions = Convention::all();
+
+        return view('admin.conventions.index', compact('conventions'));
     }
 
     /**
@@ -32,7 +35,7 @@ class ConventionsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.conventions.create');
     }
 
     /**
@@ -43,7 +46,19 @@ class ConventionsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'convention_no' => ['required', 'string', new alpha_num_check], //書き方注意
+        ]);
+
+        Convention::create([
+            'convention_no' => $request->convention_no,
+        ]);
+
+        return redirect()->route('admin.conventions.index')
+            ->with([
+                'message' => '大会名を登録しました。',
+                'status' => 'info'
+            ]);;
     }
 
     /**
