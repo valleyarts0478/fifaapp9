@@ -17,6 +17,7 @@ class CreateConventionsTable extends Migration
             $table->id();
             $table->string('convention_no');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

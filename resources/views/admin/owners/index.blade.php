@@ -12,17 +12,16 @@
 
                     <section class="text-gray-600 body-font">
                       <div class="container md:px-5 mx-auto">
-
                         <div class="lg:w-2/3 w-full mx-auto overflow-auto">
                           <x-flash-message status="session('status')" />
-                          <div class="flex justify-end mb-4">
+                          <div class="flex max-w-md justify-end my-2">
                             <button onclick="location.href='{{ route('admin.owners.create') }}'" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">新規登録する</button>    
                           </div>
                           <table class="table-auto w-full text-left whitespace-no-wrap">
                             <thead>
                               <tr>
-                                <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">メールアドレス</th>
                                 <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">名前</th>
+                                <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">メールアドレス</th>
                                 <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">作成日</th>
                                 <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
                                 <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>

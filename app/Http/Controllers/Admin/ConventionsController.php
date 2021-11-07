@@ -114,6 +114,29 @@ class ConventionsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $convention = Convention::findOrFail($id)->delete(); //ソフトデリート
+
+        return redirect()
+            ->route('admin.conventions.index')
+            ->with([
+                'message' => '大会名を削除しました。',
+                'status' => 'alert'
+            ]);
+    }
+
+    public function expiredConventionIndex()
+    {
+
+        $expiredConventions = Convention::onlyTrashed()->get();
+
+        return view('admin.expired-conventions', compact('expiredConventions'));
+    }
+
+    public function expiredConventionDestroy($id)
+    {
+
+        Convention::onlyTrashed()->findOrFail($id)->forceDelete();
+
+        return redirect()->route('admin.expired-conventions.index');
     }
 }

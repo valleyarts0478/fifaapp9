@@ -26,6 +26,9 @@
                     <x-nav-link :href="route('admin.conventions.index')" :active="request()->routeIs('admin.conventions.index')">
                         大会管理
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.expired-conventions.index')" :active="request()->routeIs('admin.expired-conventions.index')">
+                        削除済み大会
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -85,6 +88,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.conventions.index')" :active="request()->routeIs('admin.conventions.index')">
                 大会管理
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.expired-conventions.index')" :active="request()->routeIs('admin.expired-conventions.index')">
+                削除済み大会
             </x-responsive-nav-link>
         </div>
 

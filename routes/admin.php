@@ -31,6 +31,12 @@ use Illuminate\Support\Facades\Route;
 Route::resource('conventions', ConventionsController::class)
     ->middleware('auth:admin')->except(['show']);
 
+Route::prefix('expired-conventions')
+    ->middleware('auth:admin')->group(function () {
+        Route::get('index', [ConventionsController::class, 'expiredConventionIndex'])->name('expired-conventions.index');
+        Route::post('destroy/{convention}', [ConventionsController::class, 'expiredConventionDestroy'])->name('expired-conventions.destroy');
+    });
+
 Route::resource('owners', OwnersController::class)
     ->middleware('auth:admin')->except(['show']);
 

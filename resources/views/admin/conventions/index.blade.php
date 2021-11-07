@@ -15,14 +15,14 @@
 
                         <div class="lg:w-2/3 w-full mx-auto overflow-auto">
                           <x-flash-message status="session('status')" />
-                          <div class="flex justify-end mb-4">
-                            <button onclick="location.href='{{ route('admin.conventions.create') }}'" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">新規登録する</button>    
+                          <div class="flex justify-end my-2 mr-2">
+                            <button onclick="location.href='{{ route('admin.conventions.create') }}'" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded-md text-lg">新規登録する</button>    
                           </div>
-                          <table class="table-auto w-full text-left whitespace-no-wrap">
+                          <table class="table-auto w-full text-center whitespace-no-wrap">
                             <thead>
                               <tr>
                                 <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">大会名</th>
-                                <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">作成日</th>
+                                {{-- <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">作成日</th> --}}
                                 <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
                                 <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
                               </tr>
@@ -30,18 +30,18 @@
                             <tbody>
                             @foreach ($conventions as $convention)
                               <tr>
-                                <td class="md:px-4 py-3">{{ $convention->convention_no }}</td>
-                                <td class="md:px-4 py-3">{{ $convention->created_at->diffForHumans() }}</td>
-                                <td class="md:px-4 py-3">
+                                <td class="md:px-6 py-3">{{ $convention->convention_no }}</td>
+                                {{-- <td class="md:px-4 py-3">{{ $convention->created_at->diffForHumans() }}</td> --}}
+                                <td class="md:px-3 py-3">
                                   <button onclick="location.href='{{ route('admin.conventions.edit', ['convention' => $convention->id ]) }}'" class="text-white bg-indigo-400 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-500 rounded">編集</button>
                                 </td>
-                              {{-- <form id="delete_{{$owner->id}}" method="post" action="{{ route('admin.owners.destroy', ['owner' => $owner->id]) }}">                 
+                              <form id="delete_{{$convention->id}}" method="post" action="{{ route('admin.conventions.destroy', ['convention' => $convention->id]) }}">                 
                                 @csrf
                                 @method('delete')
-                                <td class="md:px-4 py-3">
-                                  <a href="#" data-id="{{ $owner->id }}" onclick="deletePost(this)" class="text-white bg-red-400 border-0 py-2 px-4 focus:outline-none hover:bg-red-500 rounded">削除</a>
+                                <td class="md:px-3 py-3">
+                                  <a href="#" data-id="{{ $convention->id }}" onclick="deletePost(this)" class="text-white bg-red-400 border-0 py-2 px-4 focus:outline-none hover:bg-red-500 rounded">削除</a>
                                 </td>
-                              </form> --}}
+                              </form>
                               </tr>
                               @endforeach
                             </tbody>
@@ -54,10 +54,10 @@
             </div>
         </div>
     </div>
-    {{-- <script>
+    <script>
       function deletePost(e) {
       'use strict';
       if (confirm('本当に削除してもいいですか?')) { document.getElementById('delete_' + e.dataset.id).submit(); }
       }
-    </script> --}}
+    </script>
 </x-app-layout>
