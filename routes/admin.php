@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\OwnersController;
 use App\Http\Controllers\Admin\ConventionsController;
+use App\Http\Controllers\Admin\LeaguesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,10 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('admin.welcome');
 // });
+
+// Leagues
+Route::resource('leagues', LeaguesController::class)
+    ->middleware('auth:admin')->except(['show']);
 
 // conventions
 Route::resource('conventions', ConventionsController::class)

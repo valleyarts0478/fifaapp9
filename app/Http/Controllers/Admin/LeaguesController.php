@@ -4,18 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Convention; //Eloquet エロクアント
 use App\Models\League; //Eloquet エロクアント
+use App\Models\Convention; //Eloquet エロクアント
 use App\Rules\alpha_num_check;
 
-class ConventionsController extends Controller
+class LeaguesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function __construct()
     {
         $this->middleware('auth:admin');
@@ -23,10 +22,14 @@ class ConventionsController extends Controller
 
     public function index()
     {
-        // dd('test2');
-        $conventions = Convention::all();
+        // 主->　従
+        // $conventions = Convention::all();
+        // 主　<-従
+        $leagues = League::all();
+        // dd($conventions, $leagues);
 
-        return view('admin.conventions.index', compact('conventions'));
+
+        return view('admin.leagues.index', compact('leagues'));
     }
 
     /**
@@ -36,7 +39,7 @@ class ConventionsController extends Controller
      */
     public function create()
     {
-        return view('admin.conventions.create');
+        return view('admin.leagues.create');
     }
 
     /**
@@ -48,16 +51,16 @@ class ConventionsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'convention_no' => ['required', 'string', new alpha_num_check], //書き方注意
+            'league_name' => ['required', 'string', new alpha_num_check], //書き方注意
         ]);
 
-        Convention::create([
-            'convention_no' => $request->convention_no,
+        League::create([
+            'league_name' => $request->league_name,
         ]);
 
-        return redirect()->route('admin.conventions.index')
+        return redirect()->route('admin.leagues.index')
             ->with([
-                'message' => '大会名を登録しました。',
+                'message' => 'リーグ名を登録しました。',
                 'status' => 'info'
             ]);
     }
@@ -81,9 +84,9 @@ class ConventionsController extends Controller
      */
     public function edit($id)
     {
-        $convention = Convention::findOrFail($id);
+        $league = League::findOrFail($id);
 
-        return view('admin.conventions.edit', compact('convention'));
+        return view('admin.leagues.edit', compact('league'));
     }
 
     /**
@@ -95,14 +98,18 @@ class ConventionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $convention = Convention::findOrFail($id);
-        $convention->convention_no = $request->convention_no;
-        $convention->save();
+        $request->validate([
+            'league_name' => ['required', 'string', new alpha_num_check], //書き方注意
+        ]);
+
+        $league = League::findOrFail($id);
+        $league->league_name = $request->league_name;
+        $league->save();
 
         return redirect()
-            ->route('admin.conventions.index')
+            ->route('admin.leagues.index')
             ->with([
-                'message' => '大会名を更新しました。',
+                'message' => 'リーグ名を更新しました。',
                 'status' => 'info'
             ]);
     }
@@ -115,29 +122,13 @@ class ConventionsController extends Controller
      */
     public function destroy($id)
     {
-        $convention = Convention::findOrFail($id)->delete(); //ソフトデリート
+        $convention = League::findOrFail($id)->delete();
 
         return redirect()
-            ->route('admin.conventions.index')
+            ->route('admin.leagues.index')
             ->with([
-                'message' => '大会名を削除しました。',
+                'message' => 'リーグ名を削除しました。',
                 'status' => 'alert'
             ]);
-    }
-
-    public function expiredConventionIndex()
-    {
-
-        $expiredConventions = Convention::onlyTrashed()->get();
-
-        return view('admin.expired-conventions', compact('expiredConventions'));
-    }
-
-    public function expiredConventionDestroy($id)
-    {
-
-        Convention::onlyTrashed()->findOrFail($id)->forceDelete();
-
-        return redirect()->route('admin.expired-conventions.index');
     }
 }

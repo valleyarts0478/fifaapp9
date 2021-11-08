@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\League;
 
 class Convention extends Authenticatable
 {
@@ -38,4 +39,9 @@ class Convention extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // public function leagues()
+    // {
+    //     return $this->hasMany(League::class);
+    // }
 }
