@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <div class="w-12">
-                        <a href="{{ route('owner.dashboard') }}">
+                        <a href="{{ route('team_owner.dashboard') }}">
                             <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                         </a>
                         </div>
@@ -14,18 +14,12 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('owner.dashboard')" :active="request()->routeIs('owner.dashboard')">
+                    <x-nav-link :href="route('team_owner.dashboard')" :active="request()->routeIs('team_owner.dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('owner.shops.index')" :active="request()->routeIs('owner.shops.index')">
-                       店舗情報
+                    <x-nav-link :href="route('team_owner.teams.index')" :active="request()->routeIs('team_owner.teams.index')">
+                        チーム名
                     </x-nav-link>
-                    <x-nav-link :href="route('owner.images.index')" :active="request()->routeIs('owner.images.index')">
-                        画像管理
-                     </x-nav-link>
-                     <x-nav-link :href="route('owner.products.index')" :active="request()->routeIs('owner.products.index')">
-                        商品管理
-                     </x-nav-link>
                 </div>
             </div>
 
@@ -46,10 +40,10 @@
 
                     <x-slot name="content">
                         <!-- Authentication -->
-                        <form method="POST" action="{{ route('owner.logout') }}">
+                        <form method="POST" action="{{ route('team_owner.logout') }}">
                             @csrf
 
-                            <x-dropdown-link :href="route('owner.logout')"
+                            <x-dropdown-link :href="route('team_owner.logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
@@ -74,18 +68,9 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('owner.dashboard')" :active="request()->routeIs('owner.dashboard')">
+            <x-responsive-nav-link :href="route('team_owner.dashboard')" :active="request()->routeIs('team_owner.dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('owner.shops.index')" :active="request()->routeIs('owner.shops.index')">
-                店舗情報
-            </x-responsive-nav-link>
-            <x-nav-link :href="route('owner.images.index')" :active="request()->routeIs('owner.images.index')">
-                画像管理
-             </x-nav-link>
-             <x-nav-link :href="route('owner.products.index')" :active="request()->routeIs('owner.products.index')">
-                商品管理
-             </x-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
@@ -97,10 +82,10 @@
 
             <div class="mt-3 space-y-1">
                 <!-- Authentication -->
-                <form method="POST" action="{{ route('owner.logout') }}">
+                <form method="POST" action="{{ route('team_owner.logout') }}">
                     @csrf
 
-                    <x-responsive-nav-link :href="route('owner.logout')"
+                    <x-responsive-nav-link :href="route('team_owner.logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
                         {{ __('Log Out') }}

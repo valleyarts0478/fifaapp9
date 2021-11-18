@@ -24,6 +24,8 @@
                 @include('layouts.owner-navigation')
             @elseif(auth('users')->user())
                 @include('layouts.user-navigation')
+                @elseif(auth('team_owners')->user())
+                @include('layouts.team_owner-navigation')
             @endif
             
             <!-- Page Heading -->

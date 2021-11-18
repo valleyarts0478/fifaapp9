@@ -17,10 +17,10 @@
                     <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.owners.index')" :active="request()->routeIs('admin.owners.index')">
+                    <x-nav-link :href="route('admin.team_owners.index')" :active="request()->routeIs('admin.team_owners.index')">
                         オーナー管理
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.expired-owners.index')" :active="request()->routeIs('admin.expired-owners.index')">
+                    <x-nav-link :href="route('admin.expired-team_owners.index')" :active="request()->routeIs('admin.expired-team_owners.index')">
                         期限切れオーナー一覧
                     </x-nav-link>
                     <x-nav-link :href="route('admin.conventions.index')" :active="request()->routeIs('admin.conventions.index')">

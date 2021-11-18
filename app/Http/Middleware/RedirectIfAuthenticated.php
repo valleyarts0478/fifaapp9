@@ -9,9 +9,10 @@ use Illuminate\Support\Facades\Auth;
 
 class RedirectIfAuthenticated
 {
-    private const GUARD_USER ='users';
-    private const GUARD_OWNER ='owners';
-    private const GUARD_ADMIN ='admin';
+    private const GUARD_USER = 'users';
+    private const GUARD_OWNER = 'owners';
+    private const GUARD_ADMIN = 'admin';
+    private const GUARD_TEAM_OWNER = 'team_owners';
 
     /**
      * Handle an incoming request.
@@ -31,16 +32,20 @@ class RedirectIfAuthenticated
         //     }
         // }
 
-        if(Auth::guard(self::GUARD_USER)->check() && $request->routeIs('user.*')){
-                return redirect(RouteServiceProvider::HOME);
+        if (Auth::guard(self::GUARD_USER)->check() && $request->routeIs('user.*')) {
+            return redirect(RouteServiceProvider::HOME);
         }
-  
-        if(Auth::guard(self::GUARD_OWNER)->check() && $request->routeIs('OWNER.*')){
+
+        if (Auth::guard(self::GUARD_OWNER)->check() && $request->routeIs('owner.*')) {
             return redirect(RouteServiceProvider::OWNER_HOME);
         }
 
-        if(Auth::guard(self::GUARD_ADMIN)->check() && $request->routeIs('admin.*')){
+        if (Auth::guard(self::GUARD_ADMIN)->check() && $request->routeIs('admin.*')) {
             return redirect(RouteServiceProvider::ADMIN_HOME);
+        }
+
+        if (Auth::guard(self::GUARD_TEAM_OWNER)->check() && $request->routeIs('team_owner.*')) {
+            return redirect(RouteServiceProvider::TEAM_OWNER_HOME);
         }
 
         return $next($request);

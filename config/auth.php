@@ -55,7 +55,12 @@ return [
             'driver' => 'session',
             'provider' => 'admin',
         ],
-        
+
+        'team_owners' => [
+            'driver' => 'session',
+            'provider' => 'team_owners',
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -96,6 +101,11 @@ return [
             'model' => App\Models\Admin::class,
         ],
 
+        'team_owners' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Team_owner::class,
+        ],
+
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -128,6 +138,13 @@ return [
         'owners' => [
             'provider' => 'owners',
             'table' => 'owner_password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'team_owners' => [
+            'provider' => 'team_owners',
+            'table' => 'team_owners_password_resets',
             'expire' => 60,
             'throttle' => 60,
         ],

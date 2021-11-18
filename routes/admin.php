@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\OwnersController;
+use App\Http\Controllers\Admin\TeamOwnersController;
 use App\Http\Controllers\Admin\ConventionsController;
 use App\Http\Controllers\Admin\LeaguesController;
 use Illuminate\Support\Facades\Route;
@@ -35,11 +36,22 @@ Route::resource('leagues', LeaguesController::class)
 // conventions
 Route::resource('conventions', ConventionsController::class)
     ->middleware('auth:admin')->except(['show']);
-
+// conventions ソフトデリート
 Route::prefix('expired-conventions')
     ->middleware('auth:admin')->group(function () {
         Route::get('index', [ConventionsController::class, 'expiredConventionIndex'])->name('expired-conventions.index');
         Route::post('destroy/{convention}', [ConventionsController::class, 'expiredConventionDestroy'])->name('expired-conventions.destroy');
+    });
+
+// team_owners
+Route::resource('team_owners', TeamOwnersController::class)
+    ->middleware('auth:admin')->except(['show']);
+
+// team_owners ソフトデリート
+Route::prefix('expired-team_owners')
+    ->middleware('auth:admin')->group(function () {
+        Route::get('index', [TeamOwnersController::class, 'expiredTeamOwnerIndex'])->name('expired-team_owners.index');
+        Route::post('destroy/{team_owner}', [TeamOwnersController::class, 'expiredTeamOwnerDestroy'])->name('expired-team_owners.destroy');
     });
 
 Route::resource('owners', OwnersController::class)
@@ -57,12 +69,12 @@ Route::get('/dashboard', function () {
 
 
 
-Route::get('/register', [RegisteredUserController::class, 'create'])
-    ->middleware('guest')
-    ->name('register');
+// Route::get('/register', [RegisteredUserController::class, 'create'])
+//     ->middleware('guest')
+//     ->name('register');
 
-Route::post('/register', [RegisteredUserController::class, 'store'])
-    ->middleware('guest');
+// Route::post('/register', [RegisteredUserController::class, 'store'])
+//     ->middleware('guest');
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])
     ->middleware('guest')

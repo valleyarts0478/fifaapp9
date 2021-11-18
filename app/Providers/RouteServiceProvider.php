@@ -20,6 +20,7 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/';
     public const OWNER_HOME = '/owner/dashboard';
     public const ADMIN_HOME = '/admin/dashboard';
+    public const TEAM_OWNER_HOME = '/team_owner/dashboard';
 
 
     /**
@@ -63,6 +64,12 @@ class RouteServiceProvider extends ServiceProvider
                 ->middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
+
+            Route::prefix('team_owner')
+                ->as('team_owner.')
+                ->middleware('web')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/team_owner.php'));
         });
     }
 
