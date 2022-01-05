@@ -4,26 +4,37 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Team_owner; //Eloquet エロクアント
+use App\Models\Team_owner;
+use App\Models\Convention;
+use App\Models\League;
+use Illuminate\Support\Facades\Storage;
+use InterventionImage;
+use App\Services\ImageService;
+use App\Services\TeamService;
 use Illuminate\Support\Facades\DB; //QueryBuilder クエリビルダー
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Throwable;
 use Illuminate\Support\Facades\Log;
+use App\Http\Requests\TeamLogoUploadRequest;
 
 class TeamOwnersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
     public function index()
     {
-        $team_owners = Team_owner::select('id', 'name', 'email', 'created_at')
+        $team_owners = Team_owner::select('id', 'convention_id', 'league_id', 'team_name', 'team_abb', 'team_logo_url', 'created_at')
             ->paginate(10);
 
+
+        // $conventions = Convention::select('convention_no');
+        // $leagues = League::select('id', 'league_name');
+        // dd($team_owners, $leagues);
         return view('admin.team_owners.index', compact('team_owners'));
     }
 
@@ -34,7 +45,15 @@ class TeamOwnersController extends Controller
      */
     public function create()
     {
-        //
+        $team_owners = Team_owner::select('id', 'convention_id', 'league_id', 'team_name', 'team_abb', 'team_logo_url', 'created_at')
+            ->get();
+
+        $conventions = Convention::select('id', 'convention_no')->get();
+        $leagues = League::select('id', 'league_name')->get();
+
+
+
+        return view('admin.team_owners.create', compact('team_owners', 'conventions', 'leagues'));
     }
 
     /**
@@ -45,7 +64,43 @@ class TeamOwnersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'convention_id' => 'required|string|max:255',
+            'league_id' => 'required|string|max:255',
+            'team_name' => 'required|string|max:255',
+            'team_abb' => 'required|string|max:255',
+            // 'team_logo_url' => 'nullable|file',
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        // $team_owner = Team_owner::findOrFail();
+        // $team_owner->convention_id = $request->convention_id;
+        // $team_owner->league_id = $request->league_id;
+        // $team_owner->team_name = $request->team_name;
+        // $team_owner->team_abb = $request->team_abb;
+        // if (!is_null($imageFile) && $imageFile->isValid()) {
+        //     $team_owner->team_logo_url = $fileNameToStore;
+        // }
+        // $team_owner->password = Hash::make($request->password);
+        // $team_owner->save();
+
+        $imageFile = $request->team_logo_url; //一時保存
+        if (!is_null($imageFile) && $imageFile->isValid()) {
+            $fileNameToStore = TeamService::logoupload($imageFile, 'teams');
+        }
+
+        Team_owner::create([
+            'convention_id' => $request->convention_id,
+            'league_id' => $request->league_id,
+            'team_name' => $request->team_name,
+            'team_abb' => $request->team_abb,
+            // 'team_logo_url' => $request->file('team_logo_url')->store('/public/teams'),
+            'team_logo_url' => $fileNameToStore,
+            'password' => Hash::make($request->password),
+        ]);
+
+
+        return redirect()->route('admin.team_owners.index');
     }
 
     /**
@@ -67,7 +122,18 @@ class TeamOwnersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $team_owner = Team_owner::findOrFail($id);
+
+        // $team_owner = Team_owner::select('id', 'convention_id', 'league_id', 'team_name', 'team_abb', 'team_logo_url', 'created_at')
+        //     ->get();
+
+        $conventions = Convention::select('id', 'convention_no')->get();
+        // dd($convention);
+        $leagues = League::select('id', 'league_name')->get();
+
+
+
+        return view('admin.team_owners.edit', compact('team_owner', 'conventions', 'leagues'));
     }
 
     /**
@@ -77,9 +143,38 @@ class TeamOwnersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TeamLogoUploadRequest $request, $id)
     {
-        //
+        $request->validate([
+            'convention_id' => 'required|string|max:255',
+            'league_id' => 'required|string|max:255',
+            'team_name' => 'required|string|max:255',
+            'team_abb' => 'required|string|max:255',
+            // 'team_logo_url' => 'nullable|file',
+        ]);
+
+        $imageFile = $request->image; //一時保存
+        if (!is_null($imageFile) && $imageFile->isValid()) {
+            $fileNameToStore = ImageService::upload($imageFile, 'teams');
+        }
+
+        $team_owner = Team_owner::findOrFail($id);
+        $team_owner->convention_id = $request->convention_id;
+        $team_owner->league_id = $request->league_id;
+        $team_owner->team_name = $request->team_name;
+        $team_owner->team_abb = $request->team_abb;
+        if (!is_null($imageFile) && $imageFile->isValid()) {
+            $team_owner->team_logo_url = $fileNameToStore;
+        }
+
+        $team_owner->save();
+
+        return redirect()
+            ->route('admin.team_owners.index')
+            ->with([
+                'message' => 'チーム情報を更新しました。',
+                'status' => 'info'
+            ]);
     }
 
     /**

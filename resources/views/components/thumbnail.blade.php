@@ -5,6 +5,9 @@
   if($type === 'products'){
     $path = 'storage/products/';
   }
+  if($type === 'teams'){
+    $path = 'storage/teams/';
+  }
 @endphp
 <div>
  @if(empty($filename))

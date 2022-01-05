@@ -20,7 +20,7 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/';
     public const OWNER_HOME = '/owner/dashboard';
     public const ADMIN_HOME = '/admin/dashboard';
-    public const TEAM_OWNER_HOME = '/team_owner/dashboard';
+    public const TEAM_OWNER_HOME = '/team_owner';
 
 
     /**

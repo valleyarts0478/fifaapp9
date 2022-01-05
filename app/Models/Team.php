@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Team_owner;
+use App\Models\Player;
 
 class Team extends Authenticatable
 {
@@ -26,5 +27,10 @@ class Team extends Authenticatable
     {
 
         return $this->belongsTo(Team_owner::class);
+    }
+    public function player()
+    {
+
+        return $this->hasMany(Player::class);
     }
 }

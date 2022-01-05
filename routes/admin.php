@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\OwnersController;
 use App\Http\Controllers\Admin\TeamOwnersController;
 use App\Http\Controllers\Admin\ConventionsController;
 use App\Http\Controllers\Admin\LeaguesController;
+use App\Http\Controllers\Admin\PlayersController;
+use App\Http\Controllers\Admin\csvController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,6 +55,9 @@ Route::prefix('expired-team_owners')
         Route::get('index', [TeamOwnersController::class, 'expiredTeamOwnerIndex'])->name('expired-team_owners.index');
         Route::post('destroy/{team_owner}', [TeamOwnersController::class, 'expiredTeamOwnerDestroy'])->name('expired-team_owners.destroy');
     });
+// players
+Route::resource('players', PlayersController::class)
+    ->middleware('auth:admin')->except(['show']);
 
 Route::resource('owners', OwnersController::class)
     ->middleware('auth:admin')->except(['show']);
@@ -61,6 +66,12 @@ Route::prefix('expired-owners')
     ->middleware('auth:admin')->group(function () {
         Route::get('index', [OwnersController::class, 'expiredOwnerIndex'])->name('expired-owners.index');
         Route::post('destroy/{owner}', [OwnersController::class, 'expiredOwnerDestroy'])->name('expired-owners.destroy');
+    });
+
+Route::prefix('import')
+    ->middleware('auth:admin')->group(function () {
+        Route::get('csv', [csvController::class, 'index'])->name('import.csv');
+        Route::post('csv/upload', [csvController::class, 'upload']);
     });
 
 Route::get('/dashboard', function () {

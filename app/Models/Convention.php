@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\League;
+use App\Models\Team_owner;
 
 class Convention extends Authenticatable
 {
@@ -44,4 +44,14 @@ class Convention extends Authenticatable
     // {
     //     return $this->hasMany(League::class);
     // }
+    public function team_owner()
+    {
+
+        return $this->hasOne(Team_owner::class);
+    }
+    public function games()
+    {
+
+        return $this->hasMany(Game::class);
+    }
 }

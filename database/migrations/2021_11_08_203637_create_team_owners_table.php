@@ -20,8 +20,13 @@ class CreateTeamOwnersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->foreignId('convention_id')->constrained();
+            $table->foreignId('league_id')->constrained();
+            $table->string('team_name');
+            $table->string('team_abb');
+            $table->string('team_logo_url')->nullable();
             $table->timestamps();
-            $table->softDeletes();
+            // $table->softDeletes();
         });
     }
 

@@ -9,7 +9,12 @@ use App\Http\Controllers\Team_Owner\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Team_Owner\Auth\RegisteredUserController;
 use App\Http\Controllers\Team_Owner\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Team_owner\TeamController;
+use App\Http\Controllers\Team_Owner\TeamController;
+use App\Http\Controllers\Team_owner\PlayerController;
+use App\Http\Controllers\Team_owner\GamesController;
+use App\Http\Controllers\Team_owner\GameResultsController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,23 +27,47 @@ use App\Http\Controllers\Team_owner\TeamController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('owner.welcome');
-// });
+Route::get('/', function () {
+    return view('team_owner.welcome');
+});
 
-Route::get('/dashboard', function () {
-    return view('team_owner.dashboard');
-})->middleware(['auth:team_owners'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('team_owner.dashboard');
+// })->middleware(['auth:team_owners'])->name('dashboard');
 
-// Route::resource('teams', TeamController::class)
+// Route::resource('teams', TeamOwnersController::class)
 //     ->middleware('auth:team_owners')->except(['show']);
 
-Route::prefix('teams')
+Route::middleware('auth:team_owners')->group(function () {
+    Route::get('/', [TeamController::class, 'index'])->name('teams.index');
+    // Route::get('show/{item}', [ItemController::class, 'show'])->name('items.show');
+});
+
+// Route::prefix('teams')
+//     ->middleware('auth:team_owners')->group(function () {
+//         Route::get('index', [TeamOwnersController::class, 'index'])->name('teams.index');
+//         Route::get('edit/{team}', [TeamOwnersController::class, 'edit'])->name('teams.edit');
+//         Route::post('update/{team}', [TeamOwnersController::class, 'update'])->name('teams.update');
+//     });
+
+Route::prefix('games')
     ->middleware('auth:team_owners')->group(function () {
-        Route::get('index', [TeamController::class, 'index'])->name('teams.index');
-        Route::get('edit/{team}', [TeamController::class, 'edit'])->name('teams.edit');
-        Route::post('update/{team}', [TeamController::class, 'update'])->name('teams.update');
+        Route::get('/', [GamesController::class, 'index'])->name('games.index');
+        Route::get('create', [GamesController::class, 'create'])->name('games.create');
+        Route::post('store', [GamesController::class, 'store'])->name('games.store');
+        Route::get('edit/{game}', [GamesController::class, 'edit'])->name('games.edit');
+        Route::post('update/{game}', [GamesController::class, 'update'])->name('games.update');
     });
+
+Route::prefix('results')
+    ->middleware('auth:team_owners')->group(function () {
+        Route::get('/', [GameResultsController::class, 'index'])->name('results.index');
+        Route::get('edit/{result}', [GameResultsController::class, 'edit'])->name('results.edit');
+        Route::post('update/{result}', [GameResultsController::class, 'update'])->name('results.update');
+    });
+
+Route::resource('players', PlayerController::class)
+    ->middleware('auth:team_owners')->except(['show']);
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
     ->middleware('guest')

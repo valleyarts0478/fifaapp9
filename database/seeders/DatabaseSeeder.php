@@ -5,8 +5,13 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Product;
 use App\Models\Stock;
+use App\Models\Convention;
 use App\Models\League;
 use App\Models\Team;
+use App\Models\Team_owner;
+use App\Models\Player;
+use App\Models\Game;
+use App\Models\GameResult;
 
 class DatabaseSeeder extends Seeder
 {
@@ -30,7 +35,11 @@ class DatabaseSeeder extends Seeder
             ConventionSeeder::class,
             LeagueSeeder::class,
             TeamOwnerSeeder::class,
-            TeamSeeder::class,
+            GamesSeeder::class,
+            PlayerSeeder::class,
+            GamePlayerSeeder::class,
+            GameResultSeeder::class,
+            Convention_ResultSeeder::class,
         ]);
         Product::factory(100)->create();
         Stock::factory(100)->create();

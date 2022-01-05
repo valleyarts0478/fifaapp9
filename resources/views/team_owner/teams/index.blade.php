@@ -13,7 +13,7 @@
                    @foreach ($teams as $team )
                    <div class="w-1/2 p-4">
                      <a href="{{ route('team_owner.teams.edit', ['team' => $team->id]) }}">
-                        <div class="border rounded-md p-4">
+                        <div class="border rounded-md p-4" class="w-1/2">
                         {{ $team->team_name }}
                             <x-team-logo :teamlogourl="$team->team_logo_url" />
                         </div>

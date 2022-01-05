@@ -11,7 +11,7 @@ class ImageService
    {
       // dd($imageFile['image']);
       if (is_array($imageFile)) {
-         $file = $imageFile['image'];
+         $file = $imageFile['team_logo_url'];
       } else {
          $file = $imageFile;
       }
@@ -19,7 +19,7 @@ class ImageService
       $fileName = uniqid(rand() . '_');
       $extension = $file->extension();
       $fileNameToStore = $fileName . '.' . $extension;
-      $resizedImage = InterventionImage::make($file)->resize(1920, 1080)->encode();
+      $resizedImage = InterventionImage::make($file)->resize(500, 500)->encode();
       Storage::put('public/' . $folderName . '/' . $fileNameToStore, $resizedImage);
 
       return $fileNameToStore;

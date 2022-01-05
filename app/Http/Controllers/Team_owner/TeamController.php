@@ -6,13 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use InterventionImage;
+use App\Services\ImageService;
 use App\Services\TeamService;
 use App\Http\Requests\UploadImageRequest;
 use App\Models\Team_owner;
-use App\Models\Team;
-
-
+use App\Models\Player;
+use App\Models\League;
+use App\Models\Convention;
 
 class TeamController extends Controller
 {
@@ -21,31 +23,38 @@ class TeamController extends Controller
     {
         $this->middleware('auth:team_owners');
 
-        $this->middleware(function ($request, $next) {
-            // dd($request->route()->parameter('team')); //文字列
-            // dd(Auth::id()); //数字
-            $id = $request->route()->parameter('team'); //teamのid取得
+        // $this->middleware(function ($request, $next) {
+        //     // dd($request->route()->parameter('team_owner')); //文字列
+        //     // dd(Auth::id()); //数字
+        //     $id = $request->route()->parameter('team_owner'); //teamのid取得
 
-            if (!is_null($id)) { // null判定
-                $teamOwnerId = Team::findOrFail($id)->team_owner->id;
-                $teamId = (int)$teamOwnerId; // キャスト 文字列→数値に型変換
-                $teamownerId = Auth::id();
-                if ($teamId !== $teamownerId) { // 同じでなかったら
-                    abort(404); // 404画面表示 }
-                }
-            }
-            return $next($request);
-        });
+        //     if (!is_null($id)) { // null判定
+        //         $teamOwnerId = Team::findOrFail($id)->team_owner->id;
+        //         $teamId = (int)$teamOwnerId; // キャスト 文字列→数値に型変換
+        //         $teamownerId = Auth::id();
+        //         if ($teamId !== $teamownerId) { // 同じでなかったら
+        //             abort(404); // 404画面表示 }
+        //         }
+        //     }
+        //     return $next($request);
+        // });
     }
 
     public function index()
     {
 
-        // $teamOwnerId = Auth::id();
+        $teamId = Auth::id();
+        $team_owners = Team_owner::where('id', $teamId)->get();
 
-        $teams = Team::where('team_owner_id', Auth::id())->get();
-        // dd($teamOwnerId); //OK
-        return view('team_owner.teams.index', compact('teams'));
+        $league = League::select('id', 'league_name');
+
+        $players = Player::select('team_owner_id', 'player_no', 'player_name')
+            ->orderBy('created_at', 'desc')
+            ->where('team_owner_id', Auth::id())->get();
+
+        $count = Player::where('team_owner_id', Auth::id())->count();
+
+        return view('team_owner.index', compact('team_owners', 'players', 'count'));
     }
 
     /**
@@ -115,6 +124,13 @@ class TeamController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Team::findOrFail($id)->delete();
+
+        return redirect()
+            ->route('team_owner.teams.index')
+            ->with([
+                'message' => 'チームを削除しました。',
+                'status' => 'alert'
+            ]);
     }
 }

@@ -6,19 +6,24 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <div class="w-12">
-                        <a href="{{ route('team_owner.dashboard') }}">
+                        <a href="{{ route('team_owner.teams.index') }}">
                             <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                         </a>
                         </div>
                 </div>
-
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('team_owner.dashboard')" :active="request()->routeIs('team_owner.dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
                     <x-nav-link :href="route('team_owner.teams.index')" :active="request()->routeIs('team_owner.teams.index')">
-                        チーム名
+                        チーム情報
+                    </x-nav-link>
+                    <x-nav-link :href="route('team_owner.players.index')" :active="request()->routeIs('team_owner.players.index')">
+                        選手登録
+                    </x-nav-link>
+                    <x-nav-link :href="route('team_owner.games.index')" :active="request()->routeIs('team_owner.games.index')">
+                        対戦表
+                    </x-nav-link>
+                    <x-nav-link :href="route('team_owner.results.index')" :active="request()->routeIs('team_owner.games.index')">
+                        試合結果入力
                     </x-nav-link>
                 </div>
             </div>
@@ -42,7 +47,6 @@
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('team_owner.logout') }}">
                             @csrf
-
                             <x-dropdown-link :href="route('team_owner.logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
@@ -68,10 +72,21 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('team_owner.dashboard')" :active="request()->routeIs('team_owner.dashboard')">
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link :href="route('team_owner.teams.index')" :active="request()->routeIs('team_owner.teams.index')">
+                チーム情報
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('team_owner.players.index')" :active="request()->routeIs('team_owner.players.index')">
+                選手登録
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('team_owner.games.index')" :active="request()->routeIs('team_owner.games.index')">
+                対戦表
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('team_owner.results.index')" :active="request()->routeIs('team_owner.games.index')">
+                試合結果入力
             </x-responsive-nav-link>
         </div>
+        
+        
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">

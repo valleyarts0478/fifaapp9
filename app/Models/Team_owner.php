@@ -5,13 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\Team;
+// use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\League;
+use App\Models\Player;
+use App\Models\Convention;
+// use App\Models\Game;
 
 
 class Team_owner extends Authenticatable
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -19,8 +22,11 @@ class Team_owner extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
-        'email',
+        'convention_id',
+        'league_id',
+        'team_name',
+        'team_abb',
+        'team_logo_url',
         'password',
     ];
 
@@ -43,9 +49,21 @@ class Team_owner extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function team()
+    public function league()
     {
 
-        return $this->hasOne(Team::class);
+        return $this->belongsTo(League::class);
+    }
+
+    public function convention()
+    {
+
+        return $this->belongsTo(Convention::class);
+    }
+
+    public function players()
+    {
+
+        return $this->hasMany(Player::class);
     }
 }
