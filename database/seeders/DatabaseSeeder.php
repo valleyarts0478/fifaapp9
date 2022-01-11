@@ -37,9 +37,9 @@ class DatabaseSeeder extends Seeder
             TeamOwnerSeeder::class,
             GamesSeeder::class,
             PlayerSeeder::class,
-            GamePlayerSeeder::class,
+            // GamePlayerSeeder::class,
             GameResultSeeder::class,
-            Convention_ResultSeeder::class,
+            // Convention_ResultSeeder::class,
         ]);
         Product::factory(100)->create();
         Stock::factory(100)->create();

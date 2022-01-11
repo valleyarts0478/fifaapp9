@@ -6,7 +6,7 @@
     </x-slot>
     <x-flash-message status="session('status')" />
     <div class="mx-auto max-w-xl rounded overflow-hidden shadow-lg">
-        　@foreach($team_owners as $team_owner)
+        @foreach($team_owners as $team_owner)
         <div class="w-1/2 mx-auto">
           <img src="{{ asset('storage/teams/' . $team_owner['team_logo_url']) }}" alt="Sunset in the mountains">
         </div>

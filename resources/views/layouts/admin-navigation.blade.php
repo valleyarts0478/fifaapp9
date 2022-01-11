@@ -20,17 +20,20 @@
                     <x-nav-link :href="route('admin.team_owners.index')" :active="request()->routeIs('admin.team_owners.index')">
                         オーナー管理
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.expired-team_owners.index')" :active="request()->routeIs('admin.expired-team_owners.index')">
+                    {{-- <x-nav-link :href="route('admin.expired-team_owners.index')" :active="request()->routeIs('admin.expired-team_owners.index')">
                         期限切れオーナー一覧
-                    </x-nav-link>
+                    </x-nav-link> --}}
                     <x-nav-link :href="route('admin.conventions.index')" :active="request()->routeIs('admin.conventions.index')">
                         大会管理
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.expired-conventions.index')" :active="request()->routeIs('admin.expired-conventions.index')">
+                    {{-- <x-nav-link :href="route('admin.expired-conventions.index')" :active="request()->routeIs('admin.expired-conventions.index')">
                         削除済み大会
-                    </x-nav-link>
+                    </x-nav-link> --}}
                     <x-nav-link :href="route('admin.leagues.index')" :active="request()->routeIs('admin.leagues.index')">
                         リーグ管理
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.import.csv')" :active="request()->routeIs('admin.import.csv')">
+                        対戦表CSV登録
                     </x-nav-link>
                 </div>
             </div>
@@ -86,17 +89,17 @@
             <x-responsive-nav-link :href="route('admin.owners.index')" :active="request()->routeIs('admin.owners.index')">
                 オーナー管理
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('admin.expired-owners.index')" :active="request()->routeIs('admin.expired-owners.index')">
+            {{-- <x-responsive-nav-link :href="route('admin.expired-owners.index')" :active="request()->routeIs('admin.expired-owners.index')">
                 期限切れオーナー一覧
-            </x-responsive-nav-link>
+            </x-responsive-nav-link> --}}
             <x-responsive-nav-link :href="route('admin.conventions.index')" :active="request()->routeIs('admin.conventions.index')">
                 大会管理
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('admin.expired-conventions.index')" :active="request()->routeIs('admin.expired-conventions.index')">
+            {{-- <x-responsive-nav-link :href="route('admin.expired-conventions.index')" :active="request()->routeIs('admin.expired-conventions.index')">
                 削除済み大会
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('admin.leagues.index')" :active="request()->routeIs('admin.leagues.index')">
-                削除済み大会
+            </x-responsive-nav-link> --}}
+            <x-responsive-nav-link :href="route('admin.import.csv')" :active="request()->routeIs('admin.import.csv')">
+                対戦表CSV登録
             </x-responsive-nav-link>
         </div>
 

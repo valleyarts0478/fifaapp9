@@ -15,19 +15,19 @@ class CreateConventionResultsTable extends Migration
     {
         Schema::create('convention_results', function (Blueprint $table) {
             $table->id();
-            $table->string('team_name');
-            $table->foreignId('convention_id')->constrained()
+            $table->string('team_name')->nullable();
+            $table->foreignId('convention_id')->nullable()->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->foreignId('league_id')->constrained()
+            $table->foreignId('league_id')->nullable()->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->smallinteger('game_point');
-            $table->smallinteger('game_count');
-            $table->smallinteger('win');
-            $table->smallinteger('lose');
-            $table->smallinteger('draw');
-            $table->smallinteger('numbers_diff');
+            $table->smallinteger('game_point')->nullable()->default(0);
+            $table->smallinteger('game_count')->nullable()->default(0);
+            $table->smallinteger('win')->nullable()->default(0);
+            $table->smallinteger('lose')->nullable()->default(0);
+            $table->smallinteger('draw')->nullable()->default(0);
+            $table->smallinteger('numbers_diff')->nullable()->default(0);
             $table->timestamps();
         });
     }

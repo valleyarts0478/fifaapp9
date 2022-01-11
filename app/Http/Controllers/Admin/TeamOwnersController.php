@@ -19,6 +19,7 @@ use Throwable;
 use Illuminate\Support\Facades\Log;
 use App\Http\Requests\TeamLogoUploadRequest;
 
+
 class TeamOwnersController extends Controller
 {
     public function __construct()
@@ -185,7 +186,7 @@ class TeamOwnersController extends Controller
      */
     public function destroy($id)
     {
-        Team_owner::findOrFail($id)->delete(); //ソフトデリート
+        Team_owner::findOrFail($id)->delete();
 
         return redirect()
             ->route('admin.team_owners.index')

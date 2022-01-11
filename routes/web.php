@@ -6,8 +6,7 @@ use App\Http\Controllers\LifeCycleTestController;
 use App\Http\Controllers\User\ItemController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\MatchController;
-use App\Models\Game;
-use App\Models\player;
+use App\Http\Controllers\User\ConventionsResultsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +30,10 @@ use App\Models\player;
 Route::get('/match', [MatchController::class, 'index'])
     ->middleware('guest')
     ->name('match');
+
+Route::get('/results', [ConventionsResultsController::class, 'index'])
+    ->middleware('guest')
+    ->name('results');
 
 
 

@@ -19,13 +19,18 @@
                         <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">
                             {{$gameResult->game->home_team}}--VS--{{$gameResult->game->away_team}}
                         </h2>
-
                         <p class="leading-relaxed mb-5 text-gray-600">登録説明</p>
                         <label for="team_owner_id" class="leading-7 text-sm text-gray-600">チーム名</label>
                             
                         <div class="relative mb-4">
                           <label for="goal" class="leading-7 text-sm text-gray-600">得点を入力</label>
-                          <input type="text" id="goal" name="goal" value="" required class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                          @if ($team_owner->team_name === $gameResult->game->home_team)
+                            <input type="text" id="goal" name="goal" value="{{$gameResult->home_goal}}" required class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                          @elseif ($team_owner->team_name === $gameResult->game->away_team)
+                            <input type="text" id="goal" name="goal" value="{{$gameResult->away_goal}}" required class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                          @else 
+                            <input type="text" id="goal" name="goal" value="" required class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                          @endif
                         </div>
                         <div class="p-2 flex justify-around w-full mt-4">
                           <button type="button" onclick="location.href='{{ route('team_owner.results.index') }}'" class="text-gray bg-gray-200 border-0 py-2 px-8 focus:outline-none hover:bg-gray-400 rounded text-lg">戻る</button>

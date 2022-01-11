@@ -4,36 +4,38 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Game;
+use Illuminate\Support\Facades\DB;
+use App\Models\Team_owner;
+use App\Models\GameResult;
 use App\Models\Convention;
 use App\Models\League;
 
 
-class GameResult extends Model
+class ConventionsResult extends Model
 {
     use HasFactory;
 
+    protected $table = 'convention_results';
+
     protected $fillable = [
-        'game_id',
+        'id',
+        'team_name',
         'convention_id',
         'league_id',
-        'home_goal',
-        'away_goal',
+        'game_point',
+        'game_count',
+        'win',
+        'lose',
+        'draw',
+        'numbers_diff',
     ];
 
-    public function game()
-    {
-
-        return $this->belongsTo(game::class);
-    }
     public function convention()
     {
-
         return $this->belongsTo(Convention::class);
     }
     public function league()
     {
-
-        return $this->belongsTo(Leauge::class);
+        return $this->belongsTo(league::class);
     }
 }

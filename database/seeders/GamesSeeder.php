@@ -34,9 +34,17 @@ class GamesSeeder extends Seeder
             [
                 'convention_id' => 1,
                 'league_id' => 1,
-                'game_date' => '2021/01/02',
-                'home_team' => 'team_2',
+                'game_date' => '2021/01/03',
+                'home_team' => 'team_1',
                 'away_team' => 'team_3',
+                'created_at' => '2021/01/01 11:11:11',
+            ],
+            [
+                'convention_id' => 1,
+                'league_id' => 1,
+                'game_date' => '2021/01/03',
+                'home_team' => 'team_3',
+                'away_team' => 'team_1',
                 'created_at' => '2021/01/01 11:11:11',
             ],
 

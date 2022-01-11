@@ -22,7 +22,7 @@
                     <x-nav-link :href="route('team_owner.games.index')" :active="request()->routeIs('team_owner.games.index')">
                         対戦表
                     </x-nav-link>
-                    <x-nav-link :href="route('team_owner.results.index')" :active="request()->routeIs('team_owner.games.index')">
+                    <x-nav-link :href="route('team_owner.results.index')" :active="request()->routeIs('team_owner.results.index')">
                         試合結果入力
                     </x-nav-link>
                 </div>
