@@ -24,7 +24,7 @@ class GameResult extends Model
     public function game()
     {
 
-        return $this->belongsTo(game::class);
+        return $this->belongsTo(Game::class);
     }
     public function convention()
     {

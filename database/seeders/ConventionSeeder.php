@@ -19,22 +19,22 @@ class ConventionSeeder extends Seeder
                 'convention_no' => 'RAL-E-5th',
                 'created_at' => '2021/01/01 11:11:11'
             ],
-            [
-                'convention_no' => 'RAL-E-6th',
-                'created_at' => '2021/01/01 11:11:11'
-            ],
-            [
-                'convention_no' => 'RAL-E-7th',
-                'created_at' => '2021/01/01 11:11:11'
-            ],
-            [
-                'convention_no' => 'RAL-E-8th',
-                'created_at' => '2021/01/01 11:11:11'
-            ],
-            [
-                'convention_no' => 'RAL-E-9th',
-                'created_at' => '2021/01/01 11:11:11'
-            ],
+            // [
+            //     'convention_no' => 'RAL-E-6th',
+            //     'created_at' => '2021/01/01 11:11:11'
+            // ],
+            // [
+            //     'convention_no' => 'RAL-E-7th',
+            //     'created_at' => '2021/01/01 11:11:11'
+            // ],
+            // [
+            //     'convention_no' => 'RAL-E-8th',
+            //     'created_at' => '2021/01/01 11:11:11'
+            // ],
+            // [
+            //     'convention_no' => 'RAL-E-9th',
+            //     'created_at' => '2021/01/01 11:11:11'
+            // ],
         ]);
     }
 }

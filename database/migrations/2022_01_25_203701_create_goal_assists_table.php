@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGameResultsTable extends Migration
+class CreateGoalAssistsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,19 @@ class CreateGameResultsTable extends Migration
      */
     public function up()
     {
-        Schema::create('game_results', function (Blueprint $table) {
+        Schema::create('goal_assists', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('game_id')->constrained()
+            $table->foreignId('game_id')->nullable()->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->foreignId('convention_id')->constrained()
+            $table->foreignId('team_owner_id')->nullable()->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->foreignId('league_id')->constrained()
+            $table->foreignId('player_id')->nullable()->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->smallinteger('home_goal')->nullable();
-            $table->smallinteger('away_goal')->nullable();
-            $table->smallinteger('home_own_goal')->nullable();
-            $table->smallinteger('away_own_goal')->nullable();
+            $table->smallinteger('goal')->nullable();
+            $table->smallinteger('assists')->nullable();
             $table->timestamps();
         });
     }
@@ -39,6 +37,6 @@ class CreateGameResultsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('game_results');
+        Schema::dropIfExists('goal_assists');
     }
 }

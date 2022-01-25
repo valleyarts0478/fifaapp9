@@ -28,7 +28,7 @@ class Game extends Model
 
     public function results()
     {
-        return $this->hasMany(GameResult::class);
+        return $this->hasOne(GameResult::class);
     }
     public function players()
     {

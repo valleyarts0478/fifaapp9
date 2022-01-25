@@ -12,6 +12,8 @@ use App\Models\Team_owner;
 use App\Models\Player;
 use App\Models\Game;
 use App\Models\GameResult;
+use App\Models\Goal_Assist;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -26,22 +28,20 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminSeeder::class,
             Ownerseeder::class,
-            Shopseeder::class,
-            ImageSeeder::class,
-            CategorySeeder::class,
+            // Shopseeder::class,
+            // ImageSeeder::class,
+            // CategorySeeder::class,
             // ProductSeeder::class,
             // StockSeeder::class,
             UserSeeder::class,
             ConventionSeeder::class,
             LeagueSeeder::class,
             TeamOwnerSeeder::class,
-            GamesSeeder::class,
             PlayerSeeder::class,
-            // GamePlayerSeeder::class,
+            GamesSeeder::class,
             GameResultSeeder::class,
-            // Convention_ResultSeeder::class,
         ]);
-        Product::factory(100)->create();
-        Stock::factory(100)->create();
+        // Product::factory(100)->create();
+        // Stock::factory(100)->create();
     }
 }

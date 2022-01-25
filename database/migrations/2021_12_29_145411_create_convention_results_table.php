@@ -27,6 +27,8 @@ class CreateConventionResultsTable extends Migration
             $table->smallinteger('win')->nullable()->default(0);
             $table->smallinteger('lose')->nullable()->default(0);
             $table->smallinteger('draw')->nullable()->default(0);
+            $table->smallinteger('gain')->nullable()->default(0);
+            $table->smallinteger('loss')->nullable()->default(0);
             $table->smallinteger('numbers_diff')->nullable()->default(0);
             $table->timestamps();
         });

@@ -23,10 +23,6 @@ class LeagueSeeder extends Seeder
                 'league_name' => 'RAL-E2',
                 'created_at' => '2021/01/01 11:11:11',
             ],
-            [
-                'league_name' => 'RAL-E3',
-                'created_at' => '2021/01/01 11:11:11',
-            ],
         ]);
     }
 }
