@@ -16,15 +16,17 @@
                <span class="block"> {{ substr($game->game_date, 8, 2) }}</span>
               </div>
               <div> 
-               <div class="flex items-center">
-                 <img alt="team" class="w-6 h-6 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="https://dummyimage.com/80x80">
+               <div class="flex items-center">  
+                <img class="w-6 h-6 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="{{ asset('storage/teams/' . $team_owner['team_logo_url']) }}" alt="team_logo">
+                {{-- <img alt="team" class="w-6 h-6 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="https://dummyimage.com/80x80"> --}}
                  <h2 class="text-sm text-gray-900 title-font font-medium">{{$game->home_team}}</h2>
                </div>
 
                 <div class="relative w-4 ml-1 text-xs">VS</div>
 
                <div class="flex items-center">
-                 <img alt="team" class="w-6 h-6 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="https://dummyimage.com/80x80">
+                <img class="w-6 h-6 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="{{ asset('storage/teams/' . $team_owner['team_logo_url']) }}" alt="team_logo">
+                 {{-- <img alt="team" class="w-6 h-6 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="https://dummyimage.com/80x80"> --}}
                  <h2 class="text-sm text-gray-900 title-font font-medium">{{ $game->away_team }}</h2>
                </div>     
               </div>

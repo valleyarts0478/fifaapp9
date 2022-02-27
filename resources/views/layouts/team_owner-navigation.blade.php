@@ -7,9 +7,10 @@
                 <div class="flex-shrink-0 flex items-center">
                     <div class="w-12">
                         <a href="{{ route('team_owner.teams.index') }}">
-                            <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
+                                <img src="{{ asset('storage/teams/' . "RALE_logo.png") }}">
                         </a>
                         </div>
+                        チームオーナー管理画面
                 </div>
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -18,9 +19,6 @@
                     </x-nav-link>
                     <x-nav-link :href="route('team_owner.players.index')" :active="request()->routeIs('team_owner.players.index')">
                         選手登録
-                    </x-nav-link>
-                    <x-nav-link :href="route('team_owner.games.index')" :active="request()->routeIs('team_owner.games.index')">
-                        対戦表
                     </x-nav-link>
                     <x-nav-link :href="route('team_owner.results.index')" :active="request()->routeIs('team_owner.results.index')">
                         試合結果入力
@@ -77,9 +75,6 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('team_owner.players.index')" :active="request()->routeIs('team_owner.players.index')">
                 選手登録
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('team_owner.games.index')" :active="request()->routeIs('team_owner.games.index')">
-                対戦表
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('team_owner.results.index')" :active="request()->routeIs('team_owner.games.index')">
                 試合結果入力

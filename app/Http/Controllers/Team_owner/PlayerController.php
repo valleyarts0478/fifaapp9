@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Player;
+use App\Models\Position;
 use App\Models\Team_owner;
 use App\Http\Requests\PlayerRequest;
 use App\Rules\Player_no_check;
@@ -41,13 +42,12 @@ class PlayerController extends Controller
         $team_owners = Team_owner::where('id', $teamId)->get();
 
         $players = Player::where('team_owner_id', Auth::id())
-            ->select('id', 'team_owner_id', 'player_no', 'player_name')
+            ->select('id', 'team_owner_id', 'position_id', 'player_no', 'player_name')
             ->orderBy('created_at', 'desc')
             ->get();
-
-
+        // dd($players);
         $count = Player::where('team_owner_id', Auth::id())->count();
-        // dd($count);
+
 
         return view('team_owner.players.index', compact('team_owners', 'players', 'count'));
     }
@@ -63,7 +63,7 @@ class PlayerController extends Controller
         $team_owners = Team_owner::where('id', $teamId)->get();
 
         $players = Player::where('team_owner_id', Auth::id())
-            ->select('id', 'team_owner_id', 'position', 'player_no', 'player_name')
+            ->select('id', 'team_owner_id', 'position_id', 'player_no', 'player_name')
             ->orderBy('created_at', 'desc')
             ->get();
         // dd($players);
@@ -80,6 +80,7 @@ class PlayerController extends Controller
     {
         $request->validate([
             'team_owner_id' => 'required',
+            'position_id' => 'required',
             'player_no' => [new Player_no_check, new alpha_num_check],
             'player_name' => ['required', 'unique:players', 'string', 'max:50', new alpha_num_check],
 
@@ -87,7 +88,7 @@ class PlayerController extends Controller
 
         $player = new Player();
         $player->team_owner_id = Auth::id();
-        $player->position = $request->position;
+        $player->position_id = $request->position_id;
         $player->player_no = $request->player_no;
         $player->player_name = $request->player_name;
         $player->save();
@@ -120,8 +121,17 @@ class PlayerController extends Controller
     public function edit($id)
     {
         $player = Player::findOrFail($id);
+        // dd($player->position_id);
+        $positions = Position::all();
+
+        // foreach ($players as $player) {
+        //     $test[] = $player->position->position_name;
+        // }
+        // dump($test);
+        // dd($test);
+
         // dd($player);
-        return view('team_owner.players.edit', compact('player'));
+        return view('team_owner.players.edit', compact('player', 'positions', 'player'));
     }
 
     /**
@@ -135,12 +145,14 @@ class PlayerController extends Controller
     {
         $request->validate([
             'team_owner_id' => 'integer|max:25',
+            'position_id' => 'string|max:3',
             'player_no' => 'required|integer|max:100',
             'player_name' => 'required|string|max:50',
         ]);
 
         $player = Player::findOrFail($id);
         $player->team_owner_id = $request->team_owner_id;
+        $player->position_id = $request->position_id;
         $player->player_no = $request->player_no;
         $player->player_name = $request->player_name;
         $player->save();

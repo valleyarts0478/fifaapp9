@@ -15,16 +15,14 @@ class CreateGoalAssistsTable extends Migration
     {
         Schema::create('goal_assists', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('game_id')->nullable()->constrained()
+            $table->foreignId('game_results_id')->nullable()->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->foreignId('team_owner_id')->nullable()->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->foreignId('player_id')->nullable()->constrained()
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->smallinteger('goal')->nullable();
+            $table->string('player_name')->nullable();
+            $table->smallinteger('goals')->nullable();
             $table->smallinteger('assists')->nullable();
             $table->timestamps();
         });

@@ -16,14 +16,6 @@ use Illuminate\Support\Facades\Route;
 //     ->middleware('guest')
 //     ->name('register');
 
-Route::get('/', function () {
-    return view('user.welcome');
-})->middleware('guest')->name('user.welcome');
-
-// Route::get('/match', [MatchController::class, 'index'])
-//     ->middleware('guest')
-//     ->name('match');
-
 Route::post('/register', [RegisteredUserController::class, 'store'])
     ->middleware('guest');
 

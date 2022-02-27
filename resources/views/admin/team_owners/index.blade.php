@@ -36,7 +36,7 @@
                                 <td class="md:px-4 py-3">{{ $team_owner->team_name }}</td>
                                 <td class="md:px-4 py-3">{{ $team_owner->team_abb }}</td>
                                 <td class="md:px-4 py-3">
-                                  <img src="{{ asset('storage/teams/' . $team_owner['team_logo_url']) }}" width="50" height="50">
+                                  <img src="{{ asset('storage/teams/logo/' . $team_owner['team_logo_url']) }}" width="50" height="50">
                                 </td>
                                 
 

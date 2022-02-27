@@ -16,7 +16,7 @@ class GamesSeeder extends Seeder
     {
         DB::table('games')->insert([
             [
-                'convention_id' => 1,
+                'convention_id' => 2,
                 'league_id' => 1,
                 'game_date' => '2021/01/01',
                 'home_team' => 'team_1',
@@ -24,7 +24,7 @@ class GamesSeeder extends Seeder
                 'created_at' => '2021/01/01 11:11:11',
             ],
             [
-                'convention_id' => 1,
+                'convention_id' => 2,
                 'league_id' => 1,
                 'game_date' => '2021/01/02',
                 'home_team' => 'team_4',
@@ -32,19 +32,19 @@ class GamesSeeder extends Seeder
                 'created_at' => '2021/01/01 11:11:11',
             ],
             [
-                'convention_id' => 1,
-                'league_id' => 1,
+                'convention_id' => 2,
+                'league_id' => 2,
                 'game_date' => '2021/01/03',
-                'home_team' => 'team_1',
+                'home_team' => 'team_2',
                 'away_team' => 'team_3',
                 'created_at' => '2021/01/01 11:11:11',
             ],
             [
-                'convention_id' => 1,
-                'league_id' => 1,
+                'convention_id' => 2,
+                'league_id' => 2,
                 'game_date' => '2021/01/03',
                 'home_team' => 'team_3',
-                'away_team' => 'team_1',
+                'away_team' => 'team_2',
                 'created_at' => '2021/01/01 11:11:11',
             ],
 

@@ -12,49 +12,171 @@ use App\Models\Convention;
 use App\Models\ConventionsResult;
 use App\Models\League;
 use App\Models\Team_owner;
+use App\Models\Player;
+use App\Models\Goal_Assist;
 use Carbon\Carbon;
+use App\Http\Requests\GameResultsRequest;
 
 class GameResultsController extends Controller
 {
     public function index()
     {
-        $results = GameResult::all();
+
+        // $results = GameResult::all();
         $team_owner = Team_owner::find(Auth::id());
+        //降順の最初のレコードを取得
+        $convention = Convention::orderBy('id', 'desc')->first();
 
-        $games = Game::select('id', 'convention_id', 'league_id', 'game_date', 'home_team', 'away_team')
-            ->where('home_team', $team_owner->team_name)
-            ->orWhere('away_team', $team_owner->team_name)
-            ->orderBy('game_date', 'asc')
-            ->get();
+        $games = Game::where(function ($query) use ($team_owner) {
+            $query->where('home_team', $team_owner->team_name)
+                ->orWhere('away_team', $team_owner->team_name);
+        })->where(function ($query) use ($convention) {
+            $query->where('convention_id', $convention->id);
+        })->orderBy('game_date', 'asc')->get();
 
-        return view('team_owner.results.index', compact('results'));
+        // $results = Game::select('id', 'convention_id', 'league_id', 'game_date', 'home_team', 'away_team')
+        //     ->where('convention_id', $convention->id)
+        //     ->where('home_team', $team_owner->team_name)
+        //     ->orWhere('away_team', $team_owner->team_name)
+        //     ->orderBy('game_date', 'asc')
+        //     ->get();
+
+        //チームロゴ取得用
+        $game_info = Game::where(function ($query) use ($convention) {
+            $query->where('convention_id', $convention->id);
+        })->orderBy('game_date', 'asc')->get();
+
+        // $team_info = [];
+        foreach ($game_info as $info) {
+            $team_info['team_name'][] = $info->home_team;
+            $team_info['team_name'][] = $info->away_team;
+        }
+        // dump($team_info);
+        // dd($team_info);
+        $team_names = Team_owner::whereIn('team_name', $team_info['team_name'])->get();
+
+        // foreach ($team_names as $team_name) {
+        //     $team_url[$team_name->team_name] = $team_name->team_logo_url;
+        // }
+        // dump($team_url);
+        // dd($team_url);
+
+        return view('team_owner.results.index', compact('team_owner', 'games', 'team_names'));
     }
 
     public function edit($id)
     {
         $team_owner = Team_owner::find(Auth::id());
+        $players = Player::where('team_owner_id', $team_owner->id)->get();
+        // dd($players);
         $gameResult = GameResult::find($id);
+        $goal_assists = Goal_Assist::where('team_owner_id', Auth::id())
+            ->where('game_results_id', $gameResult->game_id)
+            ->get();
+        // プレイヤーごとのゴール、アシスト数をまとめた配列
+        $player_team_goals = [];
+        foreach ($players as $player) {
+            // プレイヤー名をキーとして、配列を初期化
+            $player_team_goals[$player->player_name] = [
+                "goals" => "",
+                "assists" => ""
+            ];
+        }
+        // 全てのプレイヤー名に対する配列ができる
+        // dd($player_team_goals);
 
+        foreach ($goal_assists as $goal_assist) {
+            // プレイヤー名が合致する$player_team_goalsを上書き
+            $player_team_goals[$goal_assist->player_name]["goals"] = $goal_assist->goals ?? "";
+            $player_team_goals[$goal_assist->player_name]["assists"] = $goal_assist->assists ?? "";
+        }
+        // $player_team_goalsが更新される
+        // dd($player_team_goals);
 
-        return view('team_owner.results.edit', compact('gameResult', 'team_owner'));
+        return view('team_owner.results.edit', compact('gameResult', 'team_owner', 'players', 'player_team_goals'));
     }
 
-    public function update(Request $request, $id)
+    public function update(GameResultsRequest $request, $id)
     {
         $gameResult = GameResult::find($id);
         $team_owner = Team_owner::find(Auth::id());
+        $players = $team_owner->players;
 
+        //得点入力
         if ($team_owner->team_name === $gameResult->game->home_team) {
-            $gameResult->home_goal = $request->goal;
+            $gameResult->home_goal = $request->total_goal;
         } elseif ($team_owner->team_name === $gameResult->game->away_team) {
-            $gameResult->away_goal = $request->goal;
+            $gameResult->away_goal = $request->total_goal;
         } else {
             return redirect()
                 ->route('team_owner.results.index')
                 ->with('status', 'team_nameが統一されていない可能性があります。');
         }
 
+        //オウンゴール入力
+        if ($team_owner->team_name === $gameResult->game->home_team) {
+            $gameResult->home_own_goal = $request->own_goal;
+        } elseif ($team_owner->team_name === $gameResult->game->away_team) {
+            $gameResult->away_own_goal = $request->own_goal;
+        } else {
+            return redirect()
+                ->route('team_owner.results.index')
+                ->with('status', 'team_nameが統一されていない可能性があります。');
+        }
         $gameResult->save();
+
+        //最初にgoalsやassistsに関係するレコードを削除
+        $gameResult = GameResult::find($id);
+        $goal_assists = Goal_Assist::where('team_owner_id', Auth::id())
+            ->where('game_results_id', $gameResult->game_id)
+            ->delete();
+        //ゴール・アシスト入力
+        // $input = $request->all();
+        // $goal_assists = Goal_Assist::all();
+        $inputs = [];
+        //連想配列
+        $inputs = [
+            // 'player_id' => $request->player_id,
+            'goals' => $request->goals,
+            'assists' => $request->assists,
+        ];
+        // dump($inputs);
+
+        //$key・・・player_id, goals, assists
+        //$player・・・player名
+        //$value・・・player名,得点それぞれの配列
+        //$score・・・得点やアシスト数
+        $goal_assists = [];
+        foreach ($inputs as $key => $value) {
+            // dump($key, $value);
+            foreach ($value as $player => $score) {
+                // dump($player, $score);
+                $goal_assists[$player][$key] = $score;
+            }
+        }
+        // dd($goal_assists);
+        $player_goal_assist = [];
+        foreach ($goal_assists as $key1 => $value1) {
+            // dump($value1['assists']);
+            $player_goal_assist = [
+                'game_results_id' => $gameResult->game_id,
+                'team_owner_id' => $team_owner->id,
+                'player_name' => $key1,
+                'goals' => $value1['goals'],
+                'assists' => $value1['assists'],
+            ];
+
+            // dd($player_goal_assist);
+            //goal・assistsの値が両方なければ次へ進む
+            if (!$value1['goals'] && !$value1['assists']) {
+                continue;
+            } else
+                Goal_Assist::upsert(
+                    $player_goal_assist,
+                    ['player_name', 'game_results_id'],
+                    ['game_results_id', 'team_owner_id', 'player_name', 'goals', 'assists']
+                );
+        }
 
         return redirect()
             ->route('team_owner.results.index')
@@ -63,4 +185,11 @@ class GameResultsController extends Controller
                 'status' => 'info'
             ]);
     }
+
+    // public function destroy($id)
+    // {
+    //     Goal_Assist::findOrFail($id)->delete();
+
+
+    // }
 }

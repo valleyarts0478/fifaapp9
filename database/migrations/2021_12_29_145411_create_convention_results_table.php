@@ -15,7 +15,7 @@ class CreateConventionResultsTable extends Migration
     {
         Schema::create('convention_results', function (Blueprint $table) {
             $table->id();
-            $table->string('team_name')->nullable();
+            $table->string('team_name')->unique()->nullable();
             $table->foreignId('convention_id')->nullable()->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');

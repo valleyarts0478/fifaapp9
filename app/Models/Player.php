@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Models\Team_owner;
 use App\Models\Game;
+use App\Models\Position;
 
 
 class Player extends Authenticatable
@@ -16,8 +17,7 @@ class Player extends Authenticatable
 
     protected $fillable = [
         'team_owner_id',
-        'game_id',
-        'position',
+        'position_id',
         'player_no',
         'player_name',
     ];
@@ -31,7 +31,10 @@ class Player extends Authenticatable
     {
         return $this->belongsTo(Game::class);
     }
-
+    public function position()
+    {
+        return $this->belongsTo(Position::class);
+    }
     // public function game()
     // {
     //     return $this->belongsToMany(Game::class)->withPivot(['goal']);

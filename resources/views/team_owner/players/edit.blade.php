@@ -21,12 +21,20 @@
                             <p class="leading-relaxed mb-5 text-gray-600">登録説明</p>
                             <label for="team_owner_id" class="leading-7 text-sm text-gray-600">チーム名</label>
                                 <select name="team_owner_id" id="team_owner_id" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                                  {{-- @foreach($team_owners as $team_owner) --}}
                                    <option value="{{ $player->team_owner->id }}" >
                                      {{ $player->team_owner->team_name }}
                                    </option>
-                                  {{-- @endforeach --}}
-                                </select>
+                                 </select>
+                                <div class="relative mb-4">
+                                  <label for="position_id" class="leading-7 text-sm text-gray-600">ポシション</label>
+                                  <select name="position_id" id="position_id" class="w-full rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">  
+                                   @foreach($positions as $position) 
+                                    <option value="{{ $position->id }}" @if($position->id == $player->position->id) selected @endif>
+                                     {{ $position->position_name }}
+                                    </option>    
+                                   @endforeach
+                                  </select>
+                                </div>
                             <div class="relative mb-4">
                               <label for="player_no" class="leading-7 text-sm text-gray-600">背番号</label>
                               <input type="text" id="player_no" name="player_no" value="{{ $player->player_no }}" required class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">

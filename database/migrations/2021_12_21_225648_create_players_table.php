@@ -18,7 +18,10 @@ class CreatePlayersTable extends Migration
             $table->foreignId('team_owner_id')->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->string('position')->nullable();
+            // $table->unsignedBigInteger('position_id');
+            $table->foreignId('position_id')->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->integer('player_no')->nullable();
             $table->string('player_name');
             $table->timestamps();
@@ -32,6 +35,7 @@ class CreatePlayersTable extends Migration
      */
     public function down()
     {
+        // Schema::dropIfExists('positions');
         Schema::dropIfExists('players');
     }
 }

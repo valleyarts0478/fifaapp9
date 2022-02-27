@@ -49,7 +49,7 @@ class BatchTest extends Command
     {
         //降順の最初のレコードを取得
         $convention = Convention::orderBy('id', 'desc')->first();
-        // dd($convention_id->id);//「1」がとれている
+
         //リーグを全て取得
         $leagues = League::orderBy('id')->get();
         // dd($leagues_id);//idの１と２がとれている
@@ -172,9 +172,9 @@ class BatchTest extends Command
                         $convention_results['gain'] += $game_result->away_goal; //カラム追加 得点
                         $convention_results['loss'] += $game_result->home_goal; //カラム追加 失点
                         $convention_results['numbers_diff'] += $game_result->away_goal - $game_result->home_goal;
-                    }
+                    } else ('不明な試合結果です。');
                 }
-                $hoge[] = $convention_results;
+                // $hoge[] = $convention_results;
                 ConventionsResult::upsert(
                     $convention_results,
                     ['team_name'],

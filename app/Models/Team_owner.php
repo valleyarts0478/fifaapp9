@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\League;
+use App\Models\Game;
 use App\Models\Player;
 use App\Models\Convention;
 // use App\Models\Game;
@@ -61,9 +62,19 @@ class Team_owner extends Authenticatable
         return $this->belongsTo(Convention::class);
     }
 
-    public function players()
+    public function player()
     {
 
         return $this->hasMany(Player::class);
+    }
+    // public function games()
+    // {
+
+    //     return $this->hasOne(Game::class);
+    // }
+    public function goal_assists()
+    {
+
+        return $this->hasMany(Goal_Assist::class);
     }
 }

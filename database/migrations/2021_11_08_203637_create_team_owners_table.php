@@ -37,6 +37,7 @@ class CreateTeamOwnersTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('players');
         Schema::dropIfExists('team_owners');
     }
 }

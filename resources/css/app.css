@@ -3,4 +3,6 @@
 @import 'tailwindcss/utilities';
 @import 'micromodal';
 @import 'swiper';
+@import 'tab';
+@import 'style';
 

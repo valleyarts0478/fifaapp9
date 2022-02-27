@@ -18,12 +18,18 @@ class MatchController extends Controller
     {
 
         $results = GameResult::all();
-
+        // dd($results);
 
         $games = Game::select('id', 'convention_id', 'league_id', 'game_date', 'home_team', 'away_team')
             ->orderBy('game_date', 'asc')
             ->get();
 
         return view('user.match.index', compact('results'));
+    }
+
+    public function top()
+    {
+
+        return view('test');
     }
 }

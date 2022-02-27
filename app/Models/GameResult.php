@@ -7,11 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Game;
 use App\Models\Convention;
 use App\Models\League;
+use App\Models\Goal_Assist;
 
 
 class GameResult extends Model
 {
     use HasFactory;
+
+    protected $table = 'game_results';
 
     protected $fillable = [
         'game_id',
@@ -31,9 +34,13 @@ class GameResult extends Model
 
         return $this->belongsTo(Convention::class);
     }
-    public function league()
+    public function leagues()
     {
 
         return $this->belongsTo(Leauge::class);
+    }
+    public function goal_assists()
+    {
+        return $this->hasMany(Goal_Assist::class);
     }
 }

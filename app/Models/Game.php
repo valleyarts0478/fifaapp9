@@ -11,6 +11,7 @@ use App\Models\player;
 use App\Models\GameResult;
 use App\Models\Convention;
 use App\Models\League;
+use App\Models\Goal_Assist;
 
 class Game extends Model
 {
@@ -26,7 +27,9 @@ class Game extends Model
         'away_team',
     ];
 
-    public function results()
+    protected $dates = ['game_date']; //日付フォーマットできるようにした
+
+    public function game_results()
     {
         return $this->hasOne(GameResult::class);
     }
@@ -42,4 +45,12 @@ class Game extends Model
     {
         return $this->belongsTo(league::class);
     }
+    // public function team_owner()
+    // {
+    //     return $this->belongsTo(Team_owner::class);
+    // }
+    // public function goalassist()
+    // {
+    //     return $this->hasMany(Goal_Assist::class);
+    // }
 }

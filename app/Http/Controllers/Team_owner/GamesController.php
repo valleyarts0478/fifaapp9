@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Convention;
 use App\Models\Game;
 use App\Models\Team_owner;
 use App\Models\Player;
@@ -23,13 +24,20 @@ class GamesController extends Controller
     {
         $team_owner = Team_owner::find(Auth::id());
         // dd($team_owner->team_name);
+        //降順の最初のレコードを取得
+        $convention = Convention::orderBy('id', 'desc')->first();
+        // $games = Game::where('home_team', $team_owner->team_name)
+        //     ->orWhere('away_team', $team_owner->team_name)->get();
 
-        $games = Game::select('id', 'convention_id', 'league_id', 'game_date', 'home_team', 'away_team')
-            ->where('home_team', $team_owner->team_name)
-            ->orWhere('away_team', $team_owner->team_name)
-            ->orderBy('game_date', 'asc')
-            ->get();
+        $games = Game::where(function ($query) use ($team_owner) {
+            $query->where('home_team', $team_owner->team_name)
+                ->orWhere('away_team', $team_owner->team_name);
+        })->where(function ($query) use ($convention) {
+            $query->where('convention_id', $convention->id);
+        })->orderBy('game_date', 'asc')->get();
 
+
+        // dd($games);
         return view('team_owner.games.index', compact('games', 'team_owner'));
     }
 

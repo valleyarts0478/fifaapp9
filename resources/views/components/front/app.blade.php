@@ -18,14 +18,14 @@
     </head>
     <body>
         <header>
-            <x-fheader />
+           <x-front.header />
         </header>
-
-        {{ $slot }}
-
+ 
+          {{ $slot }}
 
         <footer>
-            <x-footer />
+            <x-front.footer />
         </footer>
+        
     </body>
 </html>

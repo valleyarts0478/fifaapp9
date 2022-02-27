@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                   <!-- Validation Errors -->
@@ -24,7 +24,7 @@
                           @foreach ($players as $player)
                           <tbody>
                             <tr>
-                              <td class="border px-4 py-2">{{ $player->position }}</td>
+                              <td class="border px-4 py-2">{{ $player->position->position_name }}</td>
                               <td class="border px-4 py-2">{{ $player->player_no }}</td>
                               <td class="border px-4 py-2">{{ $player->player_name }}</td>
                             </tr>
@@ -35,8 +35,8 @@
                       <form method="post" action="{{ route('team_owner.players.store') }}" >
                         @csrf
                         {{-- @method('put') --}}
-                        <div class="container px-5 py-2 mx-auto flex">
-                          <div class="lg:w-1/3 md:w-1/2 bg-white rounded-lg p-8 flex flex-col md:mx-auto w-full mt-10 md:mt-0 relative z-10 shadow-md">
+                        <div class="container mt-8 px-5 py-2 mx-auto flex">
+                          <div class="lg:w-1/2 md:w-1/2 bg-white rounded-lg p-8 flex flex-col md:mx-auto w-full mt-10 md:mt-0 relative z-10 shadow-md">
                             <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">選手登録</h2>
                             <ul class="leading-relaxed mb-5 text-gray-600　list-inside">
                               <li>PSIDで1名ずつ登録</li>

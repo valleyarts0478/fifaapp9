@@ -48,9 +48,9 @@ class TeamController extends Controller
 
         $league = League::select('id', 'league_name');
 
-        $players = Player::select('team_owner_id', 'player_no', 'player_name')
-            ->orderBy('created_at', 'desc')
-            ->where('team_owner_id', Auth::id())->get();
+        $players = Player::select('team_owner_id', 'position_id', 'player_no', 'player_name')
+            ->where('team_owner_id', Auth::id())
+            ->orderBy('player_name', 'asc')->get();
 
         $count = Player::where('team_owner_id', Auth::id())->count();
 
