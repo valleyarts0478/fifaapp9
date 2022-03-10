@@ -10,7 +10,7 @@ use App\Models\League;
 use App\Models\Game;
 use App\Models\Player;
 use App\Models\Convention;
-// use App\Models\Game;
+use App\Models\Goal_Assist;
 
 
 class Team_owner extends Authenticatable

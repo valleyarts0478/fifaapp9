@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    {{-- <div class="py-12"> --}}
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
@@ -13,30 +13,13 @@
                   <x-auth-validation-errors class="mb-4" :errors="$errors" />  
                     <x-flash-message status="session('status')" />                          
                     <section class="text-gray-600 body-font relative">
-                      <table class="table-fixed mx-auto">
-                        <thead>
-                          <tr>
-                            <th class="w-1/4 px-4 py-2">ポジション</th>
-                            <th class="w-1/4 px-4 py-2">背番号</th>
-                            <th class="w-3/4 px-4 py-2">選手名</th>
-                          </tr>
-                        </thead>
-                          @foreach ($players as $player)
-                          <tbody>
-                            <tr>
-                              <td class="border px-4 py-2">{{ $player->position->position_name }}</td>
-                              <td class="border px-4 py-2">{{ $player->player_no }}</td>
-                              <td class="border px-4 py-2">{{ $player->player_name }}</td>
-                            </tr>
-                          </tbody>
-                          @endforeach
-                      </table>
+                   
 
                       <form method="post" action="{{ route('team_owner.players.store') }}" >
                         @csrf
                         {{-- @method('put') --}}
-                        <div class="container mt-8 px-5 py-2 mx-auto flex">
-                          <div class="lg:w-1/2 md:w-1/2 bg-white rounded-lg p-8 flex flex-col md:mx-auto w-full mt-10 md:mt-0 relative z-10 shadow-md">
+                        <div class="container px-5 py-2 mx-auto flex">
+                          <div class="lg:w-1/2 md:w-1/2 bg-white rounded-lg p-4 md:p-4 flex flex-col md:mx-auto w-ful md:mt-0 relative z-10 shadow-md">
                             <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">選手登録</h2>
                             <ul class="leading-relaxed mb-5 text-gray-600　list-inside">
                               <li>PSIDで1名ずつ登録</li>
@@ -52,12 +35,13 @@
                             @endforeach
                           </select>
                           <div class="relative mb-4">
-                            <select name="position" id="position" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                              <option value="FW">FW</option>
-                              <option value="MF">MF</option>
-                              <option value="DF">DF</option>
-                              <option value="GK">GK</option>
-                            </select>
+                            <select name="position_id" id="position_id" class="w-full rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">  
+                              @foreach($positions as $position) 
+                               <option value="{{ $position->id }}">
+                                {{ $position->position_name }}
+                               </option>    
+                              @endforeach
+                             </select>
                           </div>
                             <div class="relative mb-4">
                               <label for="player_no" class="leading-7 text-sm text-gray-600">背番号</label>
@@ -74,10 +58,30 @@
                             <p class="text-xs text-gray-500 mt-3"></p>
                           </div>
                         </div>
+
+                        <table class="table-fixed mt-2 mx-auto">
+                          <thead>
+                            <tr>
+                              <th class="w-1/4 px-4 py-2">ポジション</th>
+                              <th class="w-1/4 px-4 py-2">背番号</th>
+                              <th class="w-3/4 px-4 py-2">選手名</th>
+                            </tr>
+                          </thead>
+                            @foreach ($players as $player)
+                            <tbody>
+                              <tr>
+                                <td class="border px-4 py-2">{{ $player->position->position_name }}</td>
+                                <td class="border px-4 py-2">{{ $player->player_no }}</td>
+                                <td class="border px-4 py-2">{{ $player->player_name }}</td>
+                              </tr>
+                            </tbody>
+                            @endforeach
+                        </table>
+
                       </section>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
+    {{-- </div> --}}
 </x-app-layout>

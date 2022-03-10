@@ -15,15 +15,45 @@ use App\Models\Team_owner;
 use App\Models\Player;
 use App\Models\Goal_Assist;
 use Carbon\Carbon;
+use App\Rules\num_only;
 use App\Http\Requests\GameResultsRequest;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class GameResultsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:team_owners');
+
+        $this->middleware(function ($request, $next) {
+
+            $id = $request->route()->parameter('result'); //shopのid取得
+
+            if (!is_null($id)) {
+                $team_owner = Team_owner::find(Auth::id());
+
+                $game_away_team = GameResult::findOrFail($id)->game->away_team;
+                $game_home_team = GameResult::findOrFail($id)->game->home_team;
+                // dd($playerOwnerId);
+
+                // dd($team_owner->team_name);
+                // $playerId = (int)$playerOwnerId; // キャスト 文字列→数値に型変換
+                if ($team_owner->team_name === $game_away_team or $team_owner->team_name === $game_home_team) {
+                    //
+                } else
+                    abort(404);
+            }
+            return $next($request);
+        });
+    }
+
     public function index()
     {
 
         // $results = GameResult::all();
         $team_owner = Team_owner::find(Auth::id());
+
         //降順の最初のレコードを取得
         $convention = Convention::orderBy('id', 'desc')->first();
 
@@ -96,8 +126,14 @@ class GameResultsController extends Controller
         return view('team_owner.results.edit', compact('gameResult', 'team_owner', 'players', 'player_team_goals'));
     }
 
-    public function update(GameResultsRequest $request, $id)
+    public function update(Request $request, $id)
     {
+
+        $request->validate([
+            // 'total_goal' => [new num_only],
+
+        ]);
+
         $gameResult = GameResult::find($id);
         $team_owner = Team_owner::find(Auth::id());
         $players = $team_owner->players;

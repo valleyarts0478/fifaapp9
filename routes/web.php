@@ -66,6 +66,10 @@ Route::get('/day_schedule2/{team}', [TeamListController::class, 'day_schedule2']
     ->middleware('guest')
     ->name('day.schedule2');
 
+Route::get('/day_schedule_show/{team}', [TeamListController::class, 'day_schedule_show'])
+    ->middleware('guest')
+    ->name('day.schedule_show');
+
 Route::get('/team_rank', [ConventionsResultsController::class, 'index'])
     ->middleware('guest')
     ->name('team_rank');

@@ -25,7 +25,7 @@ class num_only implements Rule
      */
     public function passes($attribute, $value)
     {
-        return preg_match('/^[0-9]+$/', $value);
+        return preg_match('/^[0-9]{2}+$/', $value);
     }
 
     /**
@@ -35,6 +35,6 @@ class num_only implements Rule
      */
     public function message()
     {
-        return '半角数字のみ使用可能です。';
+        return '1～99までの半角数字のみ使用可能です。';
     }
 }

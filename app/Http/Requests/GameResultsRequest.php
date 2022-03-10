@@ -26,8 +26,8 @@ class GameResultsRequest extends FormRequest
     {
         return [
             'total_goal' => ['nullable', new num_only],
-            'goals.*' => ['nullable', new num_only],
-            'assists.*' => ['nullable', new num_only]
+            //     'goals.*' => ['nullable', new num_only],
+            //     'assists.*' => ['nullable', new num_only]
         ];
     }
 }

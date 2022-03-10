@@ -32,7 +32,7 @@ class Player_no_check implements Rule
 
         $player = Player::where('player_no', $value)
             ->where('team_owner_id', Auth::id());
-        // dd($player);
+
         return $player->doesntExist();
     }
 

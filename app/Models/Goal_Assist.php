@@ -16,7 +16,7 @@ class Goal_Assist extends Model
     protected $table = 'goal_assists';
 
     protected $fillable = [
-        'game_results_id',
+        'game_result_id',
         'team_owner_id',
         'player_name',
         'player_id',
@@ -37,7 +37,7 @@ class Goal_Assist extends Model
     {
         return $this->belongsTo(Convention::class);
     }
-    public function game_results()
+    public function game_result()
     {
         return $this->belongsTo(GameResult::class);
     }

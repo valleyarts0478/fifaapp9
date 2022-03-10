@@ -2,13 +2,9 @@
 
     <section class="text-gray-600 body-font">
       <div class="container mx-auto flex px-5 py-8 items-center justify-center flex-col">
-        <img class="lg:w-1/6 md:w-1/3 w-1/2 mb-4 object-cover object-center rounded" src="{{ asset('storage/teams/' . $team->team_logo_url) }}" loading="lazy" alt="team_logo">
+        <img class="lg:w-1/6 md:w-1/3 w-1/2 mb-4 object-cover object-center rounded" src="{{ asset('storage/teams/logo/' . $team->team_logo_url) }}" loading="lazy" alt="team_logo">
         <div class="text-center lg:w-2/3 w-full">
           <h2 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">{{ $team->team_name }}</h2>
-          {{-- <div class="flex justify-center">
-            <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Button</button>
-            <button class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Button</button>
-          </div> --}}
         </div>
       </div>
     </section>

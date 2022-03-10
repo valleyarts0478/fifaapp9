@@ -14,7 +14,7 @@
           <div class="text-center font-bold text-xl mb-2">{{ $team_owner->team_name }}</div>
          </div>
         <div class="px-6">
-        <div class="text-center font-bold text-md mb-2">メンバー：{{ $count }}人</div>
+        <div class="text-center font-bold text-md mb-2">メンバー:{{ $count }}人</div>
         </div>
         <div class="px-6 pt-4 pb-2">
           <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{ $team_owner->convention->convention_no }}</span>
@@ -29,7 +29,8 @@
                     @foreach ($players as $player )                    
                     <div class="p-2 lg:w-1/2 md:w-1/2 w-full">
                       <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
-                            <img alt="team" class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="https://dummyimage.com/80x80">
+                            {{-- <img alt="team" class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="https://dummyimage.com/80x80"> --}}
+                            <x-player_icon :player=$player></x-player_icon>
                             <div class="flex-grow">
                             <span class="flex">
                               <span class="flex w-6 h-6 rounded-full bg-indigo-500 uppercase px-1 py-1 text-xs text-white font-bold">

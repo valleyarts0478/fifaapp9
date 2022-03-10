@@ -9,7 +9,6 @@
           <h2 class="mx-auto p-4 text-xl font-bold text-center">日程表</h2>
             <div class="container px-2 mx-auto">
             @foreach ($games as $game)
-
              @if(($game->game_results->home_goal) === null && ($game->game_results->away_goal) === null)
               <div class="flex flex-wrap border rounded-md pt-4 px-2 pb-2 mb-4">
                 <div class="w-28 flex flex-col text-center items-center">
@@ -24,6 +23,7 @@
                     <h2 class="text-gray-900 text-xs title-font font-medium mb-3">{{$game->home_team}}</h2>
                   </div>
                 </div>
+
                     <div class="flex-grow w-20 h-8 text-center">
                       <div>{{ $game->game_date->format('n/j')}}</div>
                     <div>{{ $game->game_date->format('G:i')}}</div>
@@ -32,10 +32,10 @@
                 <div class="w-28 flex flex-col text-center items-center">
                   <div class="w-8 h-8 inline-flex items-center justify-center rounded-full mb-2 flex-shrink-0">
                     @foreach ($team_names as $team_name)
-                        @if($team_name->team_name === $game->away_team)
-                        <img class="w-8 h-8" src="{{ asset('storage/teams/logo/' . $team_name->team_logo_url) }}" alt="team_logo">
-                        @endif
-                      @endforeach
+                      @if($team_name->team_name === $game->away_team)
+                      <img class="w-8 h-8" src="{{ asset('storage/teams/logo/' . $team_name->team_logo_url) }}" alt="team_logo">
+                      @endif
+                    @endforeach
                    </div>
                   <div class="flex-grow">
                     <h2 class="text-gray-900 text-xs title-font font-medium mb-3">{{$game->away_team}}</h2>
@@ -44,6 +44,10 @@
               </div>
               <!--ログインしているチームが試合終了した場合-->
              @else
+             {{$game->id}}
+             <div class="text-center my-2 mr-2">
+              <button onclick="location.href='{{ route('user.day.schedule_show', ['team' => $game->id ]) }}'" class="text-gray-500 text-sm md:text-base text-center md:mb-4">Details</button>    
+             </div>
               <div class="flex flex-wrap border rounded-md pt-4 px-2 pb-2 mb-4">
                <div class="w-28 flex flex-col text-center items-center">
                  <div class="w-8 h-8 inline-flex items-center justify-center rounded-full mb-2 flex-shrink-0">
@@ -62,12 +66,17 @@
                     </span>
                  </div>
                 </div>
+                {{-- @foreach ($test2 as $test)
+                 {{$test['player_name']}} 
+                @endforeach --}}
+
                   <div class="flex-grow w-20 h-8 text-center text-4xl">
                    <div><span class="mr-2">{{ $game->game_results->home_goal }}</span>:<span class="ml-2">{{$game->game_results->away_goal}}</span></div>
                      <div class="text-xs text-center items-center mt-2">
                       {{ $game->game_date->format('n/j')}}ー試合終了
                      </div>
                   </div>
+                  
                <div class="w-28 flex flex-col text-center items-center">
                  <div class="w-8 h-8 inline-flex items-center justify-center rounded-full mb-2 flex-shrink-0">
                   @foreach ($team_names as $team_name)

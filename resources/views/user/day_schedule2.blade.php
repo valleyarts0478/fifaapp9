@@ -44,6 +44,10 @@
               </div>
               <!--ログインしているチームが試合終了した場合-->
              @else
+             {{$second->id}}
+             <div class="text-center my-2 mr-2">
+              <button onclick="location.href='{{ route('user.day.schedule_show', ['team' => $second->id ]) }}'" class="text-gray-500 text-sm md:text-base text-center md:mb-4">Details</button>    
+             </div>
               <div class="flex flex-wrap border rounded-md pt-4 px-2 pb-2 mb-4">
                <div class="w-28 flex flex-col text-center items-center">
                  <div class="w-8 h-8 inline-flex items-center justify-center rounded-full mb-2 flex-shrink-0">

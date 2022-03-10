@@ -20,7 +20,7 @@ class PlayerRankController extends Controller
         $convention = Convention::orderBy('id', 'desc')->first();
         //リレーション先のカラムを利用する場合の書き方
         //$conventionを外からつかうためuseで読み込む
-        $goal_assists = Goal_Assist::wherehas('game_results', function ($query) use ($convention) {
+        $goal_assists = Goal_Assist::wherehas('game_result', function ($query) use ($convention) {
             $query->where('convention_id', $convention->id);
         })->get();
 
@@ -30,9 +30,9 @@ class PlayerRankController extends Controller
         foreach ($goal_assists as $goal_assist) {
 
             $player_rank[$goal_assist->player_name][] = [
-                'convention_id' => $goal_assist->game_results->convention_id,
-                'league_id' => $goal_assist->game_results->league_id,
-                'game_results_id' => $goal_assist->game_results_id,
+                'convention_id' => $goal_assist->game_result->convention_id,
+                'league_id' => $goal_assist->game_result->league_id,
+                'game_result_id' => $goal_assist->game_result_id,
                 'team_name' => $goal_assist->team_owner->team_name,
                 'team_abb' => $goal_assist->team_owner->team_abb,
                 'team_logo_url' => $goal_assist->team_owner->team_logo_url,
@@ -40,7 +40,7 @@ class PlayerRankController extends Controller
                 'assists' => $goal_assist->assists
             ];
         }
-        // dd($player_rank);
+
         $goal_ranking = [];
         $assists_ranking = [];
         foreach ($player_rank as $key => $value) {

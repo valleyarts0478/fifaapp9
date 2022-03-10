@@ -37,7 +37,7 @@
         @if($results['league_id'] === 1)
           <tr>
             <th class="_sticky">
-                <div class="text-md p-1 mr-2 mb-2 rounded-full bg-ral-300">{{$rank}}位</div>
+                <div class="w-12 text-md p-1 mx-auto mb-2 rounded-full bg-ral-300">{{$rank}}位</div>
                 
                 @foreach ($team_names as $team_name)
                  @if($team_name->team_name === $results->team_name)
@@ -99,7 +99,7 @@
         @if($results['league_id'] === 2)
           <tr>
             <th class="_sticky">
-                <div class="text-md p-1 mr-2 mb-2 rounded-full bg-yellow-400">{{$rank}}位</div>
+                <div class="w-12 text-md p-1 mx-auto mb-2 rounded-full bg-yellow-400">{{$rank}}位</div>
                 
                 @foreach ($team_names as $team_name)
                  @if($team_name->team_name === $results->team_name)

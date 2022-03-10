@@ -24,20 +24,20 @@
                         <p class="leading-relaxed mb-5 text-gray-600">登録説明</p>
                         <label for="team_owner_id" class="leading-7 text-sm text-gray-600">チーム名</label>
                         <div class="relative mb-4">
-                          <label for="goal" class="leading-7 text-sm text-gray-600">得点を入力</label>
+                          <label for="goal" class="leading-7 text-sm text-gray-600">得点</label>
                           @if ($team_owner->team_name === $gameResult->game->home_team)
-                            <input type="text" id="goal" name="total_goal" value="{{$gameResult->home_goal}}" class="w-12 bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                            <input type="number" id="goal" name="total_goal" value="{{$gameResult->home_goal}}" class="w-16 bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                           @elseif ($team_owner->team_name === $gameResult->game->away_team)
-                            <input type="text" id="goal" name="total_goal" value="{{$gameResult->away_goal}}" class="w-12 bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                            <input type="number" id="goal" name="total_goal" value="{{$gameResult->away_goal}}" class="w-16 bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                           @else 
                             <div>チーム名が一致していません。</div>
                           @endif
                            <!--オウンゴール-->
-                        <label for="own_goal" class="leading-7 text-sm text-gray-600">オウンゴール</label>
+                        <label for="own_goal" class="leading-7 text-sm text-gray-600">OG</label>
                         @if ($team_owner->team_name === $gameResult->game->home_team)
-                        <input type="text" id="own_goal" name="own_goal" value="{{$gameResult->home_own_goal}}" class="w-12 mt-2 bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        <input type="number" id="own_goal" name="own_goal" value="{{$gameResult->home_own_goal}}" class="w-16 mt-2 bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                         @elseif ($team_owner->team_name === $gameResult->game->away_team)
-                        <input type="text" id="own_goal" name="own_goal" value="{{$gameResult->away_own_goal}}" class="w-12 mt-2 bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        <input type="number" id="own_goal" name="own_goal" value="{{$gameResult->away_own_goal}}" class="w-16 mt-2 bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                         @endif
                         </div>
                         <!--ゴール・アシスト部分ここから -->
@@ -45,8 +45,8 @@
                               <label for="goal" class="leading-7 text-sm text-gray-600">得点・アシスト入力</label>
                               @foreach($players as $player)
                                  <div>{{$player->player_name}}</div>
-                                 <input type="text" id="goals" name="goals[{{$player->player_name}}]" value="{{$player_team_goals[$player->player_name]['goals']}}" placeholder="G" class="w-12 placeholder-gray-300 bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                                 <input type="text" id="assists" name="assists[{{$player->player_name}}]" value="{{$player_team_goals[$player->player_name]['assists']}}" placeholder="A" class="w-12 placeholder-gray-300 bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                 <input type="number" id="goals" name="goals[{{$player->player_name}}]" value="{{$player_team_goals[$player->player_name]['goals']}}" placeholder="G" class="w-16 placeholder-gray-300 bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                 <input type="number" id="assists" name="assists[{{$player->player_name}}]" value="{{$player_team_goals[$player->player_name]['assists']}}" placeholder="A" class="w-16 placeholder-gray-300 bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                  @endforeach
                              </div>
                         <!--ゴール・アシスト部分ここまで -->

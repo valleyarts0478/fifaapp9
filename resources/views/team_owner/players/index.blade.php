@@ -8,14 +8,16 @@
     <div class="p-6 bg-white border-b border-gray-200">
       <div class="text-center my-2 mr-2">
         <button onclick="location.href='{{ route('team_owner.players.create') }}'" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded-md text-lg">新規登録</button>    
-    </div>
+      </div>
         <x-flash-message status="session('status')" />
-      <div class="flex flex-wrap p-2 mx-auto py-4 lg:px-36 md:px-8 -m-2">メンバー：{{ $count }}人</div>
+      <div class="flex flex-wrap p-2 mx-auto py-4 lg:px-36 md:px-8 -m-2">メンバー:{{ $count }}人</div>
         <div class="flex flex-wrap lg:px-36 md:px-8 -m-2">
             @foreach ($players as $player )                  
             <div class="p-2 lg:w-1/2 md:w-1/2 w-full">
               <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
-                    <img alt="team" class="w-12 h-12 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="https://dummyimage.com/80x80">
+                    {{-- <img alt="team" class="w-12 h-12 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="https://dummyimage.com/80x80"> --}}
+                    
+                    <x-player_icon :player=$player></x-player_icon>
                     <div class="flex-grow">
                     <span class="flex">
                       <span class="flex w-6 h-6 rounded-full bg-indigo-500 uppercase px-1 py-1 text-xs text-white font-bold">
