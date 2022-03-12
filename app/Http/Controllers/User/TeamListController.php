@@ -84,6 +84,9 @@ class TeamListController extends Controller
             ->where('league_id', 1)
             ->orderBy('game_date', 'asc')->get();
         // dd($games);
+
+        $game1_count = count($games);
+
         foreach ($games as $game) {
 
             $team_list[$game->game_date->format('Y-m-d-H:i')][$game->id] = [
@@ -98,6 +101,8 @@ class TeamListController extends Controller
             ->where('league_id', 2)
             ->orderBy('game_date', 'asc')->get();
 
+        $game2_count = count($game_leagues);
+
         foreach ($game_leagues as $league) {
             $team_list_second[$league->game_date->format('Y-m-d-H:i')][$league->id] = [
                 'home_team' => $league->home_team,
@@ -105,7 +110,7 @@ class TeamListController extends Controller
             ];
         }
 
-        return view('user.schedule_list', compact('games', 'team_list', 'team_list_second'));
+        return view('user.schedule_list', compact('games', 'team_list', 'team_list_second', 'game1_count', 'game2_count'));
     }
 
     public function day_schedule($date)

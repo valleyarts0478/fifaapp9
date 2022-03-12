@@ -7,15 +7,14 @@
   </ul>
 
  <div id="first" class="area">
-
+@if($game1_count === 0)
+順位表はありません。
+@else
     <div class="container px-4 md:px-8 mx-auto">
-  
-
       
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 md:gap-6 xl:gap-8">
         <!-- article - start -->
         @foreach($team_list as $date => $teams)      
-         
          
         <a href='{{ route('user.day.schedule', ['team' => $date ]) }}'" class="group h-48 md:h-64 xl:h-96 flex flex-col bg-gray-100 rounded-lg shadow-lg overflow-hidden relative">
           <img class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" src="{{ asset('storage/teams/' . "ral_card1.jpg") }}" alt="team_logo">
@@ -26,23 +25,22 @@
             <span class="block text-white font-semibold text-2xl"><h2>{{ $date }}～</h2></span>  
             <span class="text-ral-300 font-semibold">Read more</span>
           </div>
-        </a>
-        
+        </a>     
          
         @endforeach
         <!-- article - end -->       
       </div>
     </div>
+    @endif
   </div><!--first area end-->
 
-
   <div id="second" class="area">
-
-
+    @if($game2_count === 0)
+    順位表はありません。
+    @else
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 md:gap-6 xl:gap-8">
       <!-- article - start -->
       @foreach($team_list_second as $date => $teams)      
-       
        
       <a href='{{ route('user.day.schedule2', ['team' => $date ]) }}'" class="group h-48 md:h-64 xl:h-96 flex flex-col bg-gray-100 rounded-lg shadow-lg overflow-hidden relative">
         <img class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" src="{{ asset('storage/teams/' . "ral_card1.jpg") }}" alt="team_logo">
@@ -54,12 +52,11 @@
           <span class="text-ral-300 font-semibold">Read more</span>
         </div>
       </a>
-      
        
       @endforeach
       <!-- article - end -->       
     </div>
-  
+  @endif
   </div><!--second area end-->
 
 
