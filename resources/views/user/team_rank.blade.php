@@ -4,7 +4,7 @@
     <li><a href="#first">RAL-E 1部</a></li>
     <li><a href="#second">RAL-E 2部</a></li>
   </ul>
-    @if($cnt === 0)
+    @if($count === 0)
     順位はありません。
     @else
  <div id="first" class="area">
@@ -65,7 +65,7 @@
     </div>
   @endif
     @if($flag)
-    @if($cnt === 0)
+    @if($count === 0)
     順位はありません。
     @else
     <!--second start-->

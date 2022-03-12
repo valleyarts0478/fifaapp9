@@ -24,9 +24,15 @@ class ConventionsResultsController extends Controller
         $convention_results = ConventionsResult::where('convention_id', $convention->id)
             ->orderBy('game_point', 'desc')
             ->get();
+        $count = count($convention_results);
 
+        //試合結果が未登録の場合
+        if ($count === 0) {
+            return "最新の大会結果はありません。<br>ページを戻ってください。";
+        } else
+            // dd($convention_results);
 
-        $team_info = [];
+            $team_info = [];
         foreach ($convention_results as $result) {
             $team_info['team_name'][] = $result->team_name;
             // 'league_id' => $result->league_id,
@@ -34,7 +40,7 @@ class ConventionsResultsController extends Controller
         // dd($team_info);
         // 画像情報とるため
         $team_names = Team_owner::whereIn('team_name', $team_info['team_name'])->get();
-        $cnt = count($team_names);
+        // $count = count($team_names);
         // dd($cnt, $team_names);
         //flag用
         $test = [];
@@ -50,6 +56,6 @@ class ConventionsResultsController extends Controller
         });
         // dd($flag);
 
-        return view('user.team_rank', compact('convention_results', 'team_names', 'flag', 'cnt'));
+        return view('user.team_rank', compact('convention_results', 'team_names', 'flag', 'count'));
     }
 }
