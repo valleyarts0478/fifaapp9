@@ -7,7 +7,7 @@
   </ul>
 
   @if($game1_count === 0)
-   順位表はありません。
+   日程表はありません。
   @else
  <div id="first" class="area">
 
@@ -37,7 +37,7 @@
   @endif
 
   @if($game2_count === 0)
-  順位表はありません。
+  日程表はありません。
   @else
   <div id="second" class="area">
     
