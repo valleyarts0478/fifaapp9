@@ -101,7 +101,7 @@ class GameResultsController extends Controller
         // dd($players);
         $gameResult = GameResult::find($id);
         $goal_assists = Goal_Assist::where('team_owner_id', Auth::id())
-            ->where('game_results_id', $gameResult->game_id)
+            ->where('game_result_id', $gameResult->game_id)
             ->get();
         // プレイヤーごとのゴール、アシスト数をまとめた配列
         $player_team_goals = [];
@@ -164,7 +164,7 @@ class GameResultsController extends Controller
         //最初にgoalsやassistsに関係するレコードを削除
         $gameResult = GameResult::find($id);
         $goal_assists = Goal_Assist::where('team_owner_id', Auth::id())
-            ->where('game_results_id', $gameResult->game_id)
+            ->where('game_result_id', $gameResult->game_id)
             ->delete();
         //ゴール・アシスト入力
         // $input = $request->all();
@@ -195,7 +195,7 @@ class GameResultsController extends Controller
         foreach ($goal_assists as $key1 => $value1) {
             // dump($value1['assists']);
             $player_goal_assist = [
-                'game_results_id' => $gameResult->game_id,
+                'game_result_id' => $gameResult->game_id,
                 'team_owner_id' => $team_owner->id,
                 'player_name' => $key1,
                 'goals' => $value1['goals'],
@@ -209,8 +209,8 @@ class GameResultsController extends Controller
             } else
                 Goal_Assist::upsert(
                     $player_goal_assist,
-                    ['player_name', 'game_results_id'],
-                    ['game_results_id', 'team_owner_id', 'player_name', 'goals', 'assists']
+                    ['player_name', 'game_result_id'],
+                    ['game_result_id', 'team_owner_id', 'player_name', 'goals', 'assists']
                 );
         }
 
