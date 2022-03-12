@@ -1,15 +1,15 @@
 <?php
 
-use App\Http\Controllers\Team_Owner\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Team_Owner\Auth\ConfirmablePasswordController;
-use App\Http\Controllers\Team_Owner\Auth\EmailVerificationNotificationController;
-use App\Http\Controllers\Team_Owner\Auth\EmailVerificationPromptController;
-use App\Http\Controllers\Team_Owner\Auth\NewPasswordController;
-use App\Http\Controllers\Team_Owner\Auth\PasswordResetLinkController;
-use App\Http\Controllers\Team_Owner\Auth\RegisteredUserController;
-use App\Http\Controllers\Team_Owner\Auth\VerifyEmailController;
+use App\Http\Controllers\Team_owner\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Team_owner\Auth\ConfirmablePasswordController;
+use App\Http\Controllers\Team_owner\Auth\EmailVerificationNotificationController;
+use App\Http\Controllers\Team_owner\Auth\EmailVerificationPromptController;
+use App\Http\Controllers\Team_owner\Auth\NewPasswordController;
+use App\Http\Controllers\Team_owner\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Team_owner\Auth\RegisteredUserController;
+use App\Http\Controllers\Team_owner\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Team_Owner\TeamController;
+use App\Http\Controllers\Team_owner\TeamController;
 use App\Http\Controllers\Team_owner\PlayerController;
 use App\Http\Controllers\Team_owner\GamesController;
 use App\Http\Controllers\Team_owner\GameResultsController;
