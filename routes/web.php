@@ -7,7 +7,7 @@ use App\Http\Controllers\User\ItemController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\MatchController;
 use App\Http\Controllers\User\ConventionsResultsController;
-use App\Http\Controllers\User\PlayerRankcontroller;
+use App\Http\Controllers\User\PlayerRankController;
 use App\Http\Controllers\User\TeamListController;
 
 /*
