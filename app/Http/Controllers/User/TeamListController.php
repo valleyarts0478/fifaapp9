@@ -105,32 +105,6 @@ class TeamListController extends Controller
             ];
         }
 
-        // [$game->league_id]
-        // dd($team_list);
-        // foreach ($games as $game) {
-        //     $team_list[$game->game_date->format('Y-m-d H:i')][$game->id] = [
-        //         'home_team' => $game->home_team,
-        //         'away_team' => $game->away_team,
-        //     ];
-        // }
-        //$dateは試合日
-        //$recordsはgame->id
-        //recordはteamとleague_id
-        // foreach ($team_list as $date => $records) {
-        //     //
-        //     foreach ($records as $record) {
-
-        //     }
-        // }
-        // dd($records[2]);
-        // $flag = array_filter($team_list, function ($team_list) {
-        //     return $team_list['league_id'] == 2;
-        // });
-
-
-        // dump($date, $records, $record['league_id']);
-        // dd($date, $record);
-
         return view('user.schedule_list', compact('games', 'team_list', 'team_list_second'));
     }
 
