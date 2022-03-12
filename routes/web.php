@@ -1,6 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Team_Owner\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Team_Owner\Auth\ConfirmablePasswordController;
+use App\Http\Controllers\Team_Owner\Auth\EmailVerificationNotificationController;
+use App\Http\Controllers\Team_Owner\Auth\EmailVerificationPromptController;
+use App\Http\Controllers\Team_Owner\Auth\NewPasswordController;
+use App\Http\Controllers\Team_Owner\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Team_Owner\Auth\RegisteredUserController;
+use App\Http\Controllers\Team_Owner\Auth\VerifyEmailController;
 use App\Http\Controllers\ComponentTestController;
 use App\Http\Controllers\LifeCycleTestController;
 use App\Http\Controllers\User\ItemController;
