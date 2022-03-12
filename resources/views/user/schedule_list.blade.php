@@ -7,7 +7,7 @@
   </ul>
 
   @if($game1_count === 0)
-   日程表はありません。
+   1部日程表はありません。<br>
   @else
  <div id="first" class="area">
 
@@ -37,7 +37,7 @@
   @endif
 
   @if($game2_count === 0)
-  日程表はありません。
+  2部日程表はありません。<br>
   @else
   <div id="second" class="area">
     
