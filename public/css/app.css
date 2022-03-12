@@ -33061,8 +33061,8 @@ select {
   -webkit-animation-name: displayAnime;
           animation-name: displayAnime;
   /*ふわっと表示させるためのアニメーション*/
-  -webkit-animation-duration: 2s;
-          animation-duration: 2s;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }

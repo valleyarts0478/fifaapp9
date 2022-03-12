@@ -31,7 +31,7 @@
 .area.is-active {
     display: block;/*表示*/
     animation-name: displayAnime;/*ふわっと表示させるためのアニメーション*/
-    animation-duration: 2s;
+    animation-duration: 1s;
     animation-fill-mode: forwards;
 }
 
