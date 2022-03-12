@@ -27,9 +27,10 @@ use App\Http\Controllers\Team_owner\GameResultsController;
 |
 */
 
-Route::get('/', function () {
-    return view('team_owner.welcome');
-});
+// Route::get('/', function () {
+//     return view('team_owner.welcome');
+// });
+
 
 // Route::get('/dashboard', function () {
 //     return view('team_owner.dashboard');

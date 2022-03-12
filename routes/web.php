@@ -38,9 +38,9 @@ Route::get('/', function () {
     return view('user/welcome');
 })->middleware('guest')->name('welcome');
 
-Route::get('/team_owner/login', function () {
-    return view('team_owner.welcome');
-})->middleware('guest');
+// Route::get('/team_owner/login', function () {
+//     return view('team_owner.welcome');
+// })->middleware('guest');
 
 //得点王・アシスト王
 Route::get('/player_rank', [PlayerRankController::class, 'index'])
