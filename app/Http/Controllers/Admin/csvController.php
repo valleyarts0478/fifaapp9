@@ -29,7 +29,7 @@ class csvController extends Controller
         // 一旦アップロードされたCSVファイルを受け取り保存する
         $uploaded_file = $request->file('csvdata'); // inputのnameはcsvdataとする 
         $orgName = date('Y_m_d') . "_" . $request->file('csvdata')->getClientOriginalName();
-        $spath = storage_path('app\\');
+        $spath = storage_path('app/');
         $path = $spath . $request->file('csvdata')->storeAs('', $orgName);
 
         // CSVファイル（エクセルファイルも可）を読み込む
