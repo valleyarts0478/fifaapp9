@@ -86,7 +86,8 @@ class TeamListController extends Controller
         // dd($games);
 
         $game1_count = count($games);
-
+        $team_list = [];
+        // dd($game1_count);
         foreach ($games as $game) {
 
             $team_list[$game->game_date->format('Y-m-d-H:i')][$game->id] = [
@@ -103,6 +104,7 @@ class TeamListController extends Controller
 
         $game2_count = count($game_leagues);
 
+        $team_list_second = [];
         foreach ($game_leagues as $league) {
             $team_list_second[$league->game_date->format('Y-m-d-H:i')][$league->id] = [
                 'home_team' => $league->home_team,

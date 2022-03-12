@@ -6,10 +6,11 @@
     <li><a href="#second">RAL-E 2部</a></li>
   </ul>
 
+  @if($game1_count === 0)
+   順位表はありません。
+  @else
  <div id="first" class="area">
-@if($game1_count === 0)
-順位表はありません。
-@else
+
     <div class="container px-4 md:px-8 mx-auto">
       
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 md:gap-6 xl:gap-8">
@@ -31,13 +32,15 @@
         <!-- article - end -->       
       </div>
     </div>
-    @endif
+    
   </div><!--first area end-->
+  @endif
 
+  @if($game2_count === 0)
+  順位表はありません。
+  @else
   <div id="second" class="area">
-    @if($game2_count === 0)
-    順位表はありません。
-    @else
+    
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 md:gap-6 xl:gap-8">
       <!-- article - start -->
       @foreach($team_list_second as $date => $teams)      
@@ -56,9 +59,9 @@
       @endforeach
       <!-- article - end -->       
     </div>
-  @endif
+  
   </div><!--second area end-->
-
+  @endif
 
 
 
