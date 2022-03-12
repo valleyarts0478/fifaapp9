@@ -8,7 +8,7 @@
       <div class="container text-center px-5 py-24 mx-auto">
         <div class="upload">
           <p>DBに追加したいCSVデータを選択してください。</p>
-          <form action="/admin/import/csv/upload/" method="post" enctype="multipart/form-data">
+          <form action='{{route('admin.upload.csv')}}' method="post" enctype="multipart/form-data">
             @csrf
             <input type="file" name="csvdata" />
             <button class="p-2 rounded-md border border-gray-600">送信</button>

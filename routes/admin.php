@@ -71,7 +71,7 @@ Route::prefix('expired-owners')
 Route::prefix('import')
     ->middleware('auth:admin')->group(function () {
         Route::get('csv', [csvController::class, 'index'])->name('import.csv');
-        Route::post('csv/upload', [csvController::class, 'upload']);
+        Route::post('csv/upload', [csvController::class, 'upload'])->name('upload.csv');
     });
 
 Route::get('/dashboard', function () {
