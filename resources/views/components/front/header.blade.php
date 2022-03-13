@@ -1,12 +1,12 @@
-<header class="max-w-screen-lg mx-auto text-gray-600 body-font">
-    <div class="container mx-auto mb-8 pt-2 flex flex-wrap flex-col md:flex-row items-center bg-ral-400 fixed top-0 left-0 right-0 z-10">
+<div class="max-w-screen-lg mx-auto text-gray-600 body-font">
+    <div class="container mx-auto mb-8 pt-2 flex flex-wrap flex-col md:flex-row items-center">
 
 
-      <a href="/" class="flex mx-auto title-font font-medium items-center text-gray-900 md:mb-0">
-        <div class="-ml-12 mr-2 w-12 h-12">
-          <img src="{{ asset('storage/teams/' . "RALE_logo2.png") }}">
+      <a href="/" class="flex mx-auto title-font font-medium items-center text-gray-900 mt-2 md:mb-0">
+        <div class="-ml-8 mr-1 w-8 h-8">
+          <img src="{{ asset('storage/teams/' . "RALE_logo.png") }}">
         </div>
-        <span class="text-white text-xl font-bold">RAL-E</span>
+        <span class="text-ral-400 text-xl font-bold">RAL-E</span>
       </a>
       
     </div>
@@ -48,4 +48,4 @@
       <!--ここまでメニュー-->
   </div>
 
-  </header>
+</div>

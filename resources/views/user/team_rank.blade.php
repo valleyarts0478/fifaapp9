@@ -1,5 +1,5 @@
 <x-front.app>
-<div class="max-w-4xl py-24 mx-auto sm:px-6 lg:px-8">
+<div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
   <ul class="tab">
     <li><a href="#first">RAL-E 1部</a></li>
     <li><a href="#second">RAL-E 2部</a></li>
@@ -37,7 +37,7 @@
         @if($results['league_id'] === 1)
           <tr>
             <th class="_sticky">
-                <div class="w-12 text-md p-1 mx-auto mb-2 rounded-full bg-ral-300">{{$rank}}位</div>
+                <div class="w-12 text-md mx-auto mb-2 border-b-2 border-ral-300">{{$rank}}位</div>
                 
                 @foreach ($team_names as $team_name)
                  @if($team_name->team_name === $results->team_name)

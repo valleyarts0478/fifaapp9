@@ -24,7 +24,7 @@
           <div class="relative p-4 mt-auto">
             <h2 class="text-gray-200 transition duration-100 mb-2">Schedule</h2>
             <span class="block text-white font-semibold text-2xl"><h2>{{ $date }}～</h2></span>  
-            <span class="text-ral-300 font-semibold">Read more</span>
+            <span class="text-ral-300 font-semibold">Show more</span>
           </div>
         </a>     
          
@@ -52,7 +52,7 @@
         <div class="relative p-4 mt-auto">
           <h2 class="text-gray-200 transition duration-100 mb-2">Schedule</h2>
           <span class="block text-white font-semibold text-2xl"><h2>{{ $date }}～</h2></span>  
-          <span class="text-ral-300 font-semibold">Read more</span>
+          <span class="text-ral-300 font-semibold">Show more</span>
         </div>
       </a>
        

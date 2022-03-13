@@ -1,9 +1,9 @@
 <x-front.app>
   <div class="bg-white py-6 sm:py-8 lg:py-12">
-    <div class="container max-w-screen-2xl py-24 px-4 md:px-8 mx-auto">
+
 
     <section class="text-gray-600 body-font">
-        <div class="container max-w-4xl px-2 py-4 mx-auto">
+        <div class="container max-w-4xl px-2 py-4 mx-auto md:px-8">
           <x-auth-validation-errors class="mb-4" :errors="$errors" />  
           <x-flash-message status="session('status')" />
           <h2 class="mx-auto p-4 text-xl font-bold text-center">日程表</h2>
@@ -12,7 +12,7 @@
 
              @if(($second->game_results->home_goal) === null && ($second->game_results->away_goal) === null)
               <div class="flex flex-wrap border rounded-md pt-4 px-2 pb-2 mb-4">
-                <div class="w-28 flex flex-col text-center items-center">
+                <div class="w-20 flex flex-col text-center items-center">
                   <div class="w-8 h-8 inline-flex items-center justify-center rounded-full mb-2 flex-shrink-0">
                     @foreach ($team_names as $team_name)
                        @if($team_name->team_name === $second->home_team)
@@ -29,7 +29,7 @@
                     <div>{{ $second->game_date->format('G:i')}}</div>
 
                    </div>
-                <div class="w-28 flex flex-col text-center items-center">
+                <div class="w-20 flex flex-col text-center items-center">
                   <div class="w-8 h-8 inline-flex items-center justify-center rounded-full mb-2 flex-shrink-0">
                     @foreach ($team_names as $team_name)
                         @if($team_name->team_name === $second->away_team)
@@ -44,11 +44,8 @@
               </div>
               <!--ログインしているチームが試合終了した場合-->
              @else
-             <div class="text-center my-2 mr-2">
-              <button onclick="location.href='{{ route('user.day.schedule_show', ['team' => $second->id ]) }}'" class="text-gray-500 text-sm md:text-base text-center md:mb-4">Details</button>    
-             </div>
               <div class="flex flex-wrap border rounded-md pt-4 px-2 pb-2 mb-4">
-               <div class="w-28 flex flex-col text-center items-center">
+               <div class="w-20 flex flex-col text-center items-center">
                  <div class="w-8 h-8 inline-flex items-center justify-center rounded-full mb-2 flex-shrink-0">
                    @foreach ($team_names as $team_name)
                       @if($team_name->team_name === $second->home_team)
@@ -71,7 +68,7 @@
                       {{ $second->game_date->format('n/j')}}ー試合終了
                      </div>
                   </div>
-               <div class="w-28 flex flex-col text-center items-center">
+               <div class="w-20 flex flex-col text-center items-center">
                  <div class="w-8 h-8 inline-flex items-center justify-center rounded-full mb-2 flex-shrink-0">
                   @foreach ($team_names as $team_name)
                       @if($team_name->team_name === $second->away_team)
@@ -88,13 +85,18 @@
                     </span>
                  </div>
                </div>
+               <div class="w-full">
+                <div class="w-16 mx-auto my-4 rounded-full border border-gray-400">
+                 <button onclick="location.href='{{ route('user.day.schedule_show', ['team' => $second->id ]) }}'" class="text-gray-500 text-sm pt-1 pb-1 pl-2 pr-2 text-center">Details</button>    
+                </div>
+               </div>
               </div>
               @endif
               @endforeach
             </div>
           </div>
     </section>
-  </div>
+
 </div>
             <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
             <script src="{{mix('js/tab.js')}}"></script>

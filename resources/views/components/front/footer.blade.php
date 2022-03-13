@@ -1,10 +1,10 @@
 <footer class="max-w-screen-lg mx-auto text-gray-600 body-font">
     <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
       <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-        <div class="w-16 h-16 p-2">
+        <div class="-ml-8 mr-1 w-8 h-8">
           <img src="{{ asset('storage/teams/' . "RALE_logo.png") }}">
         </div>
-        <span class="ml-3 text-xl">RAL-E</span>
+        <span class="text-ral-400 text-xl font-bold">RAL-E</span>
       </a>
       <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2022 RAL-E
         <a href="https://twitter.com/TEDs886" class="text-gray-600 ml-1" rel="noopener noreferrer" target="_blank">@TEDs886</a>
