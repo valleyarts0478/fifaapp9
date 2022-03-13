@@ -4,6 +4,7 @@
             {{ __('Dashboard') }}
         </h2> --}}
     </x-slot>
+  <div class="container max-w-4xl px-2 py-4 mx-auto md:px-8">
     <x-flash-message status="session('status')" />
     <div class="mx-auto max-w-xl rounded overflow-hidden shadow-lg">
         @foreach($team_owners as $team_owner)
@@ -50,6 +51,6 @@
            </div>
         </div>
       </div>
-
+    </div>
 </x-app-layout>
 
