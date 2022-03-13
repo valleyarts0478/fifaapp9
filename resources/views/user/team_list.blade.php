@@ -1,6 +1,6 @@
 <x-front.app>
 
-  <div class="max-w-screen-lg mx-auto">
+  <div class="max-w-screen-lg py-24 mx-auto">
 
   <ul class="tab">
     <li><a href="#first">TEAM 1部</a></li>

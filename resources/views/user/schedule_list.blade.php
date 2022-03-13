@@ -1,6 +1,6 @@
 <x-front.app>
 
-<div class="bg-white py-6 sm:py-8 lg:py-12 max-w-screen-lg mx-auto">
+<div class="bg-white py-24 sm:py-8 lg:py-12 max-w-screen-lg mx-auto">
   <ul class="tab">
     <li><a href="#first">RAL-E 1部</a></li>
     <li><a href="#second">RAL-E 2部</a></li>
@@ -40,7 +40,7 @@
   2部日程表はありません。<br>
   @else
   <div id="second" class="area">
-    
+   <div class="container px-4 md:px-8 mx-auto">
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 md:gap-6 xl:gap-8">
       <!-- article - start -->
       @foreach($team_list_second as $date => $teams)      
@@ -59,7 +59,7 @@
       @endforeach
       <!-- article - end -->       
     </div>
-  
+   </div>
   </div><!--second area end-->
   @endif
 

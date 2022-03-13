@@ -1,7 +1,7 @@
 <x-front.app>
 
     <section class="text-gray-600 body-font">
-        <div class="container max-w-4xl px-2 py-4 mx-auto">
+        <div class="container max-w-4xl px-2 py-24 mx-auto">
           <x-auth-validation-errors class="mb-4" :errors="$errors" />  
           <x-flash-message status="session('status')" />
           <h2 class="mx-auto p-4 text-xl font-bold text-center">チーム別試合日程表</h2>

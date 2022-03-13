@@ -1,6 +1,6 @@
 <x-front.app>
   <div class="bg-white py-6 sm:py-8 lg:py-12">
-    <div class="container max-w-screen-2xl px-4 md:px-8 mx-auto">
+    <div class="container max-w-screen-2xl py-24 px-4 md:px-8 mx-auto">
 
     <section class="text-gray-600 body-font">
         <div class="container max-w-4xl px-2 py-4 mx-auto">
@@ -44,7 +44,6 @@
               </div>
               <!--ログインしているチームが試合終了した場合-->
              @else
-             {{$second->id}}
              <div class="text-center my-2 mr-2">
               <button onclick="location.href='{{ route('user.day.schedule_show', ['team' => $second->id ]) }}'" class="text-gray-500 text-sm md:text-base text-center md:mb-4">Details</button>    
              </div>
