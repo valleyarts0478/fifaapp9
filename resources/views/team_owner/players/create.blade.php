@@ -44,11 +44,11 @@
                              </select>
                           </div>
                             <div class="relative mb-4">
-                              <label for="player_no" class="leading-7 text-sm text-gray-600">背番号</label>
+                              <label for="player_no" class="leading-7 text-sm text-gray-600">背番号(半角数字)</label>
                               <input type="text" id="player_no" name="player_no" value="{{ old('player_no') }}" required class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                             </div>
                             <div class="relative mb-4">
-                              <label for="player_name" class="leading-7 text-sm text-gray-600">選手名</label>
+                              <label for="player_name" class="leading-7 text-sm text-gray-600">選手名(PSID)</label>
                               <input type="text" id="player_name" name="player_name" value="{{ old('player_name') }}" required class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                             </div>
                             <div class="p-2 flex justify-around w-full mt-4">
