@@ -11,7 +11,7 @@
             @foreach ($games as $game)
              @if(($game->game_results->home_goal) === null && ($game->game_results->away_goal) === null)
               <div class="flex flex-wrap border rounded-md pt-4 px-2 pb-2 mb-4">
-                <div class="w-28 flex flex-col text-center items-center">
+                <div class="w-20 flex flex-col text-center items-center">
                   <div class="w-12 h-12 inline-flex items-center justify-center rounded-full mb-2 flex-shrink-0">
                     @foreach ($team_names as $team_name)
                        @if($team_name->team_name === $game->home_team)
@@ -29,7 +29,7 @@
                     <div>{{ $game->game_date->format('G:i')}}</div>
 
                    </div>
-                <div class="w-28 flex flex-col text-center items-center">
+                <div class="w-20 flex flex-col text-center items-center">
                   <div class="w-12 h-12 inline-flex items-center justify-center rounded-full mb-2 flex-shrink-0">
                     @foreach ($team_names as $team_name)
                       @if($team_name->team_name === $game->away_team)
