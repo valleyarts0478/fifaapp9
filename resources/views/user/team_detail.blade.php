@@ -6,11 +6,8 @@
         <div class="text-center lg:w-2/3 w-full">
           <h2 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">{{ $team->team_name }}</h2>
         </div>
-      </div>
-    </section>
 
-    <section>
-      <div class="flex flex-wrap p-2 py-4 lg:px-36 md:px-8 ml-8">メンバー:{{ $count }}人</div>
+      <div class="flex flex-wrap p-2 py-4 lg:px-36 md:px-8">メンバー:{{ $count }}人</div>
       <div class="flex flex-wrap  pr-8 pl-8 lg:px-36 md:px-8 -m-2">
           @foreach ($players as $player )                  
           <div class="p-2 lg:w-1/2 md:w-1/2 w-full">
@@ -33,8 +30,7 @@
           </div>
           @endforeach
       </div>
- </div>
-
+    </div>
     </section>
 
 </x-front.app>

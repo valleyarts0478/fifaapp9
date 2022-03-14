@@ -42,7 +42,7 @@
       <tbody>
         @if ($goal_rank['goals'] >= 1)
         <tr>
-          <td class="border px-4 py-2"><span class="text-md p-1 mr-2 rounded-full bg-ral-300">{{$rank}}位</span></td>
+          <td class="border px-4 py-2"><span class="text-md p-1 border-b-2 border-ral-300">{{$rank}}位</span></td>
           <td class="border px-4 py-2">{{$goal_rank['player_name']}}</td>
           <td class="border px-4 py-2">{{$goal_rank['goals']}}</td>        
           <td class="border px-4 py-2"><img class="w-4 h-4 inline-table" src="{{ asset('storage/teams/logo/' . $goal_rank['team_logo_url'])}}"><span class="ml-1">{{$goal_rank['team_abb']}}</span></td>
@@ -90,7 +90,7 @@
                 @if ($assist_rank['assists'] >= 1)
               <tbody>
                 <tr>
-                  <td class="border px-4 py-2"><span class="text-md p-1 mr-2 rounded-full bg-ral-300">{{$rank}}位</span></td>
+                  <td class="border px-4 py-2"><span class="text-md p-1 border-b-2 border-ral-300">{{$rank}}位</span></td>
                   <td class="border px-4 py-2">{{$assist_rank['player_name']}}</td>
                   <td class="border px-4 py-2">{{$assist_rank['assists']}}</td>
                   <td class="border px-4 py-2"><img class="w-4 h-4 inline-table" src="{{ asset('storage/teams/logo/' . $assist_rank['team_logo_url'])}}"><span class="ml-1">{{$assist_rank['team_abb']}}</span></td>
@@ -141,7 +141,7 @@
         @if ($goal_rank['goals'] >= 1)
       <tbody>
         <tr>
-          <td class="border px-4 py-2"><span class="text-md p-1 mr-2 rounded-full bg-ral-300">{{$rank}}位</span></td>
+          <td class="border px-4 py-2"><span class="text-md p-1 border-b-2 border-ral-300">{{$rank}}位</span></td>
           <td class="border px-4 py-2">{{$goal_rank['player_name']}}</td>
           <td class="border px-4 py-2">{{$goal_rank['goals']}}</td>
           <td class="border px-4 py-2"><img class="w-4 h-4 inline-table" src="{{ asset('storage/teams/logo/' . $goal_rank['team_logo_url'])}}"><span class="ml-1">{{$goal_rank['team_abb']}}</span></td>
@@ -190,7 +190,7 @@
         @if ($assist_rank['assists'] >= 1)
       <tbody>
         <tr>
-          <td class="border px-4 py-2"><span class="text-md p-1 mr-2 rounded-full bg-ral-300">{{$rank}}位</span></td>
+          <td class="border px-4 py-2"><span class="text-md p-1 border-b-2 border-ral-300">{{$rank}}位</span></td>
           <td class="border px-4 py-2">{{$assist_rank['player_name']}}</td>
           <td class="border px-4 py-2">{{$assist_rank['assists']}}</td>
           <td class="border px-4 py-2"><img class="w-4 h-4 inline-table" src="{{ asset('storage/teams/logo/' . $assist_rank['team_logo_url'])}}"><span class="ml-1">{{$assist_rank['team_abb']}}</span></td>
