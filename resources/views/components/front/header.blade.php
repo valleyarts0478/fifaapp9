@@ -28,6 +28,9 @@
       <!--ここからメニュー-->
       <div class="menu-content">
           <ul>
+            <li>
+              <a href="/" class="ml-4 text-sm hover:text-gray-900">HOME</a>
+            </li>
               <li>
                 <a href="/team_list" class="ml-4 text-sm hover:text-gray-900">チーム一覧</a>
               </li>
