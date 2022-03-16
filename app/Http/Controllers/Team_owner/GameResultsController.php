@@ -97,7 +97,9 @@ class GameResultsController extends Controller
     public function edit($id)
     {
         $team_owner = Team_owner::find(Auth::id());
-        $players = Player::where('team_owner_id', $team_owner->id)->get();
+        $players = Player::where('team_owner_id', $team_owner->id)
+            ->orderBy('position_id', 'asc')
+            ->get();
         // dd($players);
         $gameResult = GameResult::find($id);
         $goal_assists = Goal_Assist::where('team_owner_id', Auth::id())
