@@ -130,9 +130,14 @@ class GameResultsController extends Controller
     {
 
         $request->validate([
-            // 'total_goal' => [new num_only],
+            'total_goal' => 'integer|nullable|min:0|max:99',
+            'own_goal' => 'integer|nullable|min:1|max:99',
+            'goals.*' => ['nullable', 'integer', 'min:1', 'max:99'], //配列の場合の書き方
+            'assists.*' => ['nullable', 'integer', 'min:1', 'max:99'], //配列の場合の書き方
 
         ]);
+
+
 
         $gameResult = GameResult::find($id);
         $team_owner = Team_owner::find(Auth::id());
