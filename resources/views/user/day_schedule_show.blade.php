@@ -11,7 +11,7 @@
         @endif
         <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
           <div class="mx-auto">HOME</div>
-          <h2 class="mb-4"><img class="inline w-8 h-8 mr-2" src="{{ asset('storage/teams/logo/' . $home_owner->team_logo_url) }}" alt="team_logo"><span class="text-xl font-bold align-middle">{{$home_owner->team_name}}</span></h2>
+          <h2 class="mb-4"><img class="inline w-8 h-8 mr-2" src="{{ asset('storage/teams/logo/' . $home_owner->team_logo_url) }}" alt="team_logo"><span class="text-xl font-bold">{{$home_owner->team_name}}</span></h2>
           @foreach ($home_goal_assists as $home)
           <p class="mb-2 border-ral-100 border-solid border-b-2 text-xl">{{$home->player_name}}</p>
             <div class="flex mb-2 leading-relaxed text-base">
@@ -40,7 +40,7 @@
           <div class="text-sm text-ral-200 font-semibold mx-auto">OG:{{$home_game->game_results->away_own_goal}}</div>
           @endif
           <div class="mx-auto mt-6">AWAY</div>
-          <h2 class="mb-4"><img class="inline w-8 h-8 mr-2" src="{{ asset('storage/teams/logo/' . $away_owner->team_logo_url) }}" alt="team_logo"><span class="text-xl font-bold align-middle">{{$away_owner->team_name}}</span></h2>
+          <h2 class="mb-4"><img class="inline w-8 h-8 mr-2" src="{{ asset('storage/teams/logo/' . $away_owner->team_logo_url) }}" alt="team_logo"><span class="text-xl font-bold">{{$away_owner->team_name}}</span></h2>
           @foreach ($away_goal_assists as $away)
           <p class="mb-2 border-ral-300 border-solid border-b-2 text-xl">{{$away->player_name}}</p>
             <div class="flex mb-2 leading-relaxed text-base">

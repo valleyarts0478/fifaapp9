@@ -14,7 +14,7 @@
                        @csrf
                         <div class="w-20 h-20 mx-auto">
                           <div class="text-sm">TOTALGOAL</div>
-                          <div class="flex items-center justify-center shadow-md font-bold border align-middle rounded-md text-xl w-20 h-16">test</div>
+                          <div class="flex items-center justify-center shadow-md font-bold border rounded-md text-xl w-20 h-16">test</div>
                         </div>
                         <div class="flex">
                          <div class="w-60 mr-4 mb-4">

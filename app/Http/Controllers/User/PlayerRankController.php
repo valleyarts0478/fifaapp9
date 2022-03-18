@@ -10,6 +10,7 @@ use App\Models\League;
 use App\Models\GameResult;
 use App\Models\Team_owner;
 use App\Models\Goal_Assist;
+use App\Models\Player;
 
 class PlayerRankController extends Controller
 {
@@ -24,7 +25,20 @@ class PlayerRankController extends Controller
             $query->where('convention_id', $convention->id);
         })->get();
 
-        // dd($goal_assists);
+        if (count($goal_assists) === 0) {
+            return view('user.no_match');
+        } else {
+            $player_name = [];
+            foreach ($goal_assists as $name) {
+                $player_name['player_name'][] = $name->player_name;
+            }
+            $p_names = Player::whereIn('player_name', $player_name['player_name'])->get();
+        }
+
+        // foreach ($p_names as $value) {
+        // }
+        // dump($value->position->position_name);
+        // dd($value->position->id);
         // $goal_assist->game_results->convention_id;
         $player_rank = [];
         foreach ($goal_assists as $goal_assist) {
@@ -80,12 +94,12 @@ class PlayerRankController extends Controller
         $goal_cnt = count($goal_ranking);
         $assists_cnt = count($assists_ranking);
 
-        $flag = array_filter($goal_ranking, function ($goal_ranking) {
-            return $goal_ranking['league_id'] == 2;
-        });
+        // $flag = array_filter($goal_ranking, function ($goal_ranking) {
+        //     return $goal_ranking['league_id'] == 2;
+        // });
 
         // dd($flag);
         // dd($goal_ranking);
-        return view('user.player_rank', compact('goal_assists', 'goal_ranking', 'assists_ranking', 'flag', 'goal_cnt', 'assists_cnt'));
+        return view('user.player_rank', compact('goal_assists', 'p_names', 'goal_ranking', 'assists_ranking', 'goal_cnt', 'assists_cnt'));
     }
 }

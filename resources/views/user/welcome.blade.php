@@ -47,7 +47,7 @@
 
             <div class="p-4 md:w-1/3">
               <div class="rounded-lg overflow-hidden">
-                  <a href="/player_rank"><img class="lg:h-48 md:h-36 w-full object-cover object-center" src="{{asset('storage/top/' . "schedule_bn.jpg")}}" alt="schedule"></a>
+                  <a href="/schedule_list"><img class="lg:h-48 md:h-36 w-full object-cover object-center" src="{{asset('storage/top/' . "schedule_bn.jpg")}}" alt="schedule"></a>
               </div>
             </div>
 

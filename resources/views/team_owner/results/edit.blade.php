@@ -24,7 +24,7 @@
                             <div class="text-center">{{$gameResult->game->away_team}}</div>
                         </h2>
                         {{-- <div class="relative mb-4 mx-auto"> --}}
-                          <div for="goal" class="text-sm text-center text-gray-600">得点</div>
+                          <div for="goal" class="text-sm text-center mt-4 text-gray-600">得点</div>
                           <div class="mx-auto">
                           @if ($team_owner->team_name === $gameResult->game->home_team)
                             <input type="number" pattern="\d*" id="goal" name="total_goal" placeholder="得点" value="{{$gameResult->home_goal}}" class="w-28 h-12 mb-2 text-center placeholder-gray-300 bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
@@ -46,7 +46,7 @@
                         {{-- </div> --}}
 
                         <!--ゴール・アシスト部分ここから -->
-                             <div class="relative mb-4 mx-auto">
+                             <div class="relative mt-4 mb-4 mx-auto">
                               <label for="goal" class="leading-7 text-sm text-gray-600 mx-auto">得点・アシスト入力</label>
                               @foreach($players as $player)
                                  <div>{{$player->player_name}}</div>

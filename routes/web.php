@@ -46,6 +46,10 @@ Route::get('/', function () {
 Route::get('/player_rank', [PlayerRankController::class, 'index'])
     ->middleware('guest')
     ->name('player_rank');
+//ランキングなし
+Route::get('/no_match', [PlayerRankController::class, 'no_match'])
+    ->middleware('guest')
+    ->name('no_match');
 //チーム一覧
 Route::get('/team_list', [TeamListController::class, 'index'])
     ->middleware('guest')

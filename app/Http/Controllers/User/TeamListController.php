@@ -153,36 +153,7 @@ class TeamListController extends Controller
         }
         $team_names = Team_owner::whereIn('team_name', $team_info['team_name'])->get();
 
-        //得点・アシスト者表示部分
-        //league1
-        // $goal_assists = Goal_Assist::find(12);
-        // $test = $goal_assists->game_result->game->home_team; //リレーションOK
-        // $games = Game::find(8);
-        // $test3 = [];
-        // foreach ($games as $game) {
-        //     $test3 = $game->game_results;
-        // }
 
-        // dd($test3);
-        // $test = $games->game_results->goal_assists;
-        // dd($test);
-        // $test2 = [];
-        // foreach ($test3 as $player) {
-        //     $test2[] = [
-        //         'game_result_id' => $player->game_result_id,
-        //         'player_name' => $player->player_name,
-        //         'goals' => $player->goals,
-        //         'assists' => $player->assists,
-        //     ];
-        // }
-        // foreach ($test2 as $value) {
-        // }
-        // dump($test2);
-        // dd($test2);
-
-
-
-        // dd($games);
         return view('user.day_schedule', compact('games', 'team_names'));
     }
 

@@ -105,6 +105,7 @@ class GameResultsController extends Controller
         $goal_assists = Goal_Assist::where('team_owner_id', Auth::id())
             ->where('game_result_id', $gameResult->game_id)
             ->get();
+
         // プレイヤーごとのゴール、アシスト数をまとめた配列
         $player_team_goals = [];
         foreach ($players as $player) {

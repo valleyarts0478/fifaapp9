@@ -44,7 +44,7 @@
                  <img class="inline w-8 h-8" src="{{ asset('storage/teams/logo/' . $team_name->team_logo_url) }}" alt="team_logo">
                  @endif
                 @endforeach
-                <span>{{$results->team_name}}</span>
+                <div>{{$results->team_name}}</div>
             </th>
             <td>{{$results->game_point}}</td>
             <td>{{$results->game_count}}</td>
@@ -106,7 +106,7 @@
                  <img class="inline w-8 h-8" src="{{ asset('storage/teams/logo/' . $team_name->team_logo_url) }}" alt="team_logo">
                  @endif
                 @endforeach
-                <span>{{$results->team_name}}</span>
+                <div>{{$results->team_name}}</div>
             </th>
             <td>{{$results->game_point}}</td>
             <td>{{$results->game_count}}</td>
