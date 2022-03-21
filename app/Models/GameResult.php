@@ -20,6 +20,7 @@ class GameResult extends Model
         'game_id',
         'convention_id',
         'league_id',
+        'section',
         'home_goal',
         'away_goal',
     ];

@@ -25,6 +25,7 @@
                 <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">大会名</th>
                 <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">リーグ</th>
                 <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">game_date</th>
+                <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">section</th>
                 <th class="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br">HOME</th>
                 <th class="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br">AWAY</th>
                 <th class="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br">更新日</th>
@@ -37,6 +38,7 @@
                 <td class="border px-4">{{ $val->convention_id }}</td>
                 <td class="border px-4">{{ $val->league_id }}</td>
                 <td class="border px-4">{{ $val->game_date }}</td>
+                <td class="border px-4">{{ $val->section }}</td>
                 <td class="border px-4">{{ $val->home_team }}</td>
                 <td class="border px-4">{{ $val->away_team }}</td>
                 <td class="border px-4 text-xs">{{ $val->updated_at }}</td>

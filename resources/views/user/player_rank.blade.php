@@ -148,7 +148,7 @@
               <img class="w-16 ml-auto" src="{{ asset('storage/teams/logo/' . $goal_rank['team_logo_url'])}}">
             </div>
       
-            @foreach ($p_names as $value)
+            @foreach ($p_names->unique('player_name') as $value)
             @if($goal_rank['player_name'] === $value->player_name)
             <span class="text-xs">{{$value->position->position_name}}</span>
             <span class="text-xs">NO.{{$value->player_no}}</span>
@@ -182,13 +182,14 @@
     ?>
 
     @foreach($assists_ranking as $assist_rank)
+    @if($assist_rank['league_id'] === 2)
+    @if ($assist_rank['assists'] >= 1 && $rank <= 10)   
     <?php 
     //前回と同順位の場合は、順位を加算しない
     if($bef_point != $assist_rank['assists']){
         $rank = $cnt; 
     } ?>
-    @if($assist_rank['league_id'] === 2)
-    @if ($assist_rank['assists'] >= 1 && $rank <= 10)                          
+                           
 
 
 <div class="rounded-lg border border-gray-300 mb-2 p-4">

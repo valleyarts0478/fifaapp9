@@ -37,7 +37,7 @@ class GameResultsController extends Controller
                 $game_home_team = GameResult::findOrFail($id)->game->home_team;
                 // dd($playerOwnerId);
 
-                // dd($team_owner->team_name);
+                // dd($game_away_team);
                 // $playerId = (int)$playerOwnerId; // キャスト 文字列→数値に型変換
                 if ($team_owner->team_name === $game_away_team or $team_owner->team_name === $game_home_team) {
                     //

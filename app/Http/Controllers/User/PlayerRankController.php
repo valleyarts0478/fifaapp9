@@ -32,9 +32,10 @@ class PlayerRankController extends Controller
             foreach ($goal_assists as $name) {
                 $player_name['player_name'][] = $name->player_name;
             }
+
             $p_names = Player::whereIn('player_name', $player_name['player_name'])->get();
         }
-
+        // dd($p_names);
         // foreach ($p_names as $value) {
         // }
         // dump($value->position->position_name);
@@ -64,6 +65,7 @@ class PlayerRankController extends Controller
                 $goal_sum += $value2['goals'];
                 $assist_sum += $value2['assists'];
             }
+
             $goal_ranking[] = [
                 'convention_id' => $value2['convention_id'],
                 'league_id' => $value2['league_id'],
@@ -85,6 +87,7 @@ class PlayerRankController extends Controller
                 'team_logo_url' => $value2['team_logo_url']
             ];
         }
+
         //goalsの降順で並び替え
         array_multisort(array_column($goal_ranking, 'goals'), SORT_DESC, $goal_ranking);
         //assistsの降順で並び替え

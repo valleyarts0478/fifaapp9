@@ -1,7 +1,7 @@
 <x-front.app>
 
     <section class="text-gray-600 body-font">
-        <div class="container max-w-4xl px-2 py-24 mx-auto">
+        <div class="container max-w-4xl px-2 py-8 mx-auto">
           <x-auth-validation-errors class="mb-4" :errors="$errors" />  
           <x-flash-message status="session('status')" />
           <h2 class="mx-auto p-4 text-xl font-bold text-center">チーム別試合日程表</h2>
@@ -10,7 +10,7 @@
 
              @if(($game->game_results->home_goal) === null && ($game->game_results->away_goal) === null)
               <div class="flex flex-wrap border rounded-md pt-4 px-2 pb-2 mb-4">
-                <div class="w-28 flex flex-col text-center items-center">
+                <div class="w-20 flex flex-col text-center items-center">
                   <div class="w-8 h-8 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-2 flex-shrink-0">
                     @foreach ($team_names as $team_name)
                        @if($team_name->team_name === $game->home_team)
@@ -28,7 +28,7 @@
                     {{-- <div class="text-md mb-2">{{ substr($game->game_date, 5, 5) }}</div>
                     <div class="text-md">{{ substr($game->game_date, 10, 6) }}</div> --}}
                    </div>
-                <div class="w-28 flex flex-col text-center items-center">
+                <div class="w-20 flex flex-col text-center items-center">
                   <div class="w-8 h-8 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-2 flex-shrink-0">
                     @foreach ($team_names as $team_name)
                         @if($team_name->team_name === $game->away_team)
@@ -44,7 +44,7 @@
               <!--ログインしているチームが試合終了した場合-->
              @else
               <div class="flex flex-wrap border rounded-md pt-4 px-2 pb-2 mb-4">
-               <div class="w-28 flex flex-col text-center items-center">
+               <div class="w-20 flex flex-col text-center items-center">
                  <div class="w-8 h-8 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-2 flex-shrink-0">
                    @foreach ($team_names as $team_name)
                       @if($team_name->team_name === $game->home_team)
@@ -69,7 +69,7 @@
                       
                      </div>
                   </div>
-               <div class="w-28 flex flex-col text-center items-center">
+               <div class="w-20 flex flex-col text-center items-center">
                  <div class="w-8 h-8 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-2 flex-shrink-0">
                   @foreach ($team_names as $team_name)
                       @if($team_name->team_name === $game->away_team)

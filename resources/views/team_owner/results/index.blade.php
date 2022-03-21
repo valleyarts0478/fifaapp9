@@ -11,8 +11,9 @@
             <div class="container px-2 py-8 mx-auto">
               @foreach ($games as $game)
               <div class="static">
-                <button onclick="location.href='{{ route('team_owner.results.edit', ['result' => $game->id ]) }}'" class="relative top-4 right-0 bg-gray-300 text-xs text-gray-600 rounded-full h-8 w-8">入力</button>      
+                <button onclick="location.href='{{ route('team_owner.results.edit', ['result' => $game->id ]) }}'" class="relative top-12 right-0 bg-ral-300 text-xs text-gray-600 rounded-full h-6 w-6"></button>      
                </div>
+               <div class="text-center text-sm">第<span class="text-xl px-1">{{$game->section}}</span>節</div>
              @if(($game->game_results->home_goal) === null && ($game->game_results->away_goal) === null)
               <div class="flex flex-wrap border rounded-md pt-4 px-2 pb-2 mb-4">
                 <div class="w-20 flex flex-col text-center items-center">

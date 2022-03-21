@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <div class="w-12">
-                        <a href="{{ route('team_owner.teams.index') }}">
+                        <a href="/">
                                 <img src="{{ asset('storage/teams/' . "RALE_logo.png") }}">
                         </a>
                         </div>

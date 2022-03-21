@@ -1,7 +1,6 @@
 <x-front.app>
   <div class="bg-white py-6 sm:py-8 lg:py-12">
 
-
     <section class="text-gray-600 body-font">
         <div class="container max-w-4xl px-2 py-4 mx-auto md:px-8">
           <x-auth-validation-errors class="mb-4" :errors="$errors" />  
@@ -9,7 +8,7 @@
           <h2 class="mx-auto p-4 text-xl font-bold text-center">日程表</h2>
             <div class="container px-2 mx-auto">
             @foreach ($games_second as $second)
-
+            <div class="text-center text-sm">第<span class="text-xl px-1">{{$second->section}}</span>節</div>
              @if(($second->game_results->home_goal) === null && ($second->game_results->away_goal) === null)
               <div class="flex flex-wrap border rounded-md pt-4 px-2 pb-2 mb-4">
                 <div class="w-20 flex flex-col text-center items-center">

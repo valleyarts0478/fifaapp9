@@ -23,6 +23,7 @@ class Game extends Model
         'convention_id',
         'league_id',
         'game_date',
+        'section',
         'home_team',
         'away_team',
     ];

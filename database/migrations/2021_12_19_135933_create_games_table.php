@@ -22,6 +22,7 @@ class CreateGamesTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->datetime('game_date');
+            $table->smallinteger('section');
             $table->string('home_team');
             $table->string('away_team');
             $table->timestamps();

@@ -18,11 +18,14 @@
         "lodash": "^4.17.19",
         "postcss": "^8.2.1",
         "postcss-import": "^12.0.1",
-        "tailwindcss": "^2.0.2"
+        "tailwindcss": "^2.0.2",
+        "vue": "^3.2.31",
+        "vue-loader": "^16.2.0"
     },
     "dependencies": {
         "cross-env": "^7.0.3",
         "micromodal": "^0.4.6",
-        "swiper": "^6.7.0"
+        "swiper": "^6.7.0",
+        "vue-router": "^4.0.14"
     }
 }

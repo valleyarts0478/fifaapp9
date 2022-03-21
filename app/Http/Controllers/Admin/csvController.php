@@ -45,6 +45,7 @@ class csvController extends Controller
                     'convention_id' => $item["convention_id"],
                     'league_id' => $item["league_id"],
                     'game_date' => $item["game_date"],
+                    'section' => $item["section"],
                     'home_team' => $item["home_team"],
                     'away_team' => $item["away_team"],
                 ];
@@ -56,9 +57,11 @@ class csvController extends Controller
                 $game = Game::create($param);
 
                 $game_result = GameResult::create([
+                    'id' => $game->id,
                     'game_id' => $game->id,
                     'convention_id' => $game->convention_id,
                     'league_id' => $game->league_id,
+                    'section' => $game->section,
 
                 ]);
                 $count++;

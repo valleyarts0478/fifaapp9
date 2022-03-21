@@ -87,20 +87,38 @@ class TeamListController extends Controller
 
         $game1_count = count($games);
         $team_list = [];
-        // dd($game1_count);
+
+        //league1
         foreach ($games as $game) {
 
             $team_list[$game->game_date->format('Y-m-d-H:i')][$game->id] = [
+                'section' => $game->section,
                 'home_team' => $game->home_team,
                 'away_team' => $game->away_team,
 
             ];
         }
+        $section = [];
+        //section取得
+        foreach ($games as $game) {
+            $section[$game->game_date->format('Y-m-d-H:i')] = [
+                'section' => $game->section,
+            ];
+        }
+        // dd($section);
 
         //league2
         $game_leagues = Game::where('convention_id', $convention->id)
             ->where('league_id', 2)
             ->orderBy('game_date', 'asc')->get();
+
+        $section2 = [];
+        //section2取得
+        foreach ($game_leagues as $game2) {
+            $section2[$game2->game_date->format('Y-m-d-H:i')] = [
+                'section' => $game2->section,
+            ];
+        }
 
         $game2_count = count($game_leagues);
 
@@ -112,7 +130,7 @@ class TeamListController extends Controller
             ];
         }
 
-        return view('user.schedule_list', compact('games', 'team_list', 'team_list_second', 'game1_count', 'game2_count'));
+        return view('user.schedule_list', compact('section', 'section2', 'team_list', 'team_list_second', 'game1_count', 'game2_count'));
     }
 
     public function day_schedule($date)

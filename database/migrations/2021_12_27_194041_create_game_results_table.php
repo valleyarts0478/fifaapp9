@@ -24,6 +24,7 @@ class CreateGameResultsTable extends Migration
             $table->foreignId('league_id')->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->smallinteger('section');
             $table->smallinteger('home_goal')->nullable();
             $table->smallinteger('away_goal')->nullable();
             $table->smallinteger('home_own_goal')->nullable();

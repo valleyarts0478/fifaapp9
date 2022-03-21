@@ -9,6 +9,7 @@
           <h2 class="mx-auto p-4 text-xl font-bold text-center">日程表</h2>
             <div class="container mx-auto">
             @foreach ($games as $game)
+            <div class="text-center text-sm">第<span class="text-xl px-1">{{$game->section}}</span>節</div>
              @if(($game->game_results->home_goal) === null && ($game->game_results->away_goal) === null)
               <div class="flex flex-wrap border rounded-md pt-4 px-2 pb-2 mb-4">
                 <div class="w-20 flex flex-col text-center items-center">
