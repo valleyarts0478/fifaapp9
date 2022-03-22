@@ -14,6 +14,7 @@ use App\Models\Game;
 use App\Models\GameResult;
 use App\Models\Goal_Assist;
 use App\Models\Position;
+use App\Models\Admin;
 
 
 class DatabaseSeeder extends Seeder
