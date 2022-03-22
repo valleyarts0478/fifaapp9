@@ -25,7 +25,7 @@ class TeamOwnerAddSeeder extends Seeder
                 'team_name' => 'BIGBANG',
                 'team_abb' => 'BIG',
                 'team_logo_url' => 'BIGBANG_500.png',
-                'created_at' => '2022/02/27 00:00:00'
+                'created_at' => '2022/02/27 00:00:00',
             ],
             [
                 'name' => 'Rebel United',
@@ -36,7 +36,7 @@ class TeamOwnerAddSeeder extends Seeder
                 'team_name' => 'Rebel United',
                 'team_abb' => 'RBL',
                 'team_logo_url' => 'Rebel_United_500.jpg',
-                'created_at' => '2022/02/27 00:00:00'
+                'created_at' => '2022/02/27 00:00:00',
             ],
             [
                 'name' => 'Contact Tokyo',
@@ -47,7 +47,7 @@ class TeamOwnerAddSeeder extends Seeder
                 'team_name' => 'Contact Tokyo',
                 'team_abb' => 'COT',
                 'team_logo_url' => 'Contact_Tokyo_500.png',
-                'created_at' => '2022/02/27 00:00:00'
+                'created_at' => '2022/02/27 00:00:00',
             ],
             [
                 'name' => 'FC HAKODATEJIN',
@@ -58,7 +58,7 @@ class TeamOwnerAddSeeder extends Seeder
                 'team_name' => 'FC HAKODATEJIN',
                 'team_abb' => 'FCH',
                 'team_logo_url' => 'FC_HAKODATEJIN_500.jpg',
-                'created_at' => '2022/02/27 00:00:00'
+                'created_at' => '2022/02/27 00:00:00',
             ],
             [
                 'name' => 'Otintin SC',
@@ -69,7 +69,7 @@ class TeamOwnerAddSeeder extends Seeder
                 'team_name' => 'Otintin SC',
                 'team_abb' => 'OTI',
                 'team_logo_url' => 'Otintin_500.jpg',
-                'created_at' => '2022/02/27 00:00:00'
+                'created_at' => '2022/02/27 00:00:00',
             ],
             [
                 'name' => 'Pase de Rey FCB',
@@ -80,7 +80,7 @@ class TeamOwnerAddSeeder extends Seeder
                 'team_name' => 'Pase de Rey FCB',
                 'team_abb' => 'YAA',
                 'team_logo_url' => 'Pasé_dè_Rèy_FCB_500.jpg',
-                'created_at' => '2022/02/27 00:00:00'
+                'created_at' => '2022/02/27 00:00:00',
             ],
             [
                 'name' => 'fc ham seven',
@@ -91,7 +91,7 @@ class TeamOwnerAddSeeder extends Seeder
                 'team_name' => 'fc ham seven',
                 'team_abb' => 'HAM',
                 'team_logo_url' => 'fc_ham_seven_500.jpeg',
-                'created_at' => '2022/02/27 00:00:00'
+                'created_at' => '2022/02/27 00:00:00',
             ],
             [
                 'name' => 'Break Time',
@@ -102,7 +102,7 @@ class TeamOwnerAddSeeder extends Seeder
                 'team_name' => 'Break Time',
                 'team_abb' => 'BRT',
                 'team_logo_url' => 'break_time_500.jpg',
-                'created_at' => '2022/02/27 00:00:00'
+                'created_at' => '2022/02/27 00:00:00',
             ],
             [
                 'name' => 'MINOSPACE',
@@ -113,7 +113,7 @@ class TeamOwnerAddSeeder extends Seeder
                 'team_name' => 'MINOSPACE',
                 'team_abb' => 'MIN',
                 'team_logo_url' => 'MINOSPACE_500.jpg',
-                'created_at' => '2022/02/27 00:00:00'
+                'created_at' => '2022/02/27 00:00:00',
             ],
             [
                 'name' => 'KATANMAIKE FC',
@@ -124,7 +124,7 @@ class TeamOwnerAddSeeder extends Seeder
                 'team_name' => 'KATANMAIKE FC',
                 'team_abb' => 'KTM',
                 'team_logo_url' => 'KATANMAIKE_FC_500.jpg',
-                'created_at' => '2022/02/27 00:00:00'
+                'created_at' => '2022/02/27 00:00:00',
             ],
             [
                 'name' => 'Va Ramosun Fc',
@@ -135,7 +135,7 @@ class TeamOwnerAddSeeder extends Seeder
                 'team_name' => 'Va Ramosun Fc',
                 'team_abb' => 'VRM',
                 'team_logo_url' => 'Va_Ramosun_Fc_500.jpg',
-                'created_at' => '2022/02/27 00:00:00'
+                'created_at' => '2022/02/27 00:00:00',
             ],
             [
                 'name' => 'NOISEMAKER',
@@ -146,7 +146,7 @@ class TeamOwnerAddSeeder extends Seeder
                 'team_name' => 'NOISEMAKER',
                 'team_abb' => 'NOM',
                 'team_logo_url' => 'NOISEMAKER_500.jpg',
-                'created_at' => '2022/02/27 00:00:00'
+                'created_at' => '2022/02/27 00:00:00',
             ],
         ]);
     }
