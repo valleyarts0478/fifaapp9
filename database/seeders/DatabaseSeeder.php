@@ -38,12 +38,12 @@ class DatabaseSeeder extends Seeder
             // ConventionSeeder::class,
             // LeagueSeeder::class,
             // TeamOwnerSeeder::class,
+            TeamOwnerAddSeeder::class,
             PositionsSeeder::class,
             // PlayerSeeder::class,
             // GamesSeeder::class,
             // GameResultSeeder::class,
             // GoalAssistSeeder::class,
-            TeamOwnerAddSeeder::class,
         ]);
         // Product::factory(100)->create();
         // Stock::factory(100)->create();
