@@ -60,16 +60,22 @@ class TeamListController extends Controller
         })->orderBy('game_date', 'asc')->get();
         // $games = Game::all();
 
-        //チームロゴ取得用
-        $game_info = Game::where(function ($query) use ($convention) {
-            $query->where('convention_id', $convention->id);
-        })->orderBy('game_date', 'asc')->get();
+        if (count($games) === 0) {
+            return view('user.no_match');
+        } else {
+            //チームロゴ取得用
+            $game_info = Game::where(function ($query) use ($convention) {
+                $query->where('convention_id', $convention->id);
+            })->orderBy('game_date', 'asc')->get();
 
-        foreach ($game_info as $info) {
-            $team_info['team_name'][] = $info->home_team;
-            $team_info['team_name'][] = $info->away_team;
+            $team_info = [];
+            foreach ($game_info as $info) {
+                $team_info['team_name'][] = $info->home_team;
+                $team_info['team_name'][] = $info->away_team;
+            }
+            $team_names = Team_owner::whereIn('team_name', $team_info['team_name'])->get();
         }
-        $team_names = Team_owner::whereIn('team_name', $team_info['team_name'])->get();
+
 
 
         // dd($games);

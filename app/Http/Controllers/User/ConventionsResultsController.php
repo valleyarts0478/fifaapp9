@@ -28,7 +28,7 @@ class ConventionsResultsController extends Controller
 
         //試合結果が未登録の場合
         if ($count === 0) {
-            return "最新の大会結果はありません。<br>ページを戻ってください。";
+            return view('user.no_match');
         } else
             // dd($convention_results);
 

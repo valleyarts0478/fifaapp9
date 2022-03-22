@@ -19,6 +19,7 @@
                           <table class="table-auto w-full text-left whitespace-no-wrap">
                             <thead>
                               <tr>
+                                <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">ID</th>
                                 <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">大会名</th>
                                 <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">リーグ</th>
                                 <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">チーム名</th>
@@ -31,6 +32,7 @@
                             <tbody>
                             @foreach ($team_owners as $team_owner)
                               <tr>
+                                <td class="md:px-4 py-3">{{ $team_owner->id }}</td>
                                 <td class="md:px-4 py-3">{{ $team_owner->convention->convention_no }}</td>
                                 <td class="md:px-4 py-3">{{ $team_owner->league->league_name }}</td>
                                 <td class="md:px-4 py-3">{{ $team_owner->team_name }}</td>
