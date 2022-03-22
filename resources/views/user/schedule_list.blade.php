@@ -47,7 +47,8 @@
           </div>
         </a>     
         @endforeach
-        <!-- article - end -->       
+        <!-- article - end -->    
+        {{-- {{ $team_list->links() }}    --}}
       </div>
     </div>
     

@@ -21,6 +21,7 @@
                           <table class="table-auto w-full text-center whitespace-no-wrap">
                             <thead>
                               <tr>
+                                <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">ID</th>
                                 <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">大会名</th>
                                 {{-- <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">作成日</th> --}}
                                 <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
@@ -30,6 +31,7 @@
                             <tbody>
                             @foreach ($conventions as $convention)
                               <tr>
+                                <td class="md:px-6 py-3">{{ $convention->id }}</td>
                                 <td class="md:px-6 py-3">{{ $convention->convention_no }}</td>
                                 {{-- <td class="md:px-4 py-3">{{ $convention->created_at->diffForHumans() }}</td> --}}
                                 <td class="md:px-3 py-3">
