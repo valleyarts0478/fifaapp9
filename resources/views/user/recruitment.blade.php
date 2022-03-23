@@ -1,13 +1,13 @@
 <x-front.app>
 
-    <div class="max-w-screen-lg py-4 mx-auto">
+    <div class="max-w-screen-md py-4 mx-auto">
         <div class="containermd:px-8">
-            <div class=""><img src="{{ asset('storage/top/' . "recruitment_bn.jpg") }}"></div>
             <h2 class="bg-ral-400 text-white text-2xl p-4">参加チーム募集！</h2>
+            <div class="mb-8"><img src="{{ asset('storage/top/' . "recruitment_bn.jpg") }}"></div>
          <div class="px-4 leading-loose tracking-wide">
             <p>RAL-Eではリーグ戦にご参加いただけるチームを募集しています。</p>
             <p>参加条件はRAL-Eが定めるレギュレーションを順守していただけるチームのみです。</p>
-            <p>2022年3月時点でPS4での開催となっています。</p>
+            <p>2022年3月時点でPS4版<i class="fa-solid fa-gamepad"></i>での開催となっています。</p>
             <h3 class="my-8 font-bold border-b border-ral-400">RAL-Eはこんなチームに向いています。</h3>
                 <ul class="mx-4 list-disc">
                     <li>少人数しかいないチーム（5人～）</li>
