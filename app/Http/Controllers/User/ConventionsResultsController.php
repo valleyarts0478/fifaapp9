@@ -23,6 +23,7 @@ class ConventionsResultsController extends Controller
         //$conventionを外からつかうためuseで読み込む
         $convention_results = ConventionsResult::where('convention_id', $convention->id)
             ->orderBy('game_point', 'desc')
+            ->orderBy('numbers_diff', 'desc')
             ->get();
         $count = count($convention_results);
 

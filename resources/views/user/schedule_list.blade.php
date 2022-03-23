@@ -42,8 +42,8 @@
               @endforeach 
           </div>            
             {{-- <h2 class="text-gray-200 transition duration-100 mb-2">Schedule</h2> --}}
-            <span class="text-white font-semibold text-2xl"><h2>{{ $date }}</h2></span>  
-            <span class="text-ral-300 font-semibold">Show more</span>
+            <div class="text-white font-semibold text-2xl">{{ $date }}</div>  
+            <div class="text-ral-300 font-semibold">Show more</div>
           </div>
         </a>     
         @endforeach
@@ -91,8 +91,8 @@
         </div>  
 
           {{-- <h2 class="text-gray-200 transition duration-100 mb-2">Schedule</h2> --}}
-          <span class="text-white font-semibold text-2xl"><h2>{{ $date }}～</h2></span>  
-          <span class="text-ral-300 font-semibold">Show more</span>
+          <div class="text-white font-semibold text-2xl">{{ $date }}</div>  
+          <div class="text-ral-300 font-semibold">Show more</div>
         </div>
       </a>
        

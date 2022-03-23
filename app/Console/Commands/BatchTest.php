@@ -66,8 +66,7 @@ class BatchTest extends Command
                 return '試合が存在しません。';
             }
 
-            //大会結果データ配列を用意する
-            $convention_results = [];
+
 
             // 試合結果データ配列から、home_teamだけを取得して全チームの名前を格納したチーム名配列を作成する
             $team_names = [];
@@ -75,6 +74,8 @@ class BatchTest extends Command
                 $team_names[] = $game_result->game->home_team;
             }
 
+            //大会結果データ配列を用意する
+            $convention_results = [];
             foreach ($team_names as $team_name) {
                 $convention_results = [ //初期設定
                     'team_name' => $team_name,
@@ -92,7 +93,7 @@ class BatchTest extends Command
 
                 foreach ($game_results as $game_result) {
                     //team_nameがどちらでもない場合はスキップ
-                    if ($convention_results['team_name'] !== $game_result->game->home_team and $convention_results['team_name'] !== $game_result->game->away_team) {
+                    if (is_null($game_result->home_goal) && is_null($game_result->away_goal)) {
                         continue;
                         //team_nameがhomeと一致・home側が勝利
                     } elseif ($convention_results['team_name'] === $game_result->game->home_team && $game_result->home_goal > $game_result->away_goal) {
@@ -174,6 +175,8 @@ class BatchTest extends Command
                         $convention_results['numbers_diff'] += $game_result->away_goal - $game_result->home_goal;
                     } else ('不明な試合結果です。');
                 }
+
+
                 // $hoge[] = $convention_results;
                 ConventionsResult::upsert(
                     $convention_results,
