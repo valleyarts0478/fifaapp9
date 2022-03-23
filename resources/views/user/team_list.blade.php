@@ -13,21 +13,20 @@
         <div class="max-w-screen-lg px-4 md:px-8 mx-auto">
 
           <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-8">
-              @foreach($team_lists as $team_list)
-              @if($team_list->league_id === 1)
+              @foreach($team_lists1 as $team_list1)
               <!-- person - start -->
             <div class="flex flex-col items-center bg-gray-100 rounded-lg p-4 lg:p-8">
                 <div class="w-24 md:w-32 h-24 md:h-32 bg-gray-200 rounded-full overflow-hidden shadow-lg mb-2 md:mb-4">
-                  <img class="w-full h-full object-cover object-center" src="{{ asset('storage/teams/logo/' . $team_list->team_logo_url) }}" loading="lazy" alt="team_logo">
+                  <img class="w-full h-full object-cover object-center" src="{{ asset('storage/teams/logo/' . $team_list1->team_logo_url) }}" loading="lazy" alt="team_logo">
                 </div>
                 <div>
-                  <div class="text-gray-800 md:text-lg font-bold text-center">{{ $team_list->team_name }}</div>
+                  <div class="text-gray-800 md:text-lg font-bold text-center">{{ $team_list1->team_name }}</div>
                   
                   <div class="text-center my-2 mr-2">
-                    <button onclick="location.href='{{ route('user.teams.show', ['team' => $team_list->id ]) }}'" class="text-gray-500 text-sm md:text-base text-center md:mb-4">Details</button>    
+                    <button onclick="location.href='{{ route('user.teams.show', ['team' => $team_list1->id ]) }}'" class="text-gray-500 text-sm md:text-base text-center md:mb-4">Details</button>    
                   </div>
                   <div class="text-center my-2 mr-2">
-                    <button onclick="location.href='{{ route('user.team.schedule', ['team' => $team_list->id ]) }}'" class="text-gray-500 text-sm md:text-base text-center md:mb-4">Schedule</button>    
+                    <button onclick="location.href='{{ route('user.team.schedule', ['team' => $team_list1->id ]) }}'" class="text-gray-500 text-sm md:text-base text-center md:mb-4">Schedule</button>    
                   </div>
                   {{-- <p class="text-gray-500 text-sm md:text-base text-center mb-3 md:mb-4">Team Details</p> --}}
         
@@ -45,7 +44,6 @@
                 </div>
               </div>
               <!-- person - end -->
-              @endif
             @endforeach
           </div>
         </div>
@@ -58,21 +56,20 @@
           <div class="max-w-screen-lg px-4 md:px-8 mx-auto">
   
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-8">
-                @foreach($team_lists as $team_list)
-                @if($team_list->league_id === 2)
+                @foreach($team_lists2 as $team_list2)
                 <!-- person - start -->
               <div class="flex flex-col items-center bg-gray-100 rounded-lg p-4 lg:p-8">
                   <div class="w-24 md:w-32 h-24 md:h-32 bg-gray-200 rounded-full overflow-hidden shadow-lg mb-2 md:mb-4">
-                    <img class="w-full h-full object-cover object-center" src="{{ asset('storage/teams/logo/' . $team_list->team_logo_url) }}" loading="lazy" alt="team_logo">
+                    <img class="w-full h-full object-cover object-center" src="{{ asset('storage/teams/logo/' . $team_list2->team_logo_url) }}" loading="lazy" alt="team_logo">
                   </div>
                   <div>
-                    <div class="text-gray-800 md:text-lg font-bold text-center">{{ $team_list->team_name }}</div>
+                    <div class="text-gray-800 md:text-lg font-bold text-center">{{ $team_list2->team_name }}</div>
                     
                     <div class="text-center my-2 mr-2">
-                      <button onclick="location.href='{{ route('user.teams.show', ['team' => $team_list->id ]) }}'" class="text-gray-500 text-sm md:text-base text-center mb-3 md:mb-4">Details</button>    
+                      <button onclick="location.href='{{ route('user.teams.show', ['team' => $team_list2->id ]) }}'" class="text-gray-500 text-sm md:text-base text-center mb-3 md:mb-4">Details</button>    
                     </div>
                     <div class="text-center my-2 mr-2">
-                      <button onclick="location.href='{{ route('user.team.schedule', ['team' => $team_list->id ]) }}'" class="text-gray-500 text-sm md:text-base text-center mb-3 md:mb-4">Schedule</button>    
+                      <button onclick="location.href='{{ route('user.team.schedule', ['team' => $team_list2->id ]) }}'" class="text-gray-500 text-sm md:text-base text-center mb-3 md:mb-4">Schedule</button>    
                     </div>
                     {{-- <p class="text-gray-500 text-sm md:text-base text-center mb-3 md:mb-4">Team Details</p> --}}
           
@@ -96,7 +93,6 @@
                   </div>
                 </div>
                 <!-- person - end -->
-                @endif
               @endforeach
             </div>
           </div>

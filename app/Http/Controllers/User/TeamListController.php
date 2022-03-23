@@ -23,7 +23,13 @@ class TeamListController extends Controller
         $convention = Convention::orderBy('id', 'desc')->first();
 
         // dd($convention);
-        $team_lists = Team_owner::where('convention_id', $convention->id)->get();
+        $team_lists1 = Team_owner::where('convention_id', $convention->id)
+            ->where('league_id', 1)
+            ->get();
+
+        $team_lists2 = Team_owner::where('convention_id', $convention->id)
+            ->where('league_id', 2)
+            ->get();
 
         // foreach ($team_lists as $team_list) {
         //     $league_id[$team_list->team_name] = $team_list->league_id;
@@ -31,8 +37,8 @@ class TeamListController extends Controller
         // dump($league_id);
         // dd($league_id);
 
-        // dd($team_lists);
-        return view('user.team_list', compact('team_lists'));
+        // dd($team_lists2);
+        return view('user.team_list', compact('team_lists1', 'team_lists2'));
     }
 
     public function show($id)
@@ -114,6 +120,7 @@ class TeamListController extends Controller
                 'section' => $game->section,
             ];
         }
+
         // dd($section);
 
         //league2
@@ -197,7 +204,8 @@ class TeamListController extends Controller
             ->where('league_id', 2)
             ->orderBy('game_date', 'asc')->get();
 
-        // dd($team_list);
+
+        // dd($games_second);
         //チームロゴ取得用
         $game_info = Game::where(function ($query) use ($convention) {
             $query->where('convention_id', $convention->id);
@@ -244,160 +252,5 @@ class TeamListController extends Controller
 
 
         return view('user.day_schedule_show', compact('home_game', 'home_owner', 'home_goal_assists', 'games', 'away_owner', 'away_goal_assists'));
-    }
-    public function top()
-    {
-
-
-        //降順の最初のレコードを取得
-        $convention = Convention::orderBy('id', 'desc')->first();
-
-        //リーグを全て取得
-        $leagues = League::orderBy('id')->get();
-        // dd($leagues_id);//idの１と２がとれている
-
-
-        foreach ($leagues as $league) {
-
-            // 試合結果テーブルから、大会ID・リーグIDを取得キーとして、試合結果レコードを全て取得する
-            $game_results = GameResult::where('convention_id', $convention->id)
-                ->where('league_id', $league->id)->get();
-
-            //コレクション型はisEmpty
-            // if ($game_results->isEmpty()) {
-            //     return '試合が存在しません。';
-            // }
-
-
-
-            // 試合結果データ配列から、home_teamだけを取得して全チームの名前を格納したチーム名配列を作成する
-            $team_names = [];
-            foreach ($game_results as $game_result) {
-                $team_names[] = $game_result->game->home_team;
-            }
-
-            //大会結果データ配列を用意する
-            $convention_results = [];
-            foreach ($team_names as $team_name) {
-                $convention_results = [ //初期設定
-                    'team_name' => $team_name,
-                    'convention_id' => $convention->id,
-                    'league_id' => $league->id,
-                    'game_point' => 0,
-                    'game_count' => 0,
-                    'win' => 0,
-                    'lose' => 0,
-                    'draw' => 0,
-                    'gain' => 0,
-                    'loss' => 0,
-                    'numbers_diff' => 0,
-                ];
-
-                foreach ($game_results as $game_result) {
-                    //team_nameがどちらでもない場合はスキップ
-                    if (is_null($game_result->home_goal) && is_null($game_result->away_goal)) {
-                        continue;
-                        //team_nameがhomeと一致・home側が勝利
-                    } elseif ($convention_results['team_name'] === $game_result->game->home_team && $game_result->home_goal > $game_result->away_goal) {
-                        $convention_results['team_name'] = $game_result->game->home_team;
-                        $convention_results['convention_id'] = $game_result->game->convention_id;
-                        $convention_results['league_id'] = $game_result->game->league_id;
-                        $convention_results['game_point'] += 3;
-                        $convention_results['game_count'] += 1;
-                        $convention_results['win'] += 1;
-                        $convention_results['lose'] += 0;
-                        $convention_results['draw'] += 0;
-                        $convention_results['gain'] += $game_result->home_goal; //カラム追加 得点
-                        $convention_results['loss'] += $game_result->away_goal; //カラム追加 失点
-                        $convention_results['numbers_diff'] += $game_result->home_goal - $game_result->away_goal;
-                        //team_nameがhomeと一致・home側が敗戦
-                    } elseif ($convention_results['team_name'] === $game_result->game->home_team && $game_result->home_goal < $game_result->away_goal) {
-                        $convention_results['team_name'] = $game_result->game->home_team;
-                        $convention_results['convention_id'] = $game_result->game->convention_id;
-                        $convention_results['league_id'] = $game_result->game->league_id;
-                        $convention_results['game_point'] += 0;
-                        $convention_results['game_count'] += 1;
-                        $convention_results['win'] += 0;
-                        $convention_results['lose'] += 1;
-                        $convention_results['draw'] += 0;
-                        $convention_results['gain'] += $game_result->home_goal; //カラム追加 得点
-                        $convention_results['loss'] += $game_result->away_goal; //カラム追加 失点
-                        $convention_results['numbers_diff'] += $game_result->home_goal - $game_result->away_goal;
-                        //team_nameがawayと一致・away側が勝利
-                    } elseif ($convention_results['team_name'] === $game_result->game->away_team && $game_result->away_goal > $game_result->home_goal) {
-                        $convention_results['team_name'] = $game_result->game->away_team;
-                        $convention_results['convention_id'] = $game_result->game->convention_id;
-                        $convention_results['league_id'] = $game_result->game->league_id;
-                        $convention_results['game_point'] += 3;
-                        $convention_results['game_count'] += 1;
-                        $convention_results['win'] += 1;
-                        $convention_results['lose'] += 0;
-                        $convention_results['draw'] += 0;
-                        $convention_results['gain'] += $game_result->away_goal; //カラム追加 得点
-                        $convention_results['loss'] += $game_result->home_goal; //カラム追加 失点
-                        $convention_results['numbers_diff'] += $game_result->away_goal - $game_result->home_goal;
-                        //team_nameがawayと一致・away側が敗戦
-                    } elseif ($convention_results['team_name'] === $game_result->game->away_team && $game_result->away_goal < $game_result->home_goal) {
-                        $convention_results['team_name'] = $game_result->game->away_team;
-                        $convention_results['convention_id'] = $game_result->game->convention_id;
-                        $convention_results['league_id'] = $game_result->game->league_id;
-                        $convention_results['game_point'] += 0;
-                        $convention_results['game_count'] += 1;
-                        $convention_results['win'] += 0;
-                        $convention_results['lose'] += 1;
-                        $convention_results['draw'] += 0;
-                        $convention_results['gain'] += $game_result->away_goal; //カラム追加 得点
-                        $convention_results['loss'] += $game_result->home_goal; //カラム追加 失点
-                        $convention_results['numbers_diff'] += $game_result->away_goal - $game_result->home_goal;
-                        //引き分けのときのhome処理
-                    } elseif ($convention_results['team_name'] === $game_result->game->home_team && $game_result->home_goal === $game_result->away_goal) {
-                        $convention_results['team_name'] = $game_result->game->home_team;
-                        $convention_results['convention_id'] = $game_result->game->convention_id;
-                        $convention_results['league_id'] = $game_result->game->league_id;
-                        $convention_results['game_point'] += 1;
-                        $convention_results['game_count'] += 1;
-                        $convention_results['win'] += 0;
-                        $convention_results['lose'] += 0;
-                        $convention_results['draw'] += 1;
-                        $convention_results['gain'] += $game_result->home_goal; //カラム追加 得点
-                        $convention_results['loss'] += $game_result->away_goal; //カラム追加 失点
-                        $convention_results['numbers_diff'] += $game_result->home_goal - $game_result->away_goal;
-                        //引き分けのときのaway処理
-                    } elseif ($convention_results['team_name'] === $game_result->game->away_team && $game_result->home_goal === $game_result->away_goal) {
-                        $convention_results['team_name'] = $game_result->game->away_team;
-                        $convention_results['convention_id'] = $game_result->game->convention_id;
-                        $convention_results['league_id'] = $game_result->game->league_id;
-                        $convention_results['game_point'] += 1;
-                        $convention_results['game_count'] += 1;
-                        $convention_results['win'] += 0;
-                        $convention_results['lose'] += 0;
-                        $convention_results['draw'] += 1;
-                        $convention_results['gain'] += $game_result->away_goal; //カラム追加 得点
-                        $convention_results['loss'] += $game_result->home_goal; //カラム追加 失点
-                        $convention_results['numbers_diff'] += $game_result->away_goal - $game_result->home_goal;
-                    } else ('不明な試合結果です。');
-                }
-                // $diff = [];
-                // foreach ($convention_results as $key => $value) {
-                //     $diff = $key['numbers_diff'];
-                // }
-                $point = [];
-                // 第1ソートキー（volume）
-                $point = array_column($convention_results, 'game_point');
-                // array_multisort($diff, SORT_DESC, $convention_results);
-
-
-                dd($point);
-                // $hoge[] = $convention_results;
-                ConventionsResult::upsert(
-                    $convention_results,
-                    ['team_name'],
-                    ['team_name', 'convention_id', 'league_id', 'game_point', 'game_count', 'win', 'lose', 'draw', 'gain', 'loss', 'numbers_diff']
-                );
-            }
-        }
-
-
-        return view('user.top', compact('convention_results'));
     }
 }
