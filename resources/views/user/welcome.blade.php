@@ -31,7 +31,7 @@
           <div class="flex flex-wrap -m-4">
             
             <div class="p-4 md:w-1/3">
-              <div class="rounded-lg overflow-hidden border-2 border-gray-500">
+              <div class="rounded-lg overflow-hidden border border-gray-500">
                   <a href="/team_list">
                     <img class="lg:h-48 md:h-36 w-full object-cover object-center" src="{{asset('storage/top/' . "team_list_bn.jpg")}}" alt="team_list">
                   </a>
