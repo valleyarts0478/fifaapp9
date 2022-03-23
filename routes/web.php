@@ -32,11 +32,16 @@ use App\Http\Controllers\User\TeamListController;
 //     return view('welcome');
 // });
 
-
-
 Route::get('/', function () {
     return view('user/welcome');
 })->middleware('guest')->name('welcome');
+
+Route::get('/regulation', function () {
+    return view('user/regulation');
+})->middleware('guest')->name('regulation');
+Route::get('/recruitment', function () {
+    return view('user/recruitment');
+})->middleware('guest')->name('recruitment');
 
 // Route::get('/team_owner/login', function () {
 //     return view('team_owner.welcome');

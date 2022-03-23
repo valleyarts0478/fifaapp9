@@ -18,9 +18,9 @@
           <h1 class="text-white text-4xl sm:text-5xl md:text-6xl font-bold text-center mb-8 md:mb-12">Welcome to RAL-E</h1>
   
           <div class="w-full flex flex-col sm:flex-row sm:justify-center gap-2.5">
-            <a href="#" class="inline-block bg-ral-400 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">Start now</a>
+            <a href="/recruitment" class="inline-block bg-ral-400 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">参加チーム募集中！</a>
   
-            <a href="#" class="inline-block bg-gray-200 hover:bg-gray-300 focus-visible:ring ring-indigo-300 text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">Take tour</a>
+            <a href="/regulation" class="inline-block bg-gray-200 hover:bg-gray-300 focus-visible:ring ring-indigo-300 text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">ルールブック</a>
           </div>
         </div>
         <!-- text end -->
@@ -31,8 +31,10 @@
           <div class="flex flex-wrap -m-4">
             
             <div class="p-4 md:w-1/3">
-              <div class="rounded-lg overflow-hidden">
-                  <a href="/team_list"><img class="lg:h-48 md:h-36 w-full object-cover object-center" src="{{asset('storage/top/' . "team_list_bn.jpg")}}" alt="team_list"></a>
+              <div class="rounded-lg overflow-hidden border-2 border-gray-500">
+                  <a href="/team_list">
+                    <img class="lg:h-48 md:h-36 w-full object-cover object-center" src="{{asset('storage/top/' . "team_list_bn.jpg")}}" alt="team_list">
+                  </a>
               </div>
             </div>
             <div class="p-4 md:w-1/3">

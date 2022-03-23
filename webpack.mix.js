@@ -14,6 +14,7 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js').vue()
     .js('resources/js/swiper.js', 'public/js')
     .js('resources/js/tab.js', 'public/js')
+    .js('resources/js/accordion.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         require('postcss-import'),
         require('tailwindcss'),
