@@ -21,7 +21,7 @@
                     @endforeach
                   </div>
                   <div class="flex-grow">
-                    <h2 class="text-gray-900 text-xs title-font font-medium mb-3">{{$game->home_team}}</h2>
+                    <h3 class="text-gray-900 text-xs title-font font-medium mb-3">{{$game->home_team}}</h3>
                   </div>
                 </div>
 
@@ -39,7 +39,7 @@
                     @endforeach
                    </div>
                   <div class="flex-grow">
-                    <h2 class="text-gray-900 text-xs title-font font-medium mb-3">{{$game->away_team}}</h2>
+                    <h3 class="text-gray-900 text-xs title-font font-medium mb-3">{{$game->away_team}}</h3>
                   </div>
                 </div>
               </div>
@@ -55,7 +55,7 @@
                    @endforeach
                  </div>
                  <div class="flex-grow">
-                   <h2 class="text-gray-900 text-xs title-font font-medium">{{$game->home_team}}</h2>
+                   <h3 class="text-gray-900 text-xs title-font font-medium">{{$game->home_team}}</h3>
                     <span class="w-4 h-4 text-xs text-ral-400">
                       @if ($game->game_results->home_own_goal >= 1)
                          (OG{{$game->game_results->home_own_goal}})
@@ -78,7 +78,7 @@
                     @endforeach
                  </div>
                  <div class="flex-grow">
-                   <h2 class="text-gray-900 text-xs title-font font-medium">{{$game->away_team}}</h2>
+                   <h3 class="text-gray-900 text-xs title-font font-medium">{{$game->away_team}}</h3>
                     <span class="w-4 h-4 text-xs text-ral-400">
                       @if ($game->game_results->away_own_goal >= 1)
                          (OG{{$game->game_results->away_own_goal}})
@@ -88,7 +88,7 @@
                </div>
               <div class="w-full">
                <div class="w-16 mx-auto my-4 rounded-full border border-gray-400">
-                <button onclick="location.href='{{ route('user.day.schedule_show', ['team' => $game->id ]) }}'" class="text-gray-500 text-sm pt-1 pb-1 pl-2 pr-2 text-center">Details</button>    
+                <button onclick="location.href='{{ route('user.day.schedule_show', ['team' => $game->id ]) }}'" class="font-sans text-gray-500 text-sm pt-1 pb-1 pl-2 pr-2 text-center">Details</button>    
                </div>
               </div>
               </div>

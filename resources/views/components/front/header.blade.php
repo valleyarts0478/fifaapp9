@@ -6,7 +6,7 @@
         <div class="-ml-8 mr-1 w-8 h-8">
           <img src="{{ asset('storage/teams/' . "RALE_logo.png") }}">
         </div>
-        <span class="text-ral-400 text-xl font-bold">RAL-E</span>
+        <span class="text-ral-400 text-2xl font-bold">RAL-E</span>
       </a>
       
     </div>

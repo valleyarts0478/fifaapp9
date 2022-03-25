@@ -11,6 +11,9 @@ module.exports = {
         extend: {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                Fredoka: ['Fredoka'],
+                Khand: ['Khand'],
+                Mulish: ['Mulish'],
             },
             colors: {
                 ral: {

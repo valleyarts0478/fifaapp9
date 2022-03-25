@@ -17,7 +17,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
 
     </head>
-    <body class="">
+    <body class="font-Khand">
         <header>
            <x-front.header />
         </header>
