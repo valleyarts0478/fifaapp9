@@ -37,11 +37,11 @@
                               <span class="flex w-6 h-6 rounded-full bg-indigo-500 uppercase px-1 py-1 text-xs text-white font-bold">
                               {{ $player->position->position_name }}
                               </span>
-                                <h2 class="text-gray-900 title-font font-medium ml-2">{{ $player->player_name }}</h2></span>
+                                <div class="text-gray-900 title-font font-medium ml-2">{{ $player->player_name }}</div></span>
                               <span class="flex">
                                <span class="flex w-6 h-6 rounded-full bg-indigo-500 uppercase px-1 py-1 mt-1 text-xs text-white font-bold">
                                 NO</span>
-                                <h2 class="text-gray-900 title-font font-medium mt-1 ml-2">{{ $player->player_no }}</h2>
+                                <div class="text-gray-900 title-font font-medium mt-1 ml-2">{{ $player->player_no }}</div>
                               </span>
                         </div>
                       </div>

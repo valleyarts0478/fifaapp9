@@ -50,13 +50,13 @@
                         </div>
                     </form>
                 </div>
-                <div class="mx-auto w-32 p-6 bg-white">
+                {{-- <div class="mx-auto w-32 p-6 bg-white">
                   <form id="delete_{{$player->id}}" method="post" action="{{ route('team_owner.players.destroy', ['player' => $player->id]) }}">                 
                     @csrf
                     @method('delete')
                       <a href="#" data-id="{{ $player->id }}" onclick="deletePost(this)" class="p-2 rounded-full border-2 border-gray-400">削除</a>        
                    </form>
-                  </div>
+                  </div> --}}
             </div>
         </div>
     </div>

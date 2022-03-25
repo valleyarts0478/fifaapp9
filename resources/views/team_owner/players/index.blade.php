@@ -22,12 +22,12 @@
                     <span class="flex">
                       <span class="flex w-6 h-6 rounded-full bg-indigo-500 uppercase px-1 py-1 text-xs text-white font-bold">
                         {{ $player->position->position_name }}</span>
-                      <h2 class="text-gray-900 title-font font-medium ml-2">{{ $player->player_name }}</h2></span>
+                      <div class="text-gray-900 title-font font-medium ml-2">{{ $player->player_name }}</div></span>
 
                       <span class="flex">
                         <span class="flex w-6 h-6 mt-1 rounded-full bg-indigo-500 uppercase px-1 py-1 text-xs text-white font-bold">
                           NO</span>
-                      <h2 class="text-gray-500 title-font font-medium mt-1 ml-2">{{ $player->player_no }}</h2></span>
+                      <div class="text-gray-500 title-font font-medium mt-1 ml-2">{{ $player->player_no }}</div></span>
                 </div>
                 <div class="text-center">
                   <button onclick="location.href='{{ route('team_owner.players.edit', ['player' => $player->id ]) }}'" class="text-white bg-indigo-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded-md text-sm">編集</button>      
