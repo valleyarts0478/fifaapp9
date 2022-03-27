@@ -30,7 +30,7 @@ class TeamOwnersController extends Controller
     public function index()
     {
         $team_owners = Team_owner::select('id', 'convention_id', 'league_id', 'team_name', 'team_abb', 'team_logo_url', 'created_at')
-            ->paginate(12);
+            ->paginate(10);
 
 
         // $conventions = Convention::select('convention_no');

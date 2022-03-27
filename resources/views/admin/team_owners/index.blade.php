@@ -16,51 +16,48 @@
                           <div class="flex max-w-md justify-end my-2">
                             <button onclick="location.href='{{ route('admin.team_owners.create') }}'" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">新規登録する</button>    
                           </div>
-                          <table class="table-auto w-full text-left whitespace-no-wrap">
+                          <table class="table-auto w-full text-left mb-4 whitespace-no-wrap">
                             <thead>
                               <tr>
-                                <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">ID</th>
-                                <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">大会名</th>
-                                <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">リーグ</th>
-                                <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">チーム名</th>
-                                <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br">チーム略称</th>
-                                <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br">ロゴ</th>
-                                <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
-                                <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
+                                <th class="md:px-2 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">ID</th>
+                                <th class="md:px-2 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">大会名</th>
+                                <th class="md:px-2 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">リーグ</th>
+                                <th class="md:px-2 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">チーム名</th>
+                                <th class="md:px-2 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br">略称</th>
+                                <th class="md:px-2 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br">ロゴ</th>
+                                <th class="md:px-2 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
+                                <th class="md:px-2 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
                               </tr>
                             </thead>
                             <tbody>
                             @foreach ($team_owners as $team_owner)
                               <tr>
-                                <td class="md:px-4 py-3">{{ $team_owner->id }}</td>
-                                <td class="md:px-4 py-3">{{ $team_owner->convention->convention_no }}</td>
-                                <td class="md:px-4 py-3">{{ $team_owner->league->league_name }}</td>
-                                <td class="md:px-4 py-3">{{ $team_owner->team_name }}</td>
-                                <td class="md:px-4 py-3">{{ $team_owner->team_abb }}</td>
-                                <td class="md:px-4 py-3">
-                                  <img src="{{ asset('storage/teams/logo/' . $team_owner['team_logo_url']) }}" width="50" height="50">
+                                <td class="md:px-2 py-3">{{ $team_owner->id }}</td>
+                                <td class="md:px-2 py-3">{{ $team_owner->convention->convention_no }}</td>
+                                <td class="md:px-2 py-3">{{ $team_owner->league->league_name }}</td>
+                                <td class="md:px-2 py-3">{{ $team_owner->team_name }}</td>
+                                <td class="md:px-2 py-3">{{ $team_owner->team_abb }}</td>
+                                <td class="md:px-2 py-3">
+                                  <img src="{{ asset('storage/teams/logo/' . $team_owner['team_logo_url']) }}" width="30" height="30">
                                 </td>
-                                
-
-
 
                                 {{-- <x-team-logo :teamlogourl="$team->team_logo_url" /> --}}
                                 {{-- <td class="md:px-4 py-3">{{ $team_owner->created_at->diffForHumans() }}</td> --}}
-                                <td class="md:px-4 py-3">
-                                  <button onclick="location.href='{{ route('admin.team_owners.edit', ['team_owner' => $team_owner->id ]) }}'" class="text-white bg-indigo-400 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-500 rounded">編集</button>
+                                <td class="md:px-2 py-3">
+                                  <button onclick="location.href='{{ route('admin.team_owners.edit', ['team_owner' => $team_owner->id ]) }}'" class="text-white bg-indigo-400 border-0 py-1 px-1 focus:outline-none hover:bg-indigo-500 rounded">編集</button>
                                 </td>
                               <form id="delete_{{$team_owner->id}}" method="post" action="{{ route('admin.team_owners.destroy', ['team_owner' => $team_owner->id]) }}">                 
                                 @csrf
                                 @method('delete')
                                 <td class="md:px-4 py-3">
-                                  <a href="#" data-id="{{ $team_owner->id }}" onclick="deletePost(this)" class="text-white bg-red-400 border-0 py-2 px-4 focus:outline-none hover:bg-red-500 rounded">削除</a>
+                                  <a href="#" data-id="{{ $team_owner->id }}" onclick="deletePost(this)" class="text-white bg-red-400 border-0 py-1 px-1 focus:outline-none hover:bg-red-500 rounded">削除</a>
                                 </td>
                               </form>
                               </tr>
                               @endforeach
                             </tbody>
                           </table>
-                          {{-- {{ $team_owners->links() }} --}}
+                          {{ $team_owners->links() }}
                         </div>
                       </div>
                     </section>

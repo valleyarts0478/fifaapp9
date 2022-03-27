@@ -8,7 +8,7 @@
         </div>
 
       <div class="flex flex-wrap p-2 py-4 lg:px-36 md:px-8">メンバー:{{ $count }}人</div>
-      <div class="flex flex-wrap  pr-8 pl-8 lg:px-36 md:px-8 -m-2">
+      <div class="flex flex-wrap  w-full pr-8 pl-8 lg:px-36 md:px-8 -m-2">
           @foreach ($players as $player )                  
           <div class="p-2 lg:w-1/2 md:w-1/2 w-full">
             <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg shadow">
@@ -17,14 +17,14 @@
 
                   <div class="flex-grow">
                   <span class="flex">
-                    <span class="flex w-6 h-6 rounded-full bg-indigo-500 uppercase px-1 py-1 text-xs text-white font-bold">
+                    <span class="flex w-6 h-6 rounded-full items-center justify-center bg-ral-400 uppercase px-1 py-1 text-xs text-white font-bold">
                       {{ $player->position->position_name }}</span>
-                    <h2 class="text-gray-900 title-font font-medium ml-2">{{ $player->player_name }}</h2></span>
+                    <div class="text-gray-900 title-font font-medium ml-2">{{ $player->player_name }}</div></span>
 
                     <span class="flex">
-                      <span class="flex w-6 h-6 mt-1 rounded-full bg-indigo-500 uppercase px-1 py-1 text-xs text-white font-bold">
+                      <span class="flex w-6 h-6 mt-1 rounded-full items-center justify-center bg-ral-400 uppercase px-1 py-1 text-xs text-white font-bold">
                         NO</span>
-                    <h2 class="text-gray-500 title-font font-medium mt-1 ml-2">{{ $player->player_no }}</h2></span>
+                    <div class="text-gray-500 title-font font-medium mt-1 ml-2">{{ $player->player_no }}</div></span>
               </div>
             </div>
           </div>

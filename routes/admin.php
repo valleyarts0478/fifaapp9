@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\ConventionsController;
 use App\Http\Controllers\Admin\LeaguesController;
 use App\Http\Controllers\Admin\PlayersController;
 use App\Http\Controllers\Admin\csvController;
+use App\Http\Controllers\Admin\InfoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -78,7 +79,14 @@ Route::get('/dashboard', function () {
     return view('admin.dashboard');
 })->middleware(['auth:admin'])->name('dashboard');
 
-
+Route::prefix('info')
+    ->middleware('auth:admin')->group(function () {
+        Route::get('/', [InfoController::class, 'index'])->name('info.index');
+        Route::get('create', [InfoController::class, 'create'])->name('info.create');
+        Route::post('store', [InfoController::class, 'store'])->name('info.store');
+        Route::get('edit/{info}', [InfoController::class, 'edit'])->name('info.edit');
+        Route::post('update/{info}', [InfoController::class, 'update'])->name('info.update');
+    });
 
 // Route::get('/register', [RegisteredUserController::class, 'create'])
 //     ->middleware('guest')

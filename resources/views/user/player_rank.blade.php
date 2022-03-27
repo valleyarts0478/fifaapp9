@@ -39,7 +39,7 @@
                               {{$goal_rank['player_name']}}
                               <div class="text-sm">GOAL:<span class="text-md">{{$goal_rank['goals']}}</span></div>
                             </h2> 
-                            <img class="w-16 ml-auto" src="{{ asset('storage/teams/logo/' . $goal_rank['team_logo_url'])}}">
+                            <img class="w-16 h-16 ml-auto" src="{{ asset('storage/teams/logo/' . $goal_rank['team_logo_url'])}}">
                           </div>
                     
                           @foreach ($p_names as $value)
@@ -96,7 +96,7 @@
               {{$assist_rank['player_name']}}
               <div class="text-sm">ASSIST:<span class="text-md">{{$assist_rank['assists']}}</span></div>
             </h2> 
-            <img class="w-16 ml-auto" src="{{ asset('storage/teams/logo/' . $assist_rank['team_logo_url'])}}">
+            <img class="w-16 h-16 ml-auto" src="{{ asset('storage/teams/logo/' . $assist_rank['team_logo_url'])}}">
           </div>
   
           @foreach ($p_names as $value)
@@ -145,7 +145,7 @@
                 {{$goal_rank['player_name']}}
                 <div class="text-sm">GOAL:<span class="text-md">{{$goal_rank['goals']}}</span></div>
               </h2> 
-              <img class="w-16 ml-auto" src="{{ asset('storage/teams/logo/' . $goal_rank['team_logo_url'])}}">
+              <img class="w-16 h-16 ml-auto" src="{{ asset('storage/teams/logo/' . $goal_rank['team_logo_url'])}}">
             </div>
       
             @foreach ($p_names->unique('player_name') as $value)
@@ -199,7 +199,7 @@
           {{$assist_rank['player_name']}}
           <div class="text-sm">ASSIST:<span class="text-md">{{$assist_rank['assists']}}</span></div>
         </h2> 
-        <img class="w-16 ml-auto" src="{{ asset('storage/teams/logo/' . $assist_rank['team_logo_url'])}}">
+        <img class="w-16 h-16 ml-auto" src="{{ asset('storage/teams/logo/' . $assist_rank['team_logo_url'])}}">
       </div>
 
       @foreach ($p_names as $value)
