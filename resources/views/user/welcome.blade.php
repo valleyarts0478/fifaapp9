@@ -26,11 +26,24 @@
       </section>
       <div class="w-full h-12 leading-8 py-2 text-xl text-center bg-ral-300">RAL-E 6th開催中!</div>
       
-      <section class="text-gray-600 body-font">
-        <div class="container px-4 py-24 mx-auto">
-          <div class="w-full h-12 leading-8 py-2 text-xl text-center">menu</div>
-          <div class="font-bold flex flex-wrap -m-4">
+     
+      <section class="w-full max-4xl p-8 text-gray-600 body-font">
+       <div class="text-center">
+         <h3 class="w-full h-12 leading-8 py-2 text-xl text-center border-b border-gray-400">Infomation</h3>
+          @foreach($infolist as $info)
+          <ul>
+            <li class="border-dashed border-b text-xl text-blue-400 border-gray-400 p-2 m-2">
+              <a href="{{ route('user.infolist')}}"><i class="-ml-8 text-ral-400 fa-solid fa-clipboard-check"></i><span class="ml-4">{{$info->title}}</span></a>
+            </li>
+          </ul>
+          @endforeach
+       </div> 
+      </section>
 
+      <section class="text-gray-600 body-font">
+        <div class="container px-4 py-4 mx-auto">
+          <div class="w-full h-12 leading-8 py-2 text-xl text-center border-b border-gray-400">menu</div>
+          <div class="font-bold flex flex-wrap -m-4">
             <div class="p-4 md:w-1/3">
               <div class="min-h-96 flex justify-center items-center py-4 md:py-4">
                 <a href="/team_list">

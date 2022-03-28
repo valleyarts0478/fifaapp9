@@ -9,7 +9,7 @@ use App\Http\Controllers\User\MatchController;
 use App\Http\Controllers\User\ConventionsResultsController;
 use App\Http\Controllers\User\PlayerRankController;
 use App\Http\Controllers\User\TeamListController;
-
+use App\Http\Controllers\User\UserInfoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,9 +36,20 @@ Route::get('/', function () {
     return view('user/welcome');
 })->middleware('guest')->name('welcome');
 
+// Route::get('/infolist', [userInfoController::class, 'infolist'])
+//     ->middleware('guest')
+//     ->name('infolist');
+
+
+Route::middleware('guest')->group(function () {
+    Route::get('/', [userInfoController::class, 'index'])->name('index');
+    Route::get('/infolist', [userInfoController::class, 'infolist'])->name('infolist');
+});
+
 Route::get('/regulation', function () {
     return view('user/regulation');
 })->middleware('guest')->name('regulation');
+
 Route::get('/recruitment', function () {
     return view('user/recruitment');
 })->middleware('guest')->name('recruitment');

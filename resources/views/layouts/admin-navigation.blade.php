@@ -35,6 +35,9 @@
                     <x-nav-link :href="route('admin.import.csv')" :active="request()->routeIs('admin.import.csv')">
                         対戦表CSV登録
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.info.index')" :active="request()->routeIs('admin.info.index')">
+                        お知らせ管理
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -100,6 +103,9 @@
             </x-responsive-nav-link> --}}
             <x-responsive-nav-link :href="route('admin.import.csv')" :active="request()->routeIs('admin.import.csv')">
                 対戦表CSV登録
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.info.index')" :active="request()->routeIs('admin.info.index')">
+                お知らせ管理
             </x-responsive-nav-link>
         </div>
 
