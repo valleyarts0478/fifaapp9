@@ -16,7 +16,7 @@
                      <!--トータル得点ここから -->
                     <div class="container mx-auto flex">
 
-                      <div class="lg:w-1/3 md:w-1/2 bg-white rounded-lg flex flex-col md:mx-auto w-full mt-10 md:mt-0 relative z-10">
+                      <div class="lg:w-1/3 md:w-1/2 bg-white rounded-lg flex flex-col md:mx-auto w-full mt-2 md:mt-0 relative z-10">
                         <h2 class="text-gray-900 text-md text-center mb-1 font-medium title-font">{{$gameResult->game->game_date}}</h2>
                         <h2 class="mx-auto text-gray-900 text-md mb-1 font-medium title-font">
                             <div class="text-center">{{$gameResult->game->home_team}}</div>
@@ -24,10 +24,10 @@
                             <div class="text-center">{{$gameResult->game->away_team}}</div>
                         </h2>
                         {{-- <div class="relative mb-4 mx-auto"> --}}
-                          <div for="goal" class="text-sm text-center mt-4 text-gray-600">得点</div>
+                          <div for="goal" class="text-sm text-center mt-4 text-gray-600">総得点</div>
                           <div class="mx-auto">
                           @if ($team_owner->team_name === $gameResult->game->home_team)
-                            <input type="number" pattern="\d*" id="goal" name="total_goal" placeholder="得点" value="{{$gameResult->home_goal}}" class="w-28 h-12 mb-2 text-center placeholder-gray-300 bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                            <input type="number" pattern="\d*" id="goal" name="total_goal" placeholder="得点" value="{{$gameResult->home_goal}}" class="w-28 h-12 mb-2 text-center placeholder-gray-300 bg-white rounded border border-ral-300 focus:border-ral-400 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                           @elseif ($team_owner->team_name === $gameResult->game->away_team)
                             <input type="number" pattern="\d*" id="goal" name="total_goal" placeholder="得点" value="{{$gameResult->away_goal}}" class="w-28 h-12 mb-2 text-center placeholder-gray-300 bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                           @else 
@@ -67,5 +67,4 @@
         </div>
     </div>
 </div>
-
 </x-app-layout>

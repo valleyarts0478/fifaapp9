@@ -14,8 +14,8 @@
                 <h3 class="title">RALEの目的</h3>
                 <div class="box text-sm">
                     <p class="leading-relaxed mb-2">RAL-Eは、EA社が発売するサッカーゲームFIFAシリーズの有志リーグです。</p>
-                    <p class="leading-relaxed mb-2">少人数から参加できるリーグ戦であり、個人のフェアプレイ精神を信じ、各個人がルールや
-                        ルールにはないけど気分を害することはしないということが前提で成り立つリーグです。</p>
+                    <p class="leading-relaxed mb-2">少人数から参加できるリーグ戦であり、各個人のフェアプレイ精神を尊重しています。
+                      本リーグ戦に限らず普段の練習時も他者の気分を害することはしないということが前提で成り立つリーグです。</p>
                     </p>
                     <p class="leading-relaxed mb-2">
                         RAL-Eが定める基本原則を定義し、参加者は全員これに順守するものとする。
@@ -110,10 +110,23 @@
                     <ul class="ml-4 list-disc">
                         <li>1チーム20名まで</li>
                         <li>毎週土曜日の夜12時までに登録した選手のみ翌日試合参加可能</li>
+                        <li>退団する選手は申告制で運営側で退団処理をします。</li>
                     </ul> 
                 </div>
               </section>
             </li>
+            <li>
+              <section class="rounded-md">
+              <h3 class="title">選手移籍について</h3>
+              <div class="box text-sm">
+                  <ul class="ml-4 list-disc">
+                      <li>リーグ戦途中でもチーム移籍は可能です。</li>
+                      <li>ただし、得点とアシストはリセットされます。</li>
+                      <li>チーム移籍は1シーズン1人1回までとします。</li>
+                  </ul> 
+              </div>
+            </section>
+          </li>
             <li>
                 <section class="rounded-md">
                 <h3 class="title">その他</h3>
@@ -140,6 +153,33 @@
                         <ul class="ml-4 list-disc">
                             <li>試合開始5分前には相手チームに連絡をいれる。</li>
                             <li>スムーズに試合開始ができるように心掛けてください。</li>
+                        </ul> 
+                    </div>
+                </section>
+              </li>
+              <li>
+                <section class="rounded-md">
+                    <h3 class="title">試合終了後</h3>
+                    <div class="box text-sm">
+                        <ul class="ml-4 list-disc">
+                            <li>試合終了後はすみやかに試合結果と個人スタッツを専用管理画面にて入力する。</li>
+                            <li>入力に間違いがないかを必ずご確認ください。</li>
+                            <li>試合結果入力は試合後に入力するのがベストですが、遅くとも翌日22時までには完了してください。</li>
+                            <li>全チームの入力が完了していると結果反映も早くなります。</li>
+                        </ul> 
+                    </div>
+                </section>
+              </li>
+              <li>
+                <section class="rounded-md">
+                    <h3 class="title">試合結果の反映について</h3>
+                    <div class="box text-sm">
+                        <ul class="ml-4 list-disc">
+                            <li>チーム順位表は毎週月曜日24時に反映されます。</li>
+                            <li>ただし、全チームの入力が月曜日の22時までに完了している場合に限ります。</li>
+                            <li>全チームの入力が早ければ運営側で早めに反映をいたします。</li>
+                            <li>個人スタッツは入力と同時に即時反映です。</li>
+                            <li>即時反映なので特に間違いのないように入力をお願いいたします。(修正も可能)</li>
                         </ul> 
                     </div>
                 </section>
