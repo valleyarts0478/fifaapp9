@@ -29,7 +29,7 @@
                           @if ($team_owner->team_name === $gameResult->game->home_team)
                             <input type="number" pattern="\d*" id="goal" name="total_goal" placeholder="得点" value="{{$gameResult->home_goal}}" class="w-28 h-12 mb-2 text-center placeholder-gray-300 bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                           @elseif ($team_owner->team_name === $gameResult->game->away_team)
-                            <input type="number" pattern="\d*" id="goal" name="total_goal" placeholder="得点"　value="{{$gameResult->away_goal}}" class="w-28 h-12 mb-2 text-center placeholder-gray-300 bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                            <input type="number" pattern="\d*" id="goal" name="total_goal" placeholder="得点" value="{{$gameResult->away_goal}}" class="w-28 h-12 mb-2 text-center placeholder-gray-300 bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                           @else 
                             <div>チーム名が一致していません。</div>
                           @endif

@@ -50,7 +50,6 @@ class GameResultsController extends Controller
 
     public function index()
     {
-
         // $results = GameResult::all();
         $team_owner = Team_owner::find(Auth::id());
 
@@ -184,7 +183,6 @@ class GameResultsController extends Controller
             'goals' => $request->goals,
             'assists' => $request->assists,
         ];
-        // dump($inputs);
 
         //$key・・・player_id, goals, assists
         //$player・・・player名
@@ -210,7 +208,6 @@ class GameResultsController extends Controller
                 'assists' => $value1['assists'],
             ];
 
-            // dd($player_goal_assist);
             //goal・assistsの値が両方なければ次へ進む
             if (!$value1['goals'] && !$value1['assists']) {
                 continue;
@@ -222,12 +219,48 @@ class GameResultsController extends Controller
                 );
         }
 
-        return redirect()
-            ->route('team_owner.results.index')
-            ->with([
-                'message' => '試合結果を入力しました。',
-                'status' => 'info'
-            ]);
+        //合計得点とplayer得点の一致をチェック
+        $goal_assist = Goal_Assist::where('game_result_id', $id)
+            ->where('team_owner_id', $team_owner->id)
+            ->get();
+        $goal_total = 0;
+        $assist_total = 0;
+        foreach ($goal_assist as $data) {
+            $goal_total += $data['goals'];
+            $assist_total += $data['assists'];
+        }
+
+        $result = GameResult::where('id', $id)->get();
+        //ログインしているチームがhome_teamと同じ場合
+        if ($team_owner->team_name === $gameResult->game->home_team) {
+            foreach ($result as $value) {
+                $goal_own_total = $goal_total + $value->home_own_goal;
+                if ($goal_own_total === $value->home_goal &&  $goal_total >= $assist_total) {
+                    return redirect()
+                        ->route('team_owner.results.index')
+                        ->with([
+                            'message' => 'HOME側の試合結果を入力しました。',
+                            'status' => 'info'
+                        ]);
+                } else {
+                    return 'GOAL合計が違う。またはアシスト数がGOAL数を上回っています。画面を戻り修正をしてください。';
+                }
+            }
+        } elseif ($team_owner->team_name === $gameResult->game->away_team) {
+            foreach ($result as $value) {
+                $goal_own_total = $goal_total + $value->away_own_goal;
+                if ($goal_own_total === $value->away_goal &&  $goal_total >= $assist_total) {
+                    return redirect()
+                        ->route('team_owner.results.index')
+                        ->with([
+                            'message' => 'AWAY側の試合結果を入力しました。',
+                            'status' => 'info'
+                        ]);
+                } else {
+                    return 'GOAL合計が違う。またはアシスト数がGOAL数を上回っています。画面を戻り修正をしてください。';
+                }
+            }
+        }
     }
 
     // public function destroy($id)
