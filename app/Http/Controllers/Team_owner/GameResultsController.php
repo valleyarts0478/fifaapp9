@@ -223,6 +223,7 @@ class GameResultsController extends Controller
         $goal_assist = Goal_Assist::where('game_result_id', $id)
             ->where('team_owner_id', $team_owner->id)
             ->get();
+
         $goal_total = 0;
         $assist_total = 0;
         foreach ($goal_assist as $data) {
@@ -231,11 +232,19 @@ class GameResultsController extends Controller
         }
 
         $result = GameResult::where('id', $id)->get();
+
         //ログインしているチームがhome_teamと同じ場合
         if ($team_owner->team_name === $gameResult->game->home_team) {
             foreach ($result as $value) {
                 $goal_own_total = $goal_total + $value->home_own_goal;
-                if ($goal_own_total === $value->home_goal &&  $goal_total >= $assist_total) {
+                if ($value->home_goal === NULL &&  $goal_total === 0) {
+                    return redirect()
+                        ->route('team_owner.results.index')
+                        ->with([
+                            'message' => '未入力の状態です。',
+                            'status' => 'info'
+                        ]);
+                } elseif ($goal_own_total === $value->home_goal &&  $goal_total >= $assist_total) {
                     return redirect()
                         ->route('team_owner.results.index')
                         ->with([
@@ -251,7 +260,14 @@ class GameResultsController extends Controller
         } elseif ($team_owner->team_name === $gameResult->game->away_team) {
             foreach ($result as $value) {
                 $goal_own_total = $goal_total + $value->away_own_goal;
-                if ($goal_own_total === $value->away_goal &&  $goal_total >= $assist_total) {
+                if ($value->away_goal === NULL &&  $goal_total === 0) {
+                    return redirect()
+                        ->route('team_owner.results.index')
+                        ->with([
+                            'message' => '未入力の状態です。',
+                            'status' => 'info'
+                        ]);
+                } elseif ($goal_own_total === $value->away_goal &&  $goal_total >= $assist_total) {
                     return redirect()
                         ->route('team_owner.results.index')
                         ->with([

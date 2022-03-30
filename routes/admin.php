@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\LeaguesController;
 use App\Http\Controllers\Admin\PlayersController;
 use App\Http\Controllers\Admin\csvController;
 use App\Http\Controllers\Admin\InfoController;
+use App\Http\Controllers\Admin\GameCheckController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -87,6 +88,9 @@ Route::prefix('info')
         Route::get('edit/{info}', [InfoController::class, 'edit'])->name('info.edit');
         Route::post('update/{info}', [InfoController::class, 'update'])->name('info.update');
     });
+Route::get('/game_check', [GameCheckController::class, 'index'])
+    ->middleware('auth:admin')
+    ->name('game_check.index');
 
 // Route::get('/register', [RegisteredUserController::class, 'create'])
 //     ->middleware('guest')

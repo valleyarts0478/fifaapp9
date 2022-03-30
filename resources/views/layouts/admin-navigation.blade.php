@@ -38,6 +38,9 @@
                     <x-nav-link :href="route('admin.info.index')" :active="request()->routeIs('admin.info.index')">
                         お知らせ管理
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.game_check.index')" :active="request()->routeIs('admin.game_check.index')">
+                        試合チェック
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -106,6 +109,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.info.index')" :active="request()->routeIs('admin.info.index')">
                 お知らせ管理
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.game_check.index')" :active="request()->routeIs('admin.game_check.index')">
+                試合チェック
             </x-responsive-nav-link>
         </div>
 
