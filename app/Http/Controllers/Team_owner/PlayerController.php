@@ -85,7 +85,7 @@ class PlayerController extends Controller
      */
     public function store(Request $request)
     {
-
+        //時間指定で登録不可にする
         $date1 = new DateTime('now'); //現在の日時
         $date2 = new DateTime('Saturday 23:59:59'); //登録できる日時
         $date3 = new DateTime('Sunday 00:00:00 +30 hour'); //登録不可能な日時
