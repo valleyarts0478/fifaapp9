@@ -243,7 +243,9 @@ class GameResultsController extends Controller
                             'status' => 'info'
                         ]);
                 } else {
-                    return 'GOAL合計が違う。またはアシスト数がGOAL数を上回っています。画面を戻り修正をしてください。';
+                    return back()->withInput()->withErrors([
+                        'GOAL合計が違う。またはアシスト数がGOAL数を上回っています。'
+                    ]);
                 }
             }
         } elseif ($team_owner->team_name === $gameResult->game->away_team) {
@@ -257,16 +259,15 @@ class GameResultsController extends Controller
                             'status' => 'info'
                         ]);
                 } else {
-                    return 'GOAL合計が違う。またはアシスト数がGOAL数を上回っています。画面を戻り修正をしてください。';
+                    return back()->withInput()->withErrors([
+                        'GOAL合計が違う。またはアシスト数がGOAL数を上回っています。'
+                    ]);
                 }
             }
         }
     }
-
-    // public function destroy($id)
-    // {
-    //     Goal_Assist::findOrFail($id)->delete();
-
-
-    // }
+    public function manual()
+    {
+        return view('team_owner.results.manual');
+    }
 }

@@ -65,6 +65,7 @@ Route::prefix('results')
         Route::get('/', [GameResultsController::class, 'index'])->name('results.index');
         Route::get('edit/{result}', [GameResultsController::class, 'edit'])->name('results.edit');
         Route::post('update/{result}', [GameResultsController::class, 'update'])->name('results.update');
+        Route::get('manual', [GameResultsController::class, 'manual'])->name('results.manual');
     });
 
 Route::resource('players', PlayerController::class)

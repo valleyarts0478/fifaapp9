@@ -5,33 +5,7 @@
         </h2>
     </x-slot>
     <section class="text-gray-600 body-font">
-
-
-      <ul class="accordion-area">
-        <li>
-          <section class="rounded-md">
-            <h3 class="title">試合結果入力方法</h3>
-            <div class="box text-sm">
-              <ul class="ml-4 list-disc">
-                  <li>総得点は無得点でも「0」を入力する。</li>
-                  <li>OG欄は相手のオウンゴールがあった場合のみ入力。(なければ空欄)</li>
-                  <li>総得点欄以外「0」は入力しない。</li>
-              </ul> 
-          </div>
-          </section>
-        </li>
-        <li>
-          <section class="rounded-md">
-            <h3 class="title">試合結果入力画面説明</h3>
-            <div class="box">
-              <img class="w-full" src="{{ asset('storage/info/' . "stats_input.png") }}" alt="スタッツ入力説明">
-                <img src="">
-            </div>
-          </section>
-        </li>
-      </ul>
-
-        <div class="container max-w-4xl px-2 py-12 mx-auto">
+       <div class="container max-w-4xl px-2 py-12 mx-auto">
           <x-auth-validation-errors class="mb-4" :errors="$errors" />  
           <x-flash-message status="session('status')" />
             <div class="container px-2 py-8 mx-auto">
