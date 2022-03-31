@@ -32,7 +32,7 @@
          <h3 class="w-full h-12 leading-8 py-2 text-xl text-center border-b border-gray-400">Infomation</h3>
           @foreach($infolist as $info)
           <ul>
-            <li class="border-dashed border-b text-xl text-blue-400 border-gray-400 p-2 m-2">
+            <li class="border-dashed border-b text-md text-blue-400 border-gray-400 p-2 m-2">
               <a href="{{ route('user.infolist')}}"><i class="-ml-8 text-ral-400 fa-solid fa-clipboard-check"></i><span class="ml-4">{{$info->title}}</span></a>
             </li>
           </ul>
