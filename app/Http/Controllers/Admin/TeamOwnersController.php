@@ -46,8 +46,7 @@ class TeamOwnersController extends Controller
      */
     public function create()
     {
-        $team_owners = Team_owner::select('id', 'convention_id', 'league_id', 'team_name', 'team_abb', 'team_logo_url', 'created_at')
-            ->get();
+        $team_owners = Team_owner::all();
 
         $conventions = Convention::select('id', 'convention_no')->get();
         $leagues = League::select('id', 'league_name')->get();
@@ -66,13 +65,15 @@ class TeamOwnersController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'name' => 'string|max:255',
+            'email' => 'required|string|email|max:255|unique:team_owners',
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'convention_id' => 'required|string|max:255',
             'league_id' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:team_owners',
             'team_name' => 'required|string|max:255',
             'team_abb' => 'required|string|max:255',
             'team_logo_url' => 'nullable|file',
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+
         ]);
 
         // $team_owner = Team_owner::findOrFail();
@@ -90,16 +91,18 @@ class TeamOwnersController extends Controller
         if (!is_null($imageFile) && $imageFile->isValid()) {
             $fileNameToStore = TeamService::logoupload($imageFile, 'teams');
         }
-
+        // dd($fileNameToStore);//OK
         Team_owner::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
             'convention_id' => $request->convention_id,
             'league_id' => $request->league_id,
-            'email' => $request->email,
             'team_name' => $request->team_name,
             'team_abb' => $request->team_abb,
             // 'team_logo_url' => $request->file('team_logo_url')->store('/public/teams'),
             'team_logo_url' => $fileNameToStore,
-            'password' => Hash::make($request->password),
+
         ]);
 
 

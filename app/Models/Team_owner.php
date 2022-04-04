@@ -23,12 +23,14 @@ class Team_owner extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'name',
+        'email',
+        'password',
         'convention_id',
         'league_id',
         'team_name',
         'team_abb',
         'team_logo_url',
-        'password',
     ];
 
     /**
