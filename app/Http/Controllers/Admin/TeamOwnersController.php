@@ -68,9 +68,10 @@ class TeamOwnersController extends Controller
         $request->validate([
             'convention_id' => 'required|string|max:255',
             'league_id' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:team_owners',
             'team_name' => 'required|string|max:255',
             'team_abb' => 'required|string|max:255',
-            // 'team_logo_url' => 'nullable|file',
+            'team_logo_url' => 'nullable|file',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -93,6 +94,7 @@ class TeamOwnersController extends Controller
         Team_owner::create([
             'convention_id' => $request->convention_id,
             'league_id' => $request->league_id,
+            'email' => $request->email,
             'team_name' => $request->team_name,
             'team_abb' => $request->team_abb,
             // 'team_logo_url' => $request->file('team_logo_url')->store('/public/teams'),

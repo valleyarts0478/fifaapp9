@@ -95,7 +95,7 @@ class PlayerController extends Controller
         if ($date1->format('Y-m-d H:i:s') <= $date2->format('Y-m-d H:i:s')) {
 
             $request->validate([
-                'team_owner_id' => 'integer|max:25',
+                'team_owner_id' => 'integer',
                 'position_id' => 'integer|max:5',
                 'player_no' => ['required', 'integer', 'min:1', 'max:99', new Player_no_check],
                 'player_name' => ['required', 'unique:players', 'string', 'max:50', new alpha_num_check],
