@@ -100,6 +100,8 @@ class GameResultsController extends Controller
             ->orderBy('position_id', 'asc')
             ->get();
         // dd($players);
+
+
         $gameResult = GameResult::find($id);
         $goal_assists = Goal_Assist::where('team_owner_id', Auth::id())
             ->where('game_result_id', $gameResult->game_id)
@@ -189,8 +191,12 @@ class GameResultsController extends Controller
         //$value・・・player名,得点それぞれの配列
         //$score・・・得点やアシスト数
         $goal_assists = [];
+
         foreach ($inputs as $key => $value) {
             // dump($key, $value);
+            if (empty($value)) {
+                return '画面を戻り先に選手登録をおこなってください。';
+            }
             foreach ($value as $player => $score) {
                 // dump($player, $score);
                 $goal_assists[$player][$key] = $score;
