@@ -58,6 +58,7 @@ Route::prefix('games')
         Route::post('store', [GamesController::class, 'store'])->name('games.store');
         Route::get('edit/{game}', [GamesController::class, 'edit'])->name('games.edit');
         Route::post('update/{game}', [GamesController::class, 'update'])->name('games.update');
+        Route::get('/handle', [GamesController::class, 'handle'])->name('games.handle');
     });
 
 Route::prefix('results')

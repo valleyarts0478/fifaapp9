@@ -49,7 +49,7 @@ class BatchTest extends Command
     {
         //降順の最初のレコードを取得
         $convention = Convention::orderBy('id', 'desc')->first();
-
+        // $team_owners = Team_owner::where('convention_id', $convention->id)->get();
         //リーグを全て取得
         $leagues = League::orderBy('id')->get();
         // dd($leagues_id);//idの１と２がとれている
@@ -70,8 +70,8 @@ class BatchTest extends Command
 
             // 試合結果データ配列から、home_teamだけを取得して全チームの名前を格納したチーム名配列を作成する
             $team_names = [];
-            foreach ($game_results as $game_result) {
-                $team_names[] = $game_result->game->home_team;
+            foreach ($game_results as $results) {
+                $team_names[] = $results->game->home_team;
             }
 
             //大会結果データ配列を用意する
