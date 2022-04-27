@@ -8,8 +8,8 @@
         <link rel="apple-touch-icon" href="{{asset('storage/' . "apple-touch-icon.png")}} sizes="180x180">
         <link rel="icon" type="image/png" href="{{asset('storage/top/' . "android-touch-icon.png")}} sizes="192x192">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
-
+        {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
+        <title>RAL-E FIFA-PROCLUB</title>
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
