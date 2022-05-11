@@ -23,6 +23,9 @@
                     <x-nav-link :href="route('team_owner.results.index')" :active="request()->routeIs('team_owner.results.index')">
                         試合結果入力
                     </x-nav-link>
+                    <x-nav-link :href="route('team_owner.recruitment_members.index')" :active="request()->routeIs('team_owner.recruitment_members.index')">
+                        メンバー募集作成
+                    </x-nav-link>
                     <x-nav-link :href="route('team_owner.results.manual')" :active="request()->routeIs('team_owner.results.manual')">
                         マニュアル
                     </x-nav-link>
@@ -81,6 +84,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('team_owner.results.index')" :active="request()->routeIs('team_owner.games.index')">
                 試合結果入力
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('team_owner.recruitment_members.index')" :active="request()->routeIs('team_owner.recruitment_members.index')">
+                メンバー募集作成
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('team_owner.results.manual')" :active="request()->routeIs('team_owner.games.manual')">
                 マニュアル

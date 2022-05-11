@@ -13,6 +13,7 @@ use App\Http\Controllers\Team_owner\TeamController;
 use App\Http\Controllers\Team_owner\PlayerController;
 use App\Http\Controllers\Team_owner\GamesController;
 use App\Http\Controllers\Team_owner\GameResultsController;
+use App\Http\Controllers\Team_owner\TeamMembersController;
 
 
 
@@ -70,6 +71,9 @@ Route::prefix('results')
     });
 
 Route::resource('players', PlayerController::class)
+    ->middleware('auth:team_owners')->except(['show']);
+
+Route::resource('recruitment_members', TeamMembersController::class)
     ->middleware('auth:team_owners')->except(['show']);
 
 // Route::get('/register', [RegisteredUserController::class, 'create'])

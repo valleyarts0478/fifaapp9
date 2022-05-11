@@ -15,6 +15,7 @@ use App\Models\GameResult;
 use App\Models\Goal_Assist;
 use App\Models\Position;
 use App\Models\Admin;
+use App\Models\TeamMember;
 
 
 class DatabaseSeeder extends Seeder
@@ -36,12 +37,13 @@ class DatabaseSeeder extends Seeder
             // ProductSeeder::class,
             // StockSeeder::class,
             // UserSeeder::class,
-            // ConventionSeeder::class,
-            // LeagueSeeder::class,
-            TeamOwnerSeeder::class,
-            // TeamOwnerAddSeeder::class,
-            // PositionsSeeder::class,
-            // PlayerSeeder::class,
+            ConventionSeeder::class,
+            LeagueSeeder::class,
+            // TeamOwnerSeeder::class,
+            TeamOwnerAddSeeder::class,
+            PositionsSeeder::class,
+            PlayerSeeder::class,
+            TeamMemberSeeder::class,
             // GamesSeeder::class,
             // GameResultSeeder::class,
             // GoalAssistSeeder::class,

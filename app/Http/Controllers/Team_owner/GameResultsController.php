@@ -75,13 +75,16 @@ class GameResultsController extends Controller
             $query->where('convention_id', $convention->id);
         })->orderBy('game_date', 'asc')->get();
 
-        // $team_info = [];
+
+        $team_info = [];
         foreach ($game_info as $info) {
             $team_info['team_name'][] = $info->home_team;
             $team_info['team_name'][] = $info->away_team;
         }
-        // dump($team_info);
-        // dd($team_info);
+        if (is_array($team_info) && empty($team_info)) {
+            return view('team_owner.no_match');
+        }
+
         $team_names = Team_owner::whereIn('team_name', $team_info['team_name'])->get();
 
         // foreach ($team_names as $team_name) {

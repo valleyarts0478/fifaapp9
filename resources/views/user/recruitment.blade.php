@@ -1,7 +1,7 @@
 <x-front.app>
 
     <div class="max-w-screen-md py-4 mx-auto">
-        <div class="containermd:px-8">
+        <div class="container md:px-8">
             {{-- <h2 class="bg-ral-400 text-white text-2xl p-4">参加チーム募集！</h2> --}}
             <div class="mb-8"><img src="{{ asset('storage/top/' . "img1.jpg") }}"></div>
          <div class="px-4 leading-loose tracking-wide">
@@ -42,9 +42,4 @@
         </div><!--container END-->
     </div>
 
-
-
-
-
-    
 </x-front.app>

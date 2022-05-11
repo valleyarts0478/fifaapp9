@@ -24,6 +24,7 @@ class CreateTeamOwnersTable extends Migration
             $table->foreignId('league_id')->constrained();
             $table->string('team_name');
             $table->string('team_abb');
+            $table->string('twitter_add')->nullable();
             $table->string('team_logo_url')->nullable();
             $table->timestamps();
             // $table->softDeletes();

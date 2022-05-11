@@ -69,11 +69,11 @@ class Team_owner extends Authenticatable
 
         return $this->hasMany(Player::class);
     }
-    // public function games()
-    // {
+    public function team_member()
+    {
 
-    //     return $this->hasOne(Game::class);
-    // }
+        return $this->hasone(TeamMember::class);
+    }
     public function goal_assists()
     {
 

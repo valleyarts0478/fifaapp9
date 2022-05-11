@@ -18,7 +18,7 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
-
+        {{-- <script src="https://cdn.jsdelivr.net/npm/vue@3.2.31/dist/vue.min.js"></script> --}}
     </head>
     <body class="font-Khand">
         <header>
@@ -30,6 +30,6 @@
         <footer>
             <x-front.footer />
         </footer>
-        
+
     </body>
 </html>

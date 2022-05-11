@@ -2,6 +2,7 @@
 
   <div class="max-w-screen-lg py-24 mx-auto">
 
+
   <ul class="tab">
     <li><a href="#first">TEAM 1部</a></li>
     <li><a href="#second">TEAM 2部</a></li>
