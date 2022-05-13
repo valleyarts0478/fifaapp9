@@ -19,7 +19,7 @@ class TeamMembersController extends Controller
         $this->middleware(function ($request, $next) {
             // dd($request->route()->parameter('team_owner')); //文字列
             // dd(Auth::id()); //数字
-            $id = $request->route()->parameter('recruitment_member'); //teamのid取得
+            $id = $request->route()->parameter('recruitment_member'); //recruitment_memberのid取得
 
             if (!is_null($id)) { // null判定
                 $teamOwnerId = TeamMember::findOrFail($id)->team_owner->id;
