@@ -39,12 +39,12 @@
             </div>
 
             <div class="sm:col-span-2">
-                <label for="address1" class="inline-block text-gray-800 font-bold text-sm sm:text-base mb-2">連絡先:PSIDなど</label>
+                <label for="address1" class="inline-block text-gray-800 font-bold text-sm sm:text-base mb-2">連絡先:PSID</label>
                 <div class="text-gray-800 text-sm sm:text-base mb-2">{{$member->address1}}</div>
               </div>
       
             <div class="sm:col-span-2">
-              <label for="activitytime1" class="inline-block text-gray-800 font-bold text-sm sm:text-base mb-2">活動日・時間</label>
+              <label for="activitytime1" class="inline-block text-gray-800 font-bold text-sm sm:text-base mb-2">活動日時</label>
               <div class="text-gray-800 text-sm sm:text-base mb-2">{{$member->activitytime1}}</div>
             </div>
       

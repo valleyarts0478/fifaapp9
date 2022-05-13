@@ -10,6 +10,7 @@ use App\Http\Controllers\User\ConventionsResultsController;
 use App\Http\Controllers\User\PlayerRankController;
 use App\Http\Controllers\User\TeamListController;
 use App\Http\Controllers\User\UserInfoController;
+use App\Http\Controllers\User\PlayerRecruitmentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,6 +54,10 @@ Route::get('/regulation', function () {
 Route::get('/recruitment', function () {
     return view('user/recruitment');
 })->middleware('guest')->name('recruitment');
+
+Route::resource('player_recruitment', PlayerRecruitmentController::class)
+    ->middleware('guest');
+
 
 // Route::get('/team_owner/login', function () {
 //     return view('team_owner.welcome');
@@ -134,9 +139,5 @@ Route::get('/results', [ConventionsResultsController::class, 'index'])
 //     return view('user.dashboard');
 // })->middleware(['auth:users'])->name('dashboard');
 
-// Route::get('/component-test1', [ComponentTestController::class, 'showComponent1']);
-// Route::get('/component-test2', [ComponentTestController::class, 'showComponent2']);
-// Route::get('/servicecontainertest', [LifeCycleTestController::class, 'showServiceContainerTest']);
-// Route::get('/serviceprovidertest', [LifeCycleTestController::class, 'showServiceProviderTest']);
 
 require __DIR__ . '/auth.php';

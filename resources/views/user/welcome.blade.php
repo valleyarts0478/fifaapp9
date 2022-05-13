@@ -24,7 +24,7 @@
         </div>
         <!-- text end -->
       </section>
-      <div class="w-full h-12 leading-8 py-2 text-xl text-center bg-ral-300">RAL-E 6th開催中!</div>
+      <div class="w-full h-12 leading-8 py-2 text-xl text-center bg-ral-300">RAL-E 7th・7月上旬開催！</div>
       
      
       <section class="w-full max-4xl p-8 text-gray-600 body-font">

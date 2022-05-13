@@ -5,6 +5,7 @@
         </h2>
     </x-slot>  
 
+
     <div class="bg-white py-6 sm:py-8 lg:py-12">
         <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
           <!-- text - start -->
@@ -12,6 +13,9 @@
             <h1 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">FIFA プロクラブメンバー募集</h1>
       
             <p class="max-w-screen-md text-gray-500 md:text-lg text-center mx-auto">RAL-Eリーグに参戦しているチームに入団したいかた向けのメンバー募集ページです。</p>
+
+            <x-flash-message status="session('status')" />
+            <x-auth-validation-errors class="mb-4" :errors="$errors" />  
           </div>
           <!-- text - end -->
           
@@ -43,12 +47,12 @@
       
             <div class="sm:col-span-2">
               <label for="activitytime1" class="inline-block text-gray-800 text-sm sm:text-base mb-2">活動日・時間</label>
-              <input type="text" name="activitytime1" value="{{ old('activitytime1') }}" placeholder="(例)月～金・22時～24時" class="w-full h-12 bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+              <input type="text" name="activitytime1" value="{{ old('activitytime1') }}" placeholder="全角16文字(例)月～金・22時～24時" class="w-full h-12 bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
             </div>
       
             <div class="sm:col-span-2">
               <label for="voicechat" class="inline-block text-gray-800 text-sm sm:text-base mb-2">ボイチャの有無</label>
-              <input type="text" name="voicechat" value="{{ old('voicechat') }}" placeholder="(例)喋れると嬉しいですが無くてもOK" class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+              <input type="text" name="voicechat" value="{{ old('voicechat') }}" placeholder="全角23文字(例)テキストでの会話ができれば無くてもOK" class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
             </div>
       
             <div class="sm:col-span-2">

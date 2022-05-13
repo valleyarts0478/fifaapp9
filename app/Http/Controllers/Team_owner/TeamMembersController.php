@@ -19,10 +19,10 @@ class TeamMembersController extends Controller
         $this->middleware(function ($request, $next) {
             // dd($request->route()->parameter('team_owner')); //文字列
             // dd(Auth::id()); //数字
-            $id = $request->route()->parameter('team_owner'); //teamのid取得
+            $id = $request->route()->parameter('recruitment_member'); //teamのid取得
 
             if (!is_null($id)) { // null判定
-                $teamOwnerId = Team::findOrFail($id)->team_owner->id;
+                $teamOwnerId = TeamMember::findOrFail($id)->team_owner->id;
                 $teamId = (int)$teamOwnerId; // キャスト 文字列→数値に型変換
                 $teamownerId = Auth::id();
                 if ($teamId !== $teamownerId) { // 同じでなかったら
@@ -66,6 +66,14 @@ class TeamMembersController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'team_owner_id' => 'required|integer|Auth::id()',
+            'address1' => 'string|max:16',
+            'activitytime1' => 'string|max:16',
+            'voicechat' => 'string|max:23',
+            'comment' => 'string|max:1000',
+        ]);
+
         $team_member = TeamMember::where('team_owner_id', Auth::id())->get();
 
         $team_member = new TeamMember();
@@ -117,6 +125,14 @@ class TeamMembersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'team_owner_id' => 'required|integer',
+            'address1' => 'string|max:16',
+            'activitytime1' => 'string|max:16',
+            'voicechat' => 'string|max:23',
+            'comment' => 'string|max:1000',
+        ]);
+
         $team_member = TeamMember::findOrFail($id);
 
         $team_member->team_owner_id = $request->team_owner_id;
