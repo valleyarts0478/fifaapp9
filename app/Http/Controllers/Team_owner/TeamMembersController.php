@@ -67,7 +67,7 @@ class TeamMembersController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'team_owner_id' => 'required|integer|Auth::id()',
+            'team_owner_id' => 'required|integer',
             'address1' => 'string|max:16',
             'activitytime1' => 'string|max:16',
             'voicechat' => 'string|max:23',
