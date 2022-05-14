@@ -23,7 +23,7 @@ class GameCheckController extends Controller
             ->groupBy('game_result_id')
             ->paginate(12);
 
-
+        // dd($goal_assists);
         return view('admin.game_check.index', compact('goal_assists'));
     }
 }
