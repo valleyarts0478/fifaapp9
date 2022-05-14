@@ -80,6 +80,15 @@
               </div>
             </div>
 
+            <div class="p-4 md:w-1/3">
+              <div class="min-h-96 flex justify-center items-center py-4 md:py-4">
+                <a href="/player_recruitment">
+                 <img class="w-full" src="{{asset('storage/top/' . "team_list_bn.jpg")}}" alt="player_recruitment">
+                </a>
+                <p class="absolute top-50 left-50 text-3xl text-center md:text-xl text-white"><a href="/player_recruitment">RAL-E参戦チームに<br>所属したい</a></p>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>

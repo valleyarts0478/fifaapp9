@@ -4,28 +4,25 @@
 <div class="bg-white shadow overflow-hidden sm:rounded-lg">
   <div class="px-4 py-5 sm:px-6">
     <h1 class="text-lg leading-6 font-medium text-gray-900">FIFA プロクラブメンバー募集</h1>
-    <p class="mt-1 max-w-2xl text-sm text-gray-500">RAL-Eリーグに参戦しているチームに入団したいかた向けのメンバー募集ページです。</p>
+    <p class="mt-1 max-w-2xl text-sm text-gray-500">RAL-Eリーグに参戦しているチームに入団したいかたは希望のチームに連絡をとり交渉を進めてください。</p>
   </div>
   <div class="border-t border-gray-200">
     <dl>
-      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500"></dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"><img class="w-12 h-12 object-cover object-center" src="{{ asset('storage/teams/logo/' . $team_member->team_owner->team_logo_url) }}" loading="lazy" alt="team_logo"></dd>
-      </div>
       <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-gray-500">チーム名</dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{$team_member->team_owner->team_name}}</dd>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"><img class="w-12 h-12 mb-2 object-cover object-center" src="{{ asset('storage/teams/logo/' . $team_member->team_owner->team_logo_url) }}" loading="lazy" alt="team_logo"><span class="text-xl">{{$team_member->team_owner->team_name}}</span></dd>
+        {{-- <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{$team_member->team_owner->team_name}}</dd> --}}
       </div>
       <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">活動日時</dt>
+        <dt class="text-sm font-bold text-gray-500">活動日時</dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{$team_member->activitytime1}}</dd>
       </div>
       <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">ボイチャ</dt>
+        <dt class="text-sm font-bold text-gray-500">ボイチャ</dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{$team_member->voicechat}}</dd>
       </div>
       <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">募集内容</dt>
+        <dt class="text-sm font-bold text-gray-500">募集内容</dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"><p class="leading-relaxed text-base">{!! nl2br(e($team_member->comment)) !!}</p></dd>
       </div>
       <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">

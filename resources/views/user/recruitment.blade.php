@@ -5,7 +5,7 @@
             {{-- <h2 class="bg-ral-400 text-white text-2xl p-4">参加チーム募集！</h2> --}}
             <div class="mb-8"><img src="{{ asset('storage/top/' . "img1.jpg") }}"></div>
          <div class="px-4 leading-loose tracking-wide">
-            <p>RAL-Eではリーグ戦にご参加いただけるチームを募集しています。</p>
+            <p>RAL-Eでは7月上旬に開催予定のリーグ戦「RAL-E7th」にご参加いただけるチームを募集しています。</p>
             <p>参加条件はRAL-Eが定めるレギュレーションを順守していただけるチームのみです。</p>
             <p>2022年3月時点でPS4版<i class="fa-solid fa-gamepad"></i>での開催となっています。</p>
             <h3 class="my-8 font-bold border-b border-ral-400">RAL-Eはこんなチームに向いています。</h3>
