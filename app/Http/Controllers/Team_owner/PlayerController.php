@@ -87,13 +87,15 @@ class PlayerController extends Controller
     {
         //時間指定で登録不可にする
         $date1 = new DateTime('now'); //現在の日時
-        $date2 = new DateTime('Saturday 23:59:59'); //登録できる日時
-        $date3 = new DateTime('Sunday 00:00:00 +30 hour'); //登録不可能な日時
-        // dd($date3);
+        $date2 = new DateTime('Sunday 00:00:00'); //登録できる日時
+        $date3 = new DateTime('Monday 05:59:59'); //登録不可能な日時
+        // dd($date2);
 
         // $date2 =
-        if ($date1->format('Y-m-d H:i:s') <= $date2->format('Y-m-d H:i:s')) {
-
+        if ($date1->format('Y-m-d H:i:s') >= $date2->format('Y-m-d H:i:s') && $date1->format('Y-m-d H:i:s') <= $date3->format('Y-m-d H:i:s')) {
+            // abort(404); // Not Foundページを表示
+            return view('team_owner.players.error');
+        } else {
             $request->validate([
                 'team_owner_id' => 'integer',
                 'position_id' => 'integer|max:5',
@@ -101,23 +103,20 @@ class PlayerController extends Controller
                 'player_name' => ['required', 'unique:players', 'string', 'max:50', new alpha_num_check],
 
             ]);
-        } elseif ($date1->format('Y-m-d H:i:s') > $date2->format('Y-m-d H:i:s') && $date1->format('Y-m-d H:i:s') <= $date3->format('Y-m-d H:i:s')) {
-            abort(404); // Not Foundページを表示
+            $player = new Player();
+            $player->team_owner_id = Auth::id();
+            $player->position_id = $request->position_id;
+            $player->player_no = $request->player_no;
+            $player->player_name = $request->player_name;
+            $player->save();
+            // dd($player);
+            return redirect()
+                ->route('team_owner.players.index')
+                ->with([
+                    'message' => '選手登録をしました。',
+                    'status' => 'info'
+                ]);
         }
-
-        $player = new Player();
-        $player->team_owner_id = Auth::id();
-        $player->position_id = $request->position_id;
-        $player->player_no = $request->player_no;
-        $player->player_name = $request->player_name;
-        $player->save();
-        // dd($player);
-        return redirect()
-            ->route('team_owner.players.index')
-            ->with([
-                'message' => '選手登録をしました。',
-                'status' => 'info'
-            ]);
     }
 
     /**
@@ -160,16 +159,20 @@ class PlayerController extends Controller
     public function update(Request $request, $id)
     {
         $player = Player::findOrFail($id);
-        // $id = Player::findOrFail($id);
 
         $date1 = new DateTime('now'); //現在の日時
-        $date2 = new DateTime('Saturday 23:59:59'); //登録できる日時
-        $date3 = new DateTime('Sunday 00:00:00 +30 hour'); //登録不可能な日時
+        $date2 = new DateTime('Sunday 00:00:00'); //登録できる日時
+        $date3 = new DateTime('Monday 05:59:59'); //登録不可能な日時
+
+        // $date1 = new DateTime('now'); //現在の日時
+        // $date2 = new DateTime('Saturday 23:59:59'); //登録できる日時
+        // $date3 = new DateTime('Sunday 00:00:00 +30 hour'); //登録不可能な日時
         // dd($date3);
 
         // $date2 =
-        if ($date1->format('Y-m-d H:i:s') <= $date2->format('Y-m-d H:i:s')) {
-
+        if ($date1->format('Y-m-d H:i:s') >= $date2->format('Y-m-d H:i:s') && $date1->format('Y-m-d H:i:s') <= $date3->format('Y-m-d H:i:s')) {
+            return view('team_owner.players.error');
+        } else {
             $request->validate([
                 'team_owner_id' => 'integer|max:255', //255までの数字を許可
                 'position_id' => 'integer|max:5', //5までの入力を許可
@@ -179,23 +182,20 @@ class PlayerController extends Controller
                 'player_name' => ['required', 'string', 'max:50', Rule::unique('players')->ignore($player->id), new alpha_num_check],
 
             ]);
-        } elseif ($date1->format('Y-m-d H:i:s') > $date2->format('Y-m-d H:i:s') && $date1->format('Y-m-d H:i:s') <= $date3->format('Y-m-d H:i:s')) {
-            abort(404); // Not Foundページを表示
+            $player = Player::findOrFail($id);
+            $player->team_owner_id = $request->team_owner_id;
+            $player->position_id = $request->position_id;
+            $player->player_no = $request->player_no;
+            $player->player_name = $request->player_name;
+            $player->save();
+
+            return redirect()
+                ->route('team_owner.players.index')
+                ->with([
+                    'message' => '選手を更新しました。',
+                    'status' => 'info'
+                ]);
         }
-
-        $player = Player::findOrFail($id);
-        $player->team_owner_id = $request->team_owner_id;
-        $player->position_id = $request->position_id;
-        $player->player_no = $request->player_no;
-        $player->player_name = $request->player_name;
-        $player->save();
-
-        return redirect()
-            ->route('team_owner.players.index')
-            ->with([
-                'message' => '選手を更新しました。',
-                'status' => 'info'
-            ]);
     }
 
     /**
