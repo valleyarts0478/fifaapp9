@@ -4,8 +4,8 @@
 
 
   <ul class="tab">
-    <li><a href="#first">TEAM 1部</a></li>
-    <li><a href="#second">TEAM 2部</a></li>
+    <li><a href="#first">Agroup</a></li>
+    <li><a href="#second">Bgroup</a></li>
   </ul>
     
 <div id="first" class="area">
