@@ -2,10 +2,10 @@
 <div class="max-w-4xl py-8 mx-auto sm:px-6 lg:px-8">
 
     <ul class="tab">
-      <li><a href="#first">RAL-E1 GOAL</a></li>
-      <li><a href="#second">RAL-E1 ASSIST</a></li>
-      <li><a href="#goal2">RAL-E2 GOAL</a></li>
-      <li><a href="#assist2">RAL-E2 ASSIST</a></li>
+      <li><a href="#first">Agroup GOAL</a></li>
+      <li><a href="#second">Agroup ASSIST</a></li>
+      <li><a href="#goal2">Bgroup GOAL</a></li>
+      <li><a href="#assist2">Bgroup ASSIST</a></li>
     </ul>
       {{-- @if($goal_cnt)
        得点はありません。 

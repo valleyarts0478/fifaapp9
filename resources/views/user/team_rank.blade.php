@@ -1,8 +1,8 @@
 <x-front.app>
 <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
   <ul class="tab">
-    <li><a href="#first">RAL-E 1部</a></li>
-    <li><a href="#second">RAL-E 2部</a></li>
+    <li><a href="#first">Agroup</a></li>
+    <li><a href="#second">Bgroup</a></li>
   </ul>
     @if($count === 0)
     順位はありません。

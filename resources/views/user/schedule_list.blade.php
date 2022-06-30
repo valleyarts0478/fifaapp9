@@ -2,8 +2,8 @@
 
 <div class="bg-white py-24 sm:py-8 lg:py-12 max-w-screen-lg mx-auto">
   <ul class="tab">
-    <li><a href="#first">RAL-E 1部</a></li>
-    <li><a href="#second">RAL-E 2部</a></li>
+    <li><a href="#first">Agroup</a></li>
+    <li><a href="#second">Bgroup</a></li>
   </ul>
 
   @if($game1_count === 0)
