@@ -28,7 +28,7 @@
                         <td class="border px-4 py-2">
                             @if($data->game_result->home_goal === NULL or  $data->game_result->away_goal === NULL)
                             空欄あり
-                            @elseif(($data->game_result->home_goal + $data->game_result->away_goal) === $data->total_goal)
+                            @elseif(($data->game_result->home_goal + $data->game_result->away_goal) == $data->total_goal)
                             {{-- @elseif(($data->game_result->home_goal + $data->game_result->away_goal + $data->game_result->home_own_goal + $data->game_result->away__own_goal) == $data->total_goal) --}}
                             OK
                             @else
