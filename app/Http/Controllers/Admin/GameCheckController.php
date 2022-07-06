@@ -21,7 +21,7 @@ class GameCheckController extends Controller
         })->select('game_result_id')
             ->selectRaw('SUM(goals) AS total_goal')
             ->groupBy('game_result_id')
-            ->paginate(12);
+            ->paginate(10);
 
         // dd($goal_assists);
         return view('admin.game_check.index', compact('goal_assists'));
