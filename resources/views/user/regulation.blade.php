@@ -151,10 +151,21 @@
                     <h3 class="title">試合開始前</h3>
                     <div class="box text-sm">
                         <ul class="ml-4 list-disc">
-                          <li>試合開始30分前にツイッターにて試合参加メンバーのロビー画面スクショをツイート。</li>
-                          <li>ハッシュタグ付きでツイートをお願い致します。(#fifa22 #RAL-E #プロクラブ)</li>
+                          <li>試合開始5分～15分前にツイッターにて試合参加メンバーのロビー画面スクショをツイート。</li>
+                          <li>ハッシュタグ付きでツイートをお願い致します。(#fifa22 #RALE #プロクラブ)</li>
                           <li>試合開始5分前には相手チームに連絡をいれる。</li>
                           <li>スムーズに試合開始ができるように心掛けてください。</li>
+                        </ul> 
+                    </div>
+                </section>
+              </li>
+              <li>
+                <section class="rounded-md">
+                    <h3 class="title">試合開始方法</h3>
+                    <div class="box text-sm">
+                        <ul class="ml-4 list-disc">
+                          <li>ホーム側がアウェイ側に申請を送りフレンドリーマッチで試合開始。</li>
+                          <li>試合日程表の左側がHOME、右側がAWAYとなります。</li>
                         </ul> 
                     </div>
                 </section>
