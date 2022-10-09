@@ -233,7 +233,7 @@ class GameResultsController extends Controller
             ->where('team_owner_id', $team_owner->id)
             ->get();
 
-        $goal_total = 0;
+        $goal_total = 0; //個人のトータル得点
         $assist_total = 0;
         foreach ($goal_assist as $data) {
             $goal_total += $data['goals'];
@@ -246,11 +246,15 @@ class GameResultsController extends Controller
         if ($team_owner->team_name === $gameResult->game->home_team) {
             foreach ($result as $value) {
                 $goal_own_total = $goal_total + $value->home_own_goal;
-                if ($value->home_goal === NULL &&  $goal_total === 0) {
+                if ($value->home_goal === NULL) {
+                    return back()->withInput()->withErrors([
+                        '総得点が入力がされていません。'
+                    ]);
+                } elseif ($value->home_goal === 3 && $goal_total == NULL) {
                     return redirect()
                         ->route('team_owner.results.index')
                         ->with([
-                            'message' => '未入力の状態です。',
+                            'message' => '不戦勝としてHOME側の試合結果を入力しました。',
                             'status' => 'info'
                         ]);
                 } elseif ($goal_own_total === $value->home_goal &&  $goal_total >= $assist_total) {
@@ -266,14 +270,19 @@ class GameResultsController extends Controller
                     ]);
                 }
             }
+            //ログインしているチームがaway_teamと同じ場合
         } elseif ($team_owner->team_name === $gameResult->game->away_team) {
             foreach ($result as $value) {
                 $goal_own_total = $goal_total + $value->away_own_goal;
-                if ($value->away_goal === NULL &&  $goal_total === 0) {
+                if ($value->away_goal === NULL) {
+                    return back()->withInput()->withErrors([
+                        '総得点が入力がされていません。'
+                    ]);
+                } elseif ($value->away_goal === 3 && $goal_total == NULL) {
                     return redirect()
                         ->route('team_owner.results.index')
                         ->with([
-                            'message' => '未入力の状態です。',
+                            'message' => '不戦勝としてAWAY側の試合結果を入力しました。',
                             'status' => 'info'
                         ]);
                 } elseif ($goal_own_total === $value->away_goal &&  $goal_total >= $assist_total) {
