@@ -106,7 +106,7 @@ class TeamListController extends Controller
         //league1
         foreach ($games as $game) {
 
-            $team_list[$game->game_date->format('Y-m-d-H:i')][$game->id] = [
+            $team_list[$game->game_date->format('Y-m-d-H:i:s')][$game->id] = [
                 'section' => $game->section,
                 'home_team' => $game->home_team,
                 'away_team' => $game->away_team,
@@ -140,7 +140,7 @@ class TeamListController extends Controller
 
         $team_list_second = [];
         foreach ($game_leagues as $league) {
-            $team_list_second[$league->game_date->format('Y-m-d-H:i')][$league->id] = [
+            $team_list_second[$league->game_date->format('Y-m-d-H:i:s')][$league->id] = [
                 'home_team' => $league->home_team,
                 'away_team' => $league->away_team,
             ];
