@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\PlayersController;
 use App\Http\Controllers\Admin\csvController;
 use App\Http\Controllers\Admin\InfoController;
 use App\Http\Controllers\Admin\GameCheckController;
+use App\Http\Controllers\Admin\PastsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +41,12 @@ Route::resource('leagues', LeaguesController::class)
 // conventions
 Route::resource('conventions', ConventionsController::class)
     ->middleware('auth:admin')->except(['show']);
+
+//pastmove　大会結果をコピー
+Route::get('/pastmove', [PastsController::class, 'pastmove'])
+    ->middleware('auth:admin')
+    ->name('pastmove');
+
 // conventions ソフトデリート
 Route::prefix('expired-conventions')
     ->middleware('auth:admin')->group(function () {
