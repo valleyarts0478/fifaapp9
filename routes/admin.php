@@ -43,9 +43,17 @@ Route::resource('conventions', ConventionsController::class)
     ->middleware('auth:admin')->except(['show']);
 
 //pastmove　大会結果をコピー
-Route::get('/pastmove', [PastsController::class, 'pastmove'])
-    ->middleware('auth:admin')
-    ->name('pastmove');
+// Route::get('/pastmove', [PastsController::class, 'pastmove'])
+//     ->middleware('auth:admin')
+//     ->name('pastmove');
+
+
+Route::middleware('auth:admin')->group(function () {
+    Route::get('/pastmove', [PastsController::class, 'pastmove'])->name('pastmove');
+    Route::get('/pastplayermove', [PastsController::class, 'past_player_move'])->name('pastplayermove');
+    });
+
+
 
 // conventions ソフトデリート
 Route::prefix('expired-conventions')

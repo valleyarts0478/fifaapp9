@@ -5,25 +5,26 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use App\Models\ConventionsResult;
-use App\Models\Past;
+use App\Models\PlayerRankTotal;
+use App\Models\PastPlayerRankTotal;
 use App\Models\Convention;
 
-class PastCommand extends Command
+
+class PastPlayerRankCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'command:past';
+    protected $signature = 'command:pastplayer';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = '試合結果をpastsテーブルへ移動する';
+    protected $description = '最新の個人スタッツデータを移動する。';
 
     /**
      * Create a new command instance.
@@ -46,30 +47,28 @@ class PastCommand extends Command
         $convention = Convention::orderBy('id', 'desc')->first();
         // $convention1 = Convention::where('id', $convention->id)->first();
         // dd($convention1);
-        $results = ConventionsResult::where('convention_id', $convention->id)->get();
+        $player_results = PlayerRankTotal::where('convention_id', $convention->id)->get();
 
-        $past = [];
-        foreach($results as $result){
-            $past[] = [
+        $past_player = [];
+        foreach($player_results as $result){
+            $past_player[] = [
                 'id' => $result['id'],
                 'convention_id' => $result['convention_id'],
                 'league_id' => $result['league_id'], 
-                'game_point' => $result['game_point'], 
-                'game_count' => $result['game_count'], 
-                'win' => $result['win'], 
-                'lose' => $result['lose'], 
-                'draw' => $result['draw'], 
-                'gain' => $result['gain'], 
-                'loss' => $result['loss'], 
-                'numbers_diff' => $result['numbers_diff']
+                'player_name' => $result['player_name'], 
+                'goals' => $result['goals'], 
+                'assists' => $result['assists'], 
+                'team_name' => $result['team_name'], 
+                'team_abb' => $result['team_abb'], 
+                'team_logo_url' => $result['team_logo_url'], 
             ];
 
         }
-       
-            Past::upsert(
-             $past,
+
+            PastPlayerRankTotal::upsert(
+             $past_player,
              ['id'],
-             ['id', 'team_name', 'convention_id', 'league_id', 'game_point', 'game_count', 'win', 'lose', 'draw', 'gain', 'loss', 'numbers_diff']
+             ['id', 'convention_id', 'league_id', 'player_name', 'goals', 'assists', 'team_name', 'team_abb', 'team_logo_url']
             );
         
         return 0;
