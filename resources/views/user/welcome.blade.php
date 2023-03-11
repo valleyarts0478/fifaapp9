@@ -82,7 +82,7 @@
                 <a href="/current_competitions">
                  <img class="w-full" src="{{asset('storage/top/' . "team_list_bn.jpg")}}" alt="current_competitions">
                 </a>
-                <p class="absolute top-50 left-50 text-3xl md:text-xl text-white"><a href="/current_competitions">リーグ戦結果</a></p>
+                <p class="absolute top-50 left-50 text-xl md:text-base lg:text-xl text-white"><a href="/current_competitions">リーグ戦結果</a></p>
               </div>
             </div>
             <div class="p-4 md:w-1/3">
@@ -90,7 +90,7 @@
                 <a href="/team_list">
                  <img class="w-full" src="{{asset('storage/top/' . "team_list_bn.jpg")}}" alt="team_list">
                 </a>
-                <p class="absolute top-50 left-50 text-3xl md:text-xl text-white"><a href="/team_list">TEAM LIST</a></p>
+                <p class="absolute top-50 left-50 text-xl md:text-base lg:text-xl text-white"><a href="/team_list">TEAM LIST</a></p>
               </div>
             </div>
 
@@ -99,7 +99,7 @@
                 <a href="/team_rank">
                  <img class="w-full" src="{{asset('storage/top/' . "team_ranking_bn.jpg")}}" alt="team_rank">
                 </a>
-                <p class="absolute top-50 left-50 text-3xl md:text-xl text-white"><a href="/team_rank">TEAM RANK</a></p>
+                <p class="absolute top-50 left-50 text-xl md:text-base lg:text-xl text-white"><a href="/team_rank">TEAM RANK</a></p>
               </div>
             </div>
 
@@ -108,7 +108,7 @@
                 <a href="/player_rank_total">
                  <img class="w-full" src="{{asset('storage/top/' . "team_player_rank_bn.jpg")}}" alt="player_rank_total">
                 </a>
-                <p class="absolute top-50 left-50 text-3xl md:text-xl text-white"><a href="/player_rank_total">PLAYER RANK</a></p>
+                <p class="absolute top-50 left-50 text-xl md:text-base lg:text-xl text-white"><a href="/player_rank_total">PLAYER RANK</a></p>
               </div>
             </div>
 
@@ -117,7 +117,7 @@
                 <a href="/schedule_list">
                  <img class="w-full" src="{{asset('storage/top/' . "schedule_bn.jpg")}}" alt="schedule_list">
                 </a>
-                <p class="absolute top-50 left-50 text-3xl md:text-xl text-white"><a href="/schedule_list">SCHEDULE LIST</a></p>
+                <p class="absolute top-50 left-50 text-xl md:text-base lg:text-xl text-white"><a href="/schedule_list">SCHEDULE LIST</a></p>
               </div>
             </div>
 
@@ -126,7 +126,7 @@
                 <a href="/player_recruitment">
                  <img class="w-full" src="{{asset('storage/top/' . "team_list_bn.jpg")}}" alt="player_recruitment">
                 </a>
-                <p class="absolute top-50 left-50 text-3xl text-center md:text-xl text-white"><a href="/player_recruitment">RAL-E参戦チームに<br>所属したい</a></p>
+                <p class="absolute top-50 left-50 text-xl md:text-base lg:text-xl text-white"><a href="/player_recruitment">RAL-E参戦チームに<br>所属したい</a></p>
               </div>
             </div>
 
@@ -135,7 +135,7 @@
                 <a href="/past_competitions">
                   <img class="w-full" src="{{asset('storage/top/' . "schedule_bn.jpg")}}" alt="schedule_list">
                 </a>
-                <p class="absolute top-50 left-50 text-3xl text-center md:text-xl text-white"><a href="/past_competitions">過去大会結果</a></p>
+                <p class="absolute top-50 left-50 text-xl md:text-base lg:text-xl text-white"><a href="/past_competitions">過去大会結果</a></p>
               </div>
             </div> --}}
 

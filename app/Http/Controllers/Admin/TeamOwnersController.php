@@ -31,8 +31,9 @@ class TeamOwnersController extends Controller
     {
         // $team_owners = Team_owner::select('id', 'convention_id', 'league_id', 'team_name', 'team_abb', 'team_logo_url', 'created_at')
         //     ->paginate(10);
-
-            $team_owners = Team_owner::orderBy('id', 'desc')
+        $convention = Convention::orderBy('id', 'desc')->first();
+        $team_owners = Team_owner::orderBy('id', 'desc')
+            ->where('convention_id', $convention->id)
             ->paginate(10);
 
 

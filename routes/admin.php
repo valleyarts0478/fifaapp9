@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\csvController;
 use App\Http\Controllers\Admin\InfoController;
 use App\Http\Controllers\Admin\GameCheckController;
 use App\Http\Controllers\Admin\PastsController;
+use App\Http\Controllers\Admin\AdminTeamOwnersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,16 +43,10 @@ Route::resource('leagues', LeaguesController::class)
 Route::resource('conventions', ConventionsController::class)
     ->middleware('auth:admin')->except(['show']);
 
-//pastmove　大会結果をコピー
-// Route::get('/pastmove', [PastsController::class, 'pastmove'])
-//     ->middleware('auth:admin')
-//     ->name('pastmove');
-
-
 Route::middleware('auth:admin')->group(function () {
     Route::get('/pastmove', [PastsController::class, 'pastmove'])->name('pastmove');
     Route::get('/pastplayermove', [PastsController::class, 'past_player_move'])->name('pastplayermove');
-    });
+});
 
 
 
@@ -64,7 +59,14 @@ Route::prefix('expired-conventions')
 
 // team_owners
 Route::resource('team_owners', TeamOwnersController::class)
-    ->middleware('auth:admin')->except(['show']);
+    ->middleware('auth:admin');
+
+// Admin用team_ownersからのplayer一覧
+Route::middleware('auth:admin')->group(function () {
+    Route::get('edit/{team_player}', [AdminTeamOwnersController::class, 'edit'])->name('team_player.edit');
+    Route::put('update/{team_player}', [AdminTeamOwnersController::class, 'update'])->name('team_player.update');
+    Route::delete('destroy/{team_player}', [AdminTeamOwnersController::class, 'destroy'])->name('team_player.destroy');
+});
 
 // team_owners ソフトデリート
 Route::prefix('expired-team_owners')
@@ -74,7 +76,7 @@ Route::prefix('expired-team_owners')
     });
 // players
 Route::resource('players', PlayersController::class)
-    ->middleware('auth:admin')->except(['show']);
+    ->middleware('auth:admin');
 
 Route::resource('owners', OwnersController::class)
     ->middleware('auth:admin')->except(['show']);
