@@ -52,6 +52,10 @@ class PastCommand extends Command
         foreach($results as $result){
             $past[] = [
                 'id' => $result['id'],
+                'team_name' => $result['team_name'],
+                'home_score' => null,
+                'away_score' => null,
+                'pk_score' => null,
                 'convention_id' => $result['convention_id'],
                 'league_id' => $result['league_id'], 
                 'game_point' => $result['game_point'], 
@@ -69,7 +73,7 @@ class PastCommand extends Command
             Past::upsert(
              $past,
              ['id'],
-             ['id', 'team_name', 'convention_id', 'league_id', 'game_point', 'game_count', 'win', 'lose', 'draw', 'gain', 'loss', 'numbers_diff']
+             ['id', 'team_name', 'home_score', 'away_score', 'pk_score', 'convention_id', 'league_id', 'game_point', 'game_count', 'win', 'lose', 'draw', 'gain', 'loss', 'numbers_diff']
             );
         
         return 0;
