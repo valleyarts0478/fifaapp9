@@ -53,9 +53,9 @@ class PastCommand extends Command
             $past[] = [
                 'id' => $result['id'],
                 'team_name' => $result['team_name'],
-                'home_score' => null,
-                'away_score' => null,
-                'pk_score' => null,
+                'home_score' => $result['home_score'],
+                'away_score' => $result['away_score'],
+                'pk_score' => $result['pk_score'],
                 'convention_id' => $result['convention_id'],
                 'league_id' => $result['league_id'], 
                 'game_point' => $result['game_point'], 
