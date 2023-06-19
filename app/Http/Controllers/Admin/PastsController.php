@@ -20,12 +20,18 @@ class PastsController extends Controller
     {
         Artisan::call('command:past');
 
-        return redirect('/admin/dashboard')->with('success', 'コピーしました!');
+        return redirect('/admin/dashboard')->with('success', '大会結果をコピーしました!');
     }
     public function past_player_move()
     {
         Artisan::call('command:pastplayer');
 
-        return redirect('/admin/dashboard')->with('success', 'コピーしました!');
+        return redirect('/admin/dashboard')->with('success', '得点・アシスト者をコピーしました!');
+    }
+    public function teammove()
+    {
+        Artisan::call('command:team');
+
+        return redirect('/admin/dashboard')->with('success', 'チームをコピーしました!');
     }
 }
