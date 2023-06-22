@@ -34,4 +34,10 @@ class PastsController extends Controller
 
         return redirect('/admin/dashboard')->with('success', 'チームをコピーしました!');
     }
+    public function playermove()
+    {
+        Artisan::call('command:playermove');
+
+        return redirect('/admin/dashboard')->with('success', '選手をコピーしました!');
+    }
 }
