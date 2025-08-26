@@ -9,8 +9,11 @@ use App\Http\Controllers\User\MatchController;
 use App\Http\Controllers\User\ConventionsResultsController;
 use App\Http\Controllers\User\PlayerRankController;
 use App\Http\Controllers\User\TeamListController;
-use App\Http\Controllers\User\UserInfoController;
+// use App\Http\Controllers\User\UserInfoController;
 use App\Http\Controllers\User\PlayerRecruitmentController;
+use App\Http\Controllers\User\PlayerRankTotalController;
+use App\Http\Controllers\User\WelcomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,19 +36,17 @@ use App\Http\Controllers\User\PlayerRecruitmentController;
 //     return view('welcome');
 // });
 
-Route::get('/', function () {
-    return view('user/welcome');
-})->middleware('guest')->name('welcome');
-
-// Route::get('/infolist', [userInfoController::class, 'infolist'])
-//     ->middleware('guest')
-//     ->name('infolist');
+// Route::get('/', function () {
+//     return view('user.welcome');
+// })->middleware('guest')->name('welcome');
 
 
 Route::middleware('guest')->group(function () {
-    Route::get('/', [userInfoController::class, 'index'])->name('index');
-    Route::get('/infolist', [userInfoController::class, 'infolist'])->name('infolist');
+    Route::get('/', [WelcomeController::class, 'index'])->name('index');
+    Route::get('/infolist', [welcomeController::class, 'infolist'])->name('infolist');
+    Route::get('/infolist/{id}', [welcomeController::class, 'show'])->name('infolist.show');
 });
+
 
 Route::get('/regulation', function () {
     return view('user/regulation');
@@ -55,18 +56,38 @@ Route::get('/recruitment', function () {
     return view('user/recruitment');
 })->middleware('guest')->name('recruitment');
 
+//最新の大会結果レコードを過去へコピー
+// Route::get('/pastmove', [WelcomeController::class, 'pastmove']);
+
+// Route::get('/pastmove', function () {
+//     Artisan::call('command:past');
+// })->middleware('guest')->name('pastmove');
+
 Route::resource('player_recruitment', PlayerRecruitmentController::class)
     ->middleware('guest');
 
-
+//スライダー
+Route::get('/slider', function () {
+    return view('user/slider');
+})->middleware('guest')->name('slider');
 // Route::get('/team_owner/login', function () {
 //     return view('team_owner.welcome');
 // })->middleware('guest');
 
-//得点王・アシスト王
-Route::get('/player_rank', [PlayerRankController::class, 'index'])
+//得点王・アシスト王New
+Route::get('/player_rank_total', [PlayerRanktotalController::class, 'index'])
     ->middleware('guest')
-    ->name('player_rank');
+    ->name('playerranktotal');
+//過去大会結果
+Route::middleware('guest')->group(function () {
+  Route::get('/past_competitions', [ConventionsResultsController::class, 'past'])->name('past_competitions'); 
+  Route::get('/current_competitions', [ConventionsResultsController::class, 'current'])->name('current_competitions');
+});
+   
+//得点王・アシスト王
+// Route::get('/player_rank', [PlayerRankController::class, 'index'])
+//     ->middleware('guest')
+//     ->name('player_rank');
 //ランキングなし
 Route::get('/no_match', [PlayerRankController::class, 'no_match'])
     ->middleware('guest')

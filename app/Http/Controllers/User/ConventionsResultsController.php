@@ -11,6 +11,10 @@ use App\Models\Convention;
 use App\Models\ConventionsResult;
 use App\Models\League;
 use App\Models\Team_owner;
+use App\Models\PlayerRankTotal;
+use App\Models\PastPlayerRankTotal;
+use App\Models\Past;
+use Artisan; //追加
 
 class ConventionsResultsController extends Controller
 {
@@ -19,6 +23,7 @@ class ConventionsResultsController extends Controller
         // $goal_assists = Goal_Assist::all();
         //降順の最初のレコードを取得
         $convention = Convention::orderBy('id', 'desc')->first();
+        // dd($convention);
         //リレーション先のカラムを利用する場合の書き方
         //$conventionを外からつかうためuseで読み込む
         $convention_results = ConventionsResult::where('convention_id', $convention->id)
@@ -40,7 +45,8 @@ class ConventionsResultsController extends Controller
         }
         // dd($team_info);
         // 画像情報とるため
-        $team_names = Team_owner::whereIn('team_name', $team_info['team_name'])->get();
+        $team_names = Team_owner::where('convention_id', $convention->id)
+            ->whereIn('team_name', $team_info['team_name'])->get();
         // $count = count($team_names);
         // dd($cnt, $team_names);
         //flag用
@@ -58,5 +64,247 @@ class ConventionsResultsController extends Controller
         // dd($flag);
 
         return view('user.team_rank', compact('convention_results', 'team_names', 'flag', 'count'));
+    }
+    public function current()
+    {
+        $conventionId = Convention::orderBy('id', 'desc')->first();
+
+        //レコードチェック
+        $record_check = ConventionsResult::where('convention_id', $conventionId->id)->exists();
+
+        if ($record_check === false) {
+            return view('user.no_match');
+        } else {
+
+            $convention_results1 = ConventionsResult::where('convention_id', $conventionId->id)
+                ->where('league_id', 1)
+                ->orderBy('game_point', 'desc')
+                ->orderBy('numbers_diff', 'desc')
+                ->first();
+        }
+// dd($convention_results1);
+        $team_info1 = [];
+        $team_info1['team_name'][] = $convention_results1->team_name;
+        // dd($team_info1['team_name']);
+
+        // 画像情報とるため
+        $team_names1 = [];
+        $team_names1 = Team_owner::where('convention_id', $conventionId->id)
+            ->whereIn('team_name', $team_info1['team_name'])->first();
+        // dd($team_names1->team_logo_url);
+
+
+        //AGroup・2番目のチームのみを抽出
+        $convention_results1a = ConventionsResult::where('convention_id', $conventionId->id)
+        ->where('league_id', 1)
+        ->orderBy('game_point', 'desc')
+        ->orderBy('numbers_diff', 'desc')
+        ->offset(1)->limit(1)
+        ->first();
+
+        $team_info1a = [];
+        $team_info1a['team_name'][] = $convention_results1a->team_name;
+        // dd($team_info1['team_name']);
+
+        // 画像情報とるため
+        $team_names1a = [];
+        $team_names1a = Team_owner::where('convention_id', $conventionId->id)
+            ->whereIn('team_name', $team_info1a['team_name'])->first();
+        
+
+        //Bgroup
+        $convention_results2 = ConventionsResult::where('convention_id', $conventionId->id)
+            ->where('league_id', 2)
+            ->orderBy('game_point', 'desc')
+            ->orderBy('numbers_diff', 'desc')
+            ->first();
+        // dd($convention_results2);
+        if ($convention_results2 === null) {
+            return view('user.no_match');
+        } else {
+
+            $team_info2 = [];
+            $team_info2['team_name'][] = $convention_results2->team_name;
+            // dd($team_info1['team_name']);
+
+            // 画像情報とるため
+            $team_names2 = [];
+            $team_names2 = Team_owner::where('convention_id', $conventionId->id)
+                ->whereIn('team_name', $team_info2['team_name'])->first();
+            // dd($team_names1->team_logo_url);
+        }
+
+        //BGroup・2番目のチームのみを抽出
+        $convention_results2a = ConventionsResult::where('convention_id', $conventionId->id)
+        ->where('league_id', 2)
+        ->orderBy('game_point', 'desc')
+        ->orderBy('numbers_diff', 'desc')
+        ->offset(1)->limit(1)
+        ->first();
+
+        $team_info2a = [];
+        $team_info2a['team_name'][] = $convention_results2a->team_name;
+        // dd($team_info1['team_name']);
+
+        // 画像情報とるため
+        $team_names2a = [];
+        $team_names2a = Team_owner::where('convention_id', $conventionId->id)
+            ->whereIn('team_name', $team_info2a['team_name'])->first();
+        
+
+        //得点王・アシスト王
+        //Agroupの得点王を取得
+        $player_rank_goal1 = PlayerRankTotal::where('convention_id', $conventionId->id)
+            ->where('league_id', '1')
+            ->orderBy('goals', 'desc')
+            ->first();
+        // dd($player_rank_goal1);
+        //Bgroupの得点王を取得
+        $player_rank_goal2 = PlayerRankTotal::where('convention_id', $conventionId->id)
+            ->where('league_id', '2')
+            ->orderBy('goals', 'desc')
+            ->first();
+        //Agroupのアシスト王を取得
+        $player_rank_assist1 = PlayerRankTotal::where('convention_id', $conventionId->id)
+            ->where('league_id', '1')
+            ->orderBy('assists', 'desc')
+            ->first();
+        //Bgroupのアシスト王を取得
+        $player_rank_assist2 = PlayerRankTotal::where('convention_id', $conventionId->id)
+            ->where('league_id', '2')
+            ->orderBy('assists', 'desc')
+            ->first();
+
+        //総合優勝決定戦のスコア
+        $sougou_score1 = ($convention_results1->home_score) + ($convention_results1->away_score);
+        $sougou_score2 = ($convention_results2->home_score) + ($convention_results2->away_score);
+        $pk_score1 = $convention_results1->pk_score;
+        $pk_score2 = $convention_results2->pk_score;
+
+        //総合3位決定戦のスコア
+        $sougou_score1a = ($convention_results1a->home_score) + ($convention_results1a->away_score);
+        $sougou_score2a = ($convention_results2a->home_score) + ($convention_results2a->away_score);
+        $pk_score1a = $convention_results1a->pk_score;
+        $pk_score2a = $convention_results2a->pk_score;
+
+        // dd($sougou_score2);
+        return view('user.current_competitions', compact(
+            'conventionId',
+            'team_names1',
+            'team_names1a',
+            'convention_results1',
+            'convention_results1a',
+            'team_names2',
+            'team_names2a',
+            'convention_results2',
+            'convention_results2a',
+            'player_rank_goal1',
+            'player_rank_goal2',
+            'player_rank_assist1',
+            'player_rank_assist2',
+            'sougou_score1',
+            'sougou_score1a',
+            'sougou_score2',
+            'sougou_score2a',
+            'pk_score1',
+            'pk_score1a',
+            'pk_score2',
+            'pk_score2a',
+
+        ));
+    }
+    public function past()
+    {
+        $conventionId = Past::orderBy('convention_id', 'desc')->first();
+
+        //レコードチェック
+        $record_check = Past::where('convention_id', $conventionId->convention_id)->exists();
+
+        if ($record_check === false) {
+            return view('user.no_match');
+        } else {
+
+            $convention_results1 = Past::where('convention_id', $conventionId->convention_id)
+                ->where('league_id', 1)
+                ->orderBy('game_point', 'desc')
+                ->orderBy('numbers_diff', 'desc')
+                ->first();
+        }
+
+        $team_info1 = [];
+        $team_info1['team_name'][] = $convention_results1->team_name;
+        // dd($team_info1['team_name']);
+
+        // 画像情報とるため
+        $team_names1 = [];
+        $team_names1 = Team_owner::where('convention_id', $conventionId->convention_id)
+            ->whereIn('team_name', $team_info1['team_name'])->first();
+        // dd($team_names1->team_logo_url);
+
+
+        //Bgroup
+        $convention_results2 = Past::where('convention_id', $conventionId->convention_id)
+            ->where('league_id', 2)
+            ->orderBy('game_point', 'desc')
+            ->orderBy('numbers_diff', 'desc')
+            ->first();
+        // dd($convention_results2);
+        if ($convention_results2 === null) {
+            return view('user.no_match');
+        } else {
+
+            $team_info2 = [];
+            $team_info2['team_name'][] = $convention_results2->team_name;
+            // dd($team_info1['team_name']);
+
+            // 画像情報とるため
+            $team_names2 = [];
+            $team_names2 = Team_owner::where('convention_id', $conventionId->convention_id)
+                ->whereIn('team_name', $team_info2['team_name'])->first();
+            // dd($team_names1->team_logo_url);
+        }
+
+        //得点王・アシスト王
+        //Agroupの得点王を取得
+        $player_rank_goal1 = PastPlayerRankTotal::where('convention_id', $conventionId->convention_id)
+            ->where('league_id', '1')
+            ->orderBy('goals', 'desc')
+            ->first();
+        // dd($player_rank_goal1);
+        //Bgroupの得点王を取得
+        $player_rank_goal2 = PastPlayerRankTotal::where('convention_id', $conventionId->convention_id)
+            ->where('league_id', '2')
+            ->orderBy('goals', 'desc')
+            ->first();
+        //Agroupのアシスト王を取得
+        $player_rank_assist1 = PastPlayerRankTotal::where('convention_id', $conventionId->convention_id)
+            ->where('league_id', '1')
+            ->orderBy('assists', 'desc')
+            ->first();
+        //Bgroupのアシスト王を取得
+        $player_rank_assist2 = PastPlayerRankTotal::where('convention_id', $conventionId->convention_id)
+            ->where('league_id', '2')
+            ->orderBy('assists', 'desc')
+            ->first();
+
+        //総合優勝決定戦のスコア
+        $sougou_score1 = ($convention_results1->home_score) + ($convention_results1->away_score);
+        $sougou_score2 = ($convention_results2->home_score) + ($convention_results2->away_score);
+
+        // dd($sougou_score2);
+        return view('user.past_competitions', compact(
+            'conventionId',
+            'team_names1',
+            'convention_results1',
+            'team_names2',
+            'convention_results2',
+            'player_rank_goal1',
+            'player_rank_goal2',
+            'player_rank_assist1',
+            'player_rank_assist2',
+            'sougou_score1',
+            'sougou_score2',
+
+        ));
     }
 }

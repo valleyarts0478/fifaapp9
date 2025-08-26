@@ -52,29 +52,21 @@ class GameResultsController extends Controller
     {
         // $results = GameResult::all();
         $team_owner = Team_owner::find(Auth::id());
-
+        $current_convention = $team_owner->convention_id;
         //降順の最初のレコードを取得
         $convention = Convention::orderBy('id', 'desc')->first();
 
         $games = Game::where(function ($query) use ($team_owner) {
             $query->where('home_team', $team_owner->team_name)
                 ->orWhere('away_team', $team_owner->team_name);
-        })->where(function ($query) use ($convention) {
-            $query->where('convention_id', $convention->id);
+        })->where(function ($query) use ($current_convention) {
+            $query->where('convention_id', $current_convention);
         })->orderBy('game_date', 'asc')->get();
-
-        // $results = Game::select('id', 'convention_id', 'league_id', 'game_date', 'home_team', 'away_team')
-        //     ->where('convention_id', $convention->id)
-        //     ->where('home_team', $team_owner->team_name)
-        //     ->orWhere('away_team', $team_owner->team_name)
-        //     ->orderBy('game_date', 'asc')
-        //     ->get();
 
         //チームロゴ取得用
         $game_info = Game::where(function ($query) use ($convention) {
             $query->where('convention_id', $convention->id);
         })->orderBy('game_date', 'asc')->get();
-
 
         $team_info = [];
         foreach ($game_info as $info) {
@@ -85,13 +77,8 @@ class GameResultsController extends Controller
             return view('team_owner.no_match');
         }
 
-        $team_names = Team_owner::whereIn('team_name', $team_info['team_name'])->get();
-
-        // foreach ($team_names as $team_name) {
-        //     $team_url[$team_name->team_name] = $team_name->team_logo_url;
-        // }
-        // dump($team_url);
-        // dd($team_url);
+        $team_names = Team_owner::where('convention_id', $convention->id)
+            ->whereIn('team_name', $team_info['team_name'])->get();
 
         return view('team_owner.results.index', compact('team_owner', 'games', 'team_names'));
     }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Infomation;
+use App\Models\Team_owner;
 
 class UserInfoController extends Controller
 {
@@ -15,12 +16,18 @@ class UserInfoController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(3);
 
-        return view('user.welcome', compact('infolist'));
+        //降順の最初のレコードを取得
+        $team_owners = Team_owner::all();
+
+        return view('user.welcome', compact('infolist', 'team_owners'));
     }
+    
     public function infolist()
     {
         $infolist = Infomation::select('title', 'post', 'created_at')->orderBy('created_at', 'desc')->paginate(10);
         // dd($infolist);
         return view('user.infolist', compact('infolist'));
     }
+    
+    
 }

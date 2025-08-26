@@ -29,11 +29,11 @@ class Player_no_check implements Rule
      */
     public function passes($attribute, $value)
     {
-
-        $player = Player::where('player_no', $value)
-            ->where('team_owner_id', Auth::id());
+         $player = Player::where('player_no', $value)
+         ->where('team_owner_id', Auth::id());
 
         return $player->doesntExist();
+
     }
 
     /**
@@ -44,5 +44,6 @@ class Player_no_check implements Rule
     public function message()
     {
         return 'その背番号はすでに存在しています。';
+        
     }
 }

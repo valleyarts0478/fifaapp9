@@ -1,33 +1,49 @@
-// import Swiper JS
-import Swiper from 'swiper';
+// import Swiper from 'swiper'; 最小限の機能しか入っていない
+import Swiper from 'swiper/bundle'; // 全ての機能が入っている
 // import Swiper styles
-import 'swiper/swiper-bundle.css';
+import 'swiper/css';
 
 // core version + navigation, pagination modules:
-import SwiperCore, { Navigation, Pagination } from 'swiper/core';
+// import Swiper, { Navigation, Pagination } from 'swiper';
+// import Swiper and modules styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
-// configure Swiper to use modules
-SwiperCore.use([Navigation, Pagination]);
+ // import styles bundle
+ import 'swiper/css/bundle';
 
-// init Swiper:
-const swiper = new Swiper('.swiper-container', {
-    // Optional parameters
-    // direction: 'vertical',
-    loop: true,
+ const slideLength = document.querySelectorAll('.swiper-card .swiper-slide').length;
 
-    // If we need pagination
-    pagination: {
-        el: '.swiper-pagination',
-    },
+  const initSwiper = () => {
+    const mySwiper = new Swiper('.swiper-card .swiper', {
+      slidesPerView: 'auto',
+      spaceBetween: 16,
+      loop: true,
+      loopedSlides: slideLength,
+      speed: 5000,
+      autoplay: {
+        delay: 0,
+        disableOnInteraction: false,
+      },
+      freeMode: {
+        enabled: true,
+        momentum: false,
+      },
+      grabCursor: true,
+      breakpoints: {
+        1025: {
+          spaceBetween: 32,
+        }
+      },
+      on: {
+        touchEnd: (swiper) => {
+          swiper.slideTo(swiper.activeIndex + 1);
+        }
+      }
+    });
+  };
 
-    // Navigation arrows
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
-
-    // And if we need scrollbar
-    scrollbar: {
-        el: '.swiper-scrollbar',
-    },
-});
+  window.addEventListener('load', function(){
+    initSwiper();
+  });
