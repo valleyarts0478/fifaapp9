@@ -80,10 +80,10 @@ Route::get('/player_rank_total', [PlayerRanktotalController::class, 'index'])
     ->name('playerranktotal');
 //過去大会結果
 Route::middleware('guest')->group(function () {
-  Route::get('/past_competitions', [ConventionsResultsController::class, 'past'])->name('past_competitions'); 
-  Route::get('/current_competitions', [ConventionsResultsController::class, 'current'])->name('current_competitions');
+    Route::get('/past_competitions', [ConventionsResultsController::class, 'past'])->name('past_competitions');
+    Route::get('/current_competitions', [ConventionsResultsController::class, 'current'])->name('current_competitions');
 });
-   
+
 //得点王・アシスト王
 // Route::get('/player_rank', [PlayerRankController::class, 'index'])
 //     ->middleware('guest')
@@ -109,17 +109,35 @@ Route::get('/schedule_list', [TeamListController::class, 'schedule_list'])
     ->middleware('guest')
     ->name('schedule_list');
 
-Route::get('/day_schedule/{team}', [TeamListController::class, 'day_schedule'])
+// Route::get('/day_schedule/{team}', [TeamListController::class, 'day_schedule'])
+//     ->middleware('guest')
+//     ->name('day.schedule');
+
+// Route::get('/day_schedule2/{team}', [TeamListController::class, 'day_schedule2'])
+//     ->middleware('guest')
+//     ->name('day.schedule2');
+
+// 1部
+Route::get('/day_schedule/{section}', [TeamListController::class, 'day_schedule'])
     ->middleware('guest')
+    ->whereNumber('section')   // 数字だけを受け付けるよう制約
     ->name('day.schedule');
 
-Route::get('/day_schedule2/{team}', [TeamListController::class, 'day_schedule2'])
+// 2部
+Route::get('/day_schedule2/{section}', [TeamListController::class, 'day_schedule2'])
     ->middleware('guest')
+    ->whereNumber('section')
     ->name('day.schedule2');
 
 Route::get('/day_schedule_show/{team}', [TeamListController::class, 'day_schedule_show'])
     ->middleware('guest')
     ->name('day.schedule_show');
+
+
+// Route::get('/day_schedule/{section}', [TeamListController::class, 'day_schedule'])
+//     ->middleware('guest')
+//     ->name('day.schedule_show');
+
 
 Route::get('/team_rank', [ConventionsResultsController::class, 'index'])
     ->middleware('guest')

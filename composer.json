@@ -5,19 +5,18 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^8.0",
+        "php": "^8.3",
         "barryvdh/laravel-debugbar": "^3.6",
         "ckeditor/ckeditor": "^4.20",
-        "fideloper/proxy": "^4.4",
-        "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.7",
-        "laravel/framework": "^9.0",
+        "laravel/framework": "^10.0",
         "laravel/tinker": "^2.5",
-        "rap2hpoutre/fast-excel": "^3.1",
+        "rap2hpoutre/fast-excel": "^5.6",
         "stripe/stripe-php": "^7.100"
     },
     "require-dev": {
+        "spatie/laravel-ignition": "^3.0",
         "fakerphp/faker": "^1.9.1",
         "laravel/breeze": "1.*",
         "laravel/sail": "^1.44",

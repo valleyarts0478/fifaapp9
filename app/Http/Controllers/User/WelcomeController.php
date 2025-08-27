@@ -35,7 +35,8 @@ class WelcomeController extends Controller
             
         if($convention->id === $game_convention_id->convention_id){
             //10時間後
-        $last_date = $game_date->game_date->addHour(12);
+        // $last_date = $game_date->game_date->addHour(12);
+        $last_date = Carbon::parse($game_date->game_date)->addHours(12);
             
         }else{
             $last_date = "offseason";
