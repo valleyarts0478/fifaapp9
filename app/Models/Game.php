@@ -27,9 +27,12 @@ class Game extends Model
         'home_team',
         'away_team',
     ];
-
-    protected $dates = ['game_date']; //日付フォーマットできるようにした
-
+//Laravel 9.52 以降では $dates は非推奨 で、代わりに $casts を使うのが正しい方法 です。
+    // protected $dates = ['game_date']; //日付フォーマットできるようにした
+    protected $casts = [
+        'game_date' => 'datetime',
+    ];
+    
     public function game_results()
     {
         return $this->hasOne(GameResult::class);
@@ -46,6 +49,7 @@ class Game extends Model
     {
         return $this->belongsTo(league::class);
     }
+   
     // public function team_owner()
     // {
     //     return $this->belongsTo(Team_owner::class);

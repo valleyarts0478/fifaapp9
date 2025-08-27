@@ -13,7 +13,7 @@ use App\Models\Goal_Assist;
 use App\Models\GameResult;
 use App\Models\ConventionsResult; //追加
 use App\Models\League;
-
+use Carbon\Carbon;
 
 
 class TeamListController extends Controller
@@ -83,7 +83,7 @@ class TeamListController extends Controller
                 $team_info['team_name'][] = $info->away_team;
             }
             $team_names = Team_owner::where('convention_id', $convention->id)
-            ->whereIn('team_name', $team_info['team_name'])->get();
+                ->whereIn('team_name', $team_info['team_name'])->get();
         }
 
 
@@ -93,109 +93,117 @@ class TeamListController extends Controller
     }
     public function schedule_list()
     {
-        //降順の最初のレコードを取得
-        $convention = Convention::orderBy('id', 'desc')->first();
+        // 降順の最初のレコードを取得
+        $convention = Convention::orderBy('id', 'desc')->firstOrFail();
 
+        // =====================
+        // League 1
+        // =====================
         $games = Game::where('convention_id', $convention->id)
             ->where('league_id', 1)
-            ->orderBy('game_date', 'asc')->get();
-        // dd($games);
+            ->orderBy('game_date', 'asc')
+            ->get();
 
-        $game1_count = count($games);
-        $team_list = [];
+        $game1_count = $games->count();
+        $team_list   = [];
+        $section     = [];
 
-        //league1
         foreach ($games as $game) {
+            $game_date = Carbon::parse($game->game_date);
 
-            $team_list[$game->game_date->format('Y-m-d-H:i:s')][$game->id] = [
-                'section' => $game->section,
-                'home_team' => $game->home_team,
-                'away_team' => $game->away_team,
-
+            $team_list[$game_date->format('Y-m-d H:i:s')][$game->id] = [
+                'section'    => $game->section,
+                'home_team'  => $game->home_team,
+                'away_team'  => $game->away_team,
             ];
-        }
-        $section = [];
-        //section取得
-        foreach ($games as $game) {
-            $section[$game->game_date->format('Y-m-d-H:i:s')] = [
+
+            $section[$game_date->format('Y-m-d H:i:s')] = [
                 'section' => $game->section,
             ];
         }
 
-        // dd($section);
-
-        //league2
+        // =====================
+        // League 2
+        // =====================
         $game_leagues = Game::where('convention_id', $convention->id)
             ->where('league_id', 2)
-            ->orderBy('game_date', 'asc')->get();
+            ->orderBy('game_date', 'asc')
+            ->get();
 
-        $section2 = [];
-        //section2取得
+        $game2_count       = $game_leagues->count();
+        $team_list_second  = [];
+        $section2          = [];
+
         foreach ($game_leagues as $game2) {
-            $section2[$game2->game_date->format('Y-m-d-H:i:s')] = [
+            $game_date = Carbon::parse($game2->game_date);
+
+            $team_list_second[$game_date->format('Y-m-d H:i:s')][$game2->id] = [
+                'section'    => $game2->section,
+                'home_team'  => $game2->home_team,
+                'away_team'  => $game2->away_team,
+            ];
+
+            $section2[$game_date->format('Y-m-d H:i:s')] = [
                 'section' => $game2->section,
             ];
         }
 
-        $game2_count = count($game_leagues);
-
-        $team_list_second = [];
-        foreach ($game_leagues as $league) {
-            $team_list_second[$league->game_date->format('Y-m-d-H:i:s')][$league->id] = [
-                'home_team' => $league->home_team,
-                'away_team' => $league->away_team,
-            ];
-        }
-
-        return view('user.schedule_list', compact('section', 'section2', 'team_list', 'team_list_second', 'game1_count', 'game2_count'));
+        // ビューへ返却
+        return view('user.schedule_list', compact(
+            'section',
+            'section2',
+            'team_list',
+            'team_list_second',
+            'game1_count',
+            'game2_count'
+        ));
     }
 
-    public function day_schedule($date)
+    //ここから
+    public function day_schedule($section)
     {
-        // $team = Team_owner::findOrFail($id);
-
-        //降順の最初のレコードを取得
         $convention = Convention::orderBy('id', 'desc')->first();
-        
-        //league1
+
         $games = Game::where('convention_id', $convention->id)
-            ->where('game_date', $date)
             ->where('league_id', 1)
-            ->orderBy('game_date', 'asc')->get();
-            // dd($games);
+            ->where('section', $section) // ここで section で絞り込む
+            ->orderBy('game_date', 'asc')
+            ->get();
 
-        //チームロゴ取得用
-        // $game_info = Game::where(function ($query) use ($convention) {
-        //     $query->where('convention_id', $convention->id);
-        // })->orderBy('game_date', 'asc')->get();
+        $team_info = ['team_name' => []];
 
-        $team_info = [];
         foreach ($games as $info) {
             $team_info['team_name'][] = $info->home_team;
             $team_info['team_name'][] = $info->away_team;
         }
 
         $team_names = Team_owner::where('convention_id', $convention->id)
-        ->whereIn('team_name', $team_info['team_name'])->get();
+            ->whereIn('team_name', $team_info['team_name'])
+            ->get();
 
-        // dd($team_names);
-        return view('user.day_schedule', compact('games', 'team_names'));
+        // blade で $section が必要なら compact に入れる
+        return view('user.day_schedule', compact('games', 'team_names', 'section'));
     }
 
-    public function day_schedule2($date)
+
+    public function day_schedule2($section)
     {
         // $team = Team_owner::findOrFail($id);
 
         //降順の最初のレコードを取得
         $convention = Convention::orderBy('id', 'desc')->first();
 
+        // 修正: $date を Carbon に変換
+        // $date_carbon = Carbon::parse($date); // ← 追加
+
         //league2
         $games_second = Game::where('convention_id', $convention->id)
-            ->where('game_date', $date)
             ->where('league_id', 2)
-            ->orderBy('game_date', 'asc')->get();
+            ->where('section', $section) // ここで section で絞り込む
+            ->orderBy('game_date', 'asc')
+            ->get();
 
-
+        $team_info = []; // ← 修正: 初期化が抜けていた場合のため
         // dd($games_second);
         //チームロゴ取得用
         // $game_info = Game::where(function ($query) use ($convention) {
@@ -207,7 +215,7 @@ class TeamListController extends Controller
             $team_info['team_name'][] = $info->away_team;
         }
         $team_names = Team_owner::where('convention_id', $convention->id)
-        ->whereIn('team_name', $team_info['team_name'])->get();
+            ->whereIn('team_name', $team_info['team_name'])->get();
 
 
         // dd($games);
@@ -218,6 +226,9 @@ class TeamListController extends Controller
     {
         //HOME取得用
         $home_game = Game::findOrFail($id);
+
+        // 修正: game_date を Carbon に変換（Blade で format() 使う場合に必要）
+        $home_game->game_date = Carbon::parse($home_game->game_date); // ← 追加
 
         $home_owner = Team_owner::where('team_name', $home_game->home_team)->first();
 
